@@ -13,72 +13,8 @@
   "basePath": "/reports/api/v2.0",
   "tags": [
     {
-      "name": "CatalogItems",
-      "description": "CatalogItems"
-    },
-    {
-      "name": "DataSets",
-      "description": "DataSets"
-    },
-    {
-      "name": "DataSources",
-      "description": "DataSources"
-    },
-    {
-      "name": "ExcelWorkbooks",
-      "description": "ExcelWorkbooks"
-    },
-    {
-      "name": "ExecutionLogEntries",
-      "description": "ExecutionLogEntries"
-    },
-    {
-      "name": "Extensions",
-      "description": "Extensions"
-    },
-    {
-      "name": "FavoriteItems",
-      "description": "FavoriteItems"
-    },
-    {
-      "name": "Folders",
-      "description": "Folders"
-    },
-    {
-      "name": "Kpis",
-      "description": "Kpis"
-    },
-    {
-      "name": "LinkedReports",
-      "description": "LinkedReports"
-    },
-    {
       "name": "Me",
       "description": "me juchen, junkui"
-    },
-    {
-      "name": "MobileReports",
-      "description": "MobileReports"
-    },
-    {
-      "name": "PowerBIReports",
-      "description": "PowerBIReports"
-    },
-    {
-      "name": "Reports",
-      "description": "Reports"
-    },
-    {
-      "name": "Resources",
-      "description": "Resources"
-    },
-    {
-      "name": "Subscriptions",
-      "description": "Subscriptions"
-    },
-    {
-      "name": "System",
-      "description": "System"
     }
   ],
   "definitions": {
@@ -92,7 +28,7 @@
         }
       },
       "title": "AllowedAction",
-      "description": "An object that specifies an allowed actions on a catalog item."
+      "description": "An object that specifies an allowed action on a catalog item."
     },
     "Model.CatalogItemType": {
       "type": "string",
@@ -112,41 +48,99 @@
         "ExcelWorkbook"
       ],
       "title": "CatalogItemType",
-      "description": "An enumeration of values that specify the type of the catalog item."
+      "description": "An enumeration of values that specifies the type of the catalog item."
+    },
+    "Model.CacheRefreshPlan": {
+      "type": "object",
+      "properties": {
+        "Id": {
+          "type": "string",
+          "description": "A unique UUID value that specifies the identifier by which this CacheRefreshPlan can be referenced in the definition of other items.",
+          "format": "uuid",
+          "example": "01234567-89ab-cdef-0123-456789abcdef"
+        },
+        "Owner": {
+          "type": "string",
+          "description": "A string value that specifies the owner of the CacheRefreshPlan",
+          "format": "string"
+        },
+        "Description": {
+          "type": "string",
+          "description": "A string value that contains descriptive text about the CacheRefreshPlan",
+          "format": "string"
+        },
+        "CatalogItemPath": {
+          "type": "string",
+          "description": "A string value that contains the fully qualified URL path location of the CatalogItem that represents the CacheRefreshPlan",
+          "format": "string"
+        },
+        "Schedule": {
+          "$ref": "#/definitions/Model.ScheduleReference"
+        },
+        "LastRunTime": {
+          "type": "string",
+          "description": "A date-time value that specifies the date-time that the schedule was last run.",
+          "format": "date-time",
+          "example": "2017-04-13T15:51:04Z"
+        },
+        "LastStatus": {
+          "type": "string",
+          "description": "A string value that contains the network username of the last user to modify the CacheRefreshPlan",
+          "format": "string"
+        },
+        "ModifiedBy": {
+          "type": "string",
+          "description": "A string value that contains the date-time of the last modification to the CacheRefreshPlan",
+          "format": "string"
+        },
+        "ModifiedDate": {
+          "type": "string",
+          "description": "A string value that contains the date-time of the last modification to the CatalogItem.",
+          "format": "date-time",
+          "example": "2017-04-13T15:51:04Z"
+        },
+        "ParameterValues": {
+          "type": "array",
+          "description": "An array of parameter values for the CacheRefreshPlan. All parameters without a default value MUST have a value specified.",
+          "items": {
+            "$ref": "#/definitions/Model.ParameterValue"
+          }
+        }
+      }
     },
     "Model.CredentialsStoredInServer": {
       "type": "object",
       "properties": {
         "UserName": {
           "type": "string",
-          "description": "A string value that contains the user name that will be used to connect to an external data source.",
+          "description": "A string value that contains the user name to be used to connect to an external data source.",
           "format": "string"
         },
         "Password": {
           "type": "string",
-          "description": "A string value that contains the password that will be used to connect to an external data source.",
+          "description": "A string value that contains the password to be used to connect to an external data source.",
           "format": "string"
         },
         "UseAsWindowsCredentials": {
           "type": "boolean",
-          "description": "A boolean value that indicates whether the supplied credentials should be used as Windows credentials.",
+          "description": "A Boolean value that indicates whether the supplied credentials should be used as Windows credentials.",
           "format": "true|false"
         },
         "ImpersonateAuthenticatedUser": {
           "type": "boolean",
-          "description": "A boolean value that indicates whether the session should impersonate the user for the supplied credentials.",
+          "description": "A Boolean value that indicates whether the session should impersonate the user for the supplied credentials.",
           "format": "true|false"
         }
       },
       "title": "CredentialsStoredInServer",
-      "description": "This object holds credentials for connection to an external data source. The object is stored on the report server, for later retrieval and utilization. NOTE this object represents a security risk, as its properties could be seen in plain text over the HTTP protocol; HTTPS is recommended."
+      "description": "This object holds credentials for connection to an external data source. The object is stored on the report server for later retrieval and use. NOTE: This object represents a security risk as its properties can be seen in plain text over the HTTP protocol; HTTPS is recommended."
     },
     "Model.CredentialsSuppliedByUser": {
       "type": "object",
       "properties": {
         "DisplayText": {
           "type": "string",
-          "description": "A string value that contains text to use to prompt a user to supply credentials for connection to an external data source.",
+          "description": "A string value that contains text used to prompt a user to supply credentials for connection to an external data source.",
           "format": "string"
         },
         "UseAsWindowsCredentials": {
@@ -169,12 +163,12 @@
         },
         "Name": {
           "type": "string",
-          "description": "A string value that specifies the name for the CatalogItem. This name will typically be displayed for the user in the user interface.",
+          "description": "A string value that specifies the name for the CatalogItem. This name is typically displayed in the user interface.",
           "format": "string"
         },
         "Description": {
           "type": "string",
-          "description": "A string value that constains descriptive text about the CatalogItem.",
+          "description": "A string value that contains descriptive text about the CatalogItem.",
           "format": "string"
         },
         "Path": {
@@ -187,17 +181,17 @@
         },
         "Hidden": {
           "type": "boolean",
-          "description": "A boolean value that indicates if the CatalogItem is hidden.  If true, the item will generally not appear in listings of CatalogItems within the parent item.",
+          "description": "A Boolean value that indicates if the CatalogItem is hidden.  If true, the item will generally not appear in listings of CatalogItems within the parent item.",
           "format": "true|false"
         },
         "Size": {
           "type": "integer",
-          "description": "An int64 value that contains the size of the CatalogItem in bytes.",
+          "description": "An Int64 value that contains the size of the CatalogItem in bytes.",
           "format": "int64"
         },
         "ModifiedBy": {
           "type": "string",
-          "description": "A string value that contains the network username of the last user to modify the CatalogItem.",
+          "description": "A string value that contains the network user name of the last user to modify the CatalogItem.",
           "format": "string"
         },
         "ModifiedDate": {
@@ -208,7 +202,7 @@
         },
         "CreatedBy": {
           "type": "string",
-          "description": "A string value that represents the network username of the user that originally created the CatalogItem.",
+          "description": "A string value that represents the network user name of the user who originally created the CatalogItem.",
           "format": "string"
         },
         "CreatedDate": {
@@ -219,7 +213,7 @@
         },
         "ParentFolderId": {
           "type": "string",
-          "description": "A UUID value that contains the Id property of the Folder CatalogItem that contains this CatalogItem.",
+          "description": "A UUID value that contains the ID property of the Folder CatalogItem that contains this CatalogItem.",
           "format": "uuid",
           "example": "01234567-89ab-cdef-0123-456789abcdef"
         },
@@ -230,11 +224,11 @@
         },
         "Content": {
           "type": "string",
-          "description": "A string value that contains binary encoding by base64url encoding rules. The value of this property is not processed by the server. In object creation the server recieves and stores a value, and in object retrieval, the server returns the previously stored value."
+          "description": "A string value that contains binary encoding by base64url encoding rules. The value of this property is not processed by the server. In object creation the server receives and stores a value, and in object retrieval the server returns the previously stored value."
         },
         "IsFavorite": {
           "type": "boolean",
-          "description": "A boolean value that specifies whether the CatalogItem is designated as a Favorite.",
+          "description": "A Boolean value that specifies whether the CatalogItem is designated as a Favorite.",
           "format": "true|false"
         }
       },
@@ -251,18 +245,18 @@
         },
         "ItemId": {
           "type": "string",
-          "description": "A uuid value that specifies a pointer to the CatalogItem item to which the comment is attached.",
+          "description": "A UUID value that specifies a pointer to the CatalogItem item to which the comment is attached.",
           "format": "uuid",
           "example": "01234567-89ab-cdef-0123-456789abcdef"
         },
         "UserName": {
           "type": "string",
-          "description": " A string value that represents the user that created the comment item.",
+          "description": " A string value that represents the user who created the comment item.",
           "format": "string"
         },
         "ThreadId": {
           "type": "string",
-          "description": "An integer value that specifies an identifier for the thread of the comment. A comment's thread can be used to group comments that are a response to each other in one grouping.",
+          "description": "An integer value that specifies an identifier for the thread of the comment. A comment thread can be used to group comments that are a response to one another in one grouping.",
           "format": "uuid",
           "example": "01234567-89ab-cdef-0123-456789abcdef"
         },
@@ -273,18 +267,18 @@
         },
         "Text": {
           "type": "string",
-          "description": "A string value that contains the text of the Comment",
+          "description": "A string value that contains the text of the comment.",
           "format": "string"
         },
         "CreatedDate": {
           "type": "string",
-          "description": "A date-time value that represents the original creation date for the Comment.",
+          "description": "A date-time value that represents the original creation date for the comment.",
           "format": "date-time",
           "example": "2017-04-13T15:51:04Z"
         },
         "ModifiedDate": {
           "type": "string",
-          "description": "A string value that contains the date-time of the last modification to the Comment.",
+          "description": "A string value that contains the date-time of the last modification to the comment.",
           "format": "uuid",
           "example": "01234567-89ab-cdef-0123-456789abcdef"
         }
@@ -302,7 +296,7 @@
           "properties": {
             "HasParameters": {
               "type": "boolean",
-              "description": "A Boolean value that indicates whether the data set definition contains parameters.",
+              "description": "A Boolean value that indicates whether the dataset definition. contains parameters.",
               "format": "true|false"
             },
             "QueryExecutionTimeOut": {
@@ -312,7 +306,7 @@
             }
           },
           "title": "DataSet",
-          "description": "The DataSet object is derived from the abstract type, CatalogItem and therefore contains all of its properties. This object specifies the information needed to supply a set of data to a report. It is analogous to a view in a database and can include a data source pointer, a query definition, and optional parameter values, calculated fields, and filtering and collation information"
+          "description": "The DataSet object is derived from the abstract type CatalogItem and therefore contains all of its properties. This object specifies the information needed to supply a set of data to a report. It is analogous to a view in a database and can include a data source pointer, a query definition, and optional parameter values, calculated fields, and filtering and collation information."
         }
       ]
     },
@@ -321,7 +315,7 @@
       "properties": {
         "TimeUnit": {
           "type": "string",
-          "description": "The time unit for the dataset item. The possible values for this string are the following: 'Year', 'Quarter', 'Month', 'Weekday', 'Hour'.",
+          "description": "The time unit for the DataSetItem. The possible values for this string are the following: 'Year', 'Quarter', 'Month', 'Weekday', 'Hour'.",
           "format": "string"
         },
         "DateTimeColumn": {
@@ -331,7 +325,7 @@
         }
       },
       "title": "DataSetItem",
-      "description": "An object that contains additional DataSet properties for the MobileReportManifest"
+      "description": "An object that contains additional dataset properties for the MobileReportManifest"
     },
     "Model.DataSource": {
       "allOf": [
@@ -348,12 +342,12 @@
             },
             "ConnectionString": {
               "type": "string",
-              "description": "A string value that can be passed to a data source in order to being the process of establishing connection.",
+              "description": "A string value that can be passed to a data source in order to begin the process of establishing connection.",
               "format": "string"
             },
             "DataSourceType": {
               "type": "string",
-              "description": "DataSource Extension like 'SQL'",
+              "description": "DataSource extension such as 'SQL'.",
               "format": "string"
             },
             "IsOriginalConnectionStringExpressionBased": {
@@ -363,7 +357,7 @@
             },
             "IsConnectionStringOverridden": {
               "type": "boolean",
-              "description": "Specifies whether original connection string is overridden.",
+              "description": "Specifies whether the original connection string is overridden.",
               "format": "true|false"
             },
             "CredentialsByUser": {
@@ -374,12 +368,12 @@
             },
             "IsReference": {
               "type": "boolean",
-              "description": "Indicates whether the is a reference to a shared data source or an embedded data source.",
+              "description": "Indicates whether this is a reference to a shared data source or an embedded data source.",
               "format": "true|false"
             },
             "DSIDNum": {
               "type": "string",
-              "description": " An Int64 value that is for internal use only. (TODO Comment from bug bash: 'This is not present'.  Note that it was discussed during the OIPI phase that it be removed, so if it is confirmed that it is removed, needs to be removed here)",
+              "description": " An Int64 value for internal use only. (TODO Comment from bug bash: 'This is not present'.  Note that it was discussed during the OIPI phase that it be removed, so if it is confirmed that it is removed, needs to be removed here)",
               "format": "uuid",
               "example": "01234567-89ab-cdef-0123-456789abcdef"
             },
@@ -388,7 +382,7 @@
             }
           },
           "title": "DataSource",
-          "description": "An object that defines information about an external source of data that can be connected to as a source of data for reporting services. DataSource is derived from CatalogItem and therefore includes all properties defined by CatalogItem."
+          "description": "An object that defines information about an external source of data that can be connected to as a source of data for Reporting Services. DataSource is derived from CatalogItem and therefore includes all properties defined by CatalogItem."
         }
       ]
     },
@@ -428,7 +422,7 @@
             }
           },
           "title": "ExcelWorkbook",
-          "description": "An object that is the CatalogItem for an ExcelWorkbook.  This object is derived from CatalogItem and therefore contains all of its properties, plus additional properties for an excel workbook."
+          "description": "An object that is the CatalogItem for an Excel workbook.  This object is derived from CatalogItem and therefore contains all of its properties, plus additional properties for an Excel workbook."
         }
       ]
     },
@@ -442,7 +436,7 @@
         },
         "CatalogItemId": {
           "type": "string",
-          "description": "Id of catalog item for this execution log info",
+          "description": "ID of catalog item for this execution log info.",
           "format": "uuid",
           "example": "4fe74eb8-f053-4e54-8c33-3aa68a04c628"
         },
@@ -455,13 +449,13 @@
           "type": "string",
           "description": "A date-time value that specifies the start time for this log entry's activity.",
           "format": "date-time",
-          "example": "2017-04-13T15:51:04Z"
+          "example": "2017-04-13 15:51:04 UTC"
         },
         "EndTime": {
           "type": "string",
           "description": "A date-time value that specifies the end time for this log entry's activity.",
           "format": "date-time",
-          "example": "2017-04-13T15:51:04Z"
+          "example": "2017-04-13 15:51:04 UTC"
         },
         "Format": {
           "type": "string",
@@ -470,7 +464,7 @@
         },
         "Parameters": {
           "type": "string",
-          "description": "Report parameter values separated by '&'",
+          "description": "Report parameter values separated by '&'.",
           "format": "string"
         },
         "Status": {
@@ -530,12 +524,12 @@
         },
         "Visible": {
           "type": "boolean",
-          "description": "A boolean value that indicates if the Extension is visible. If false, the item will generally not appear in listings of available extensions.",
+          "description": "A Boolean value that indicates if the Extension is visible. If false, the item will generally not appear in listings of available extensions.",
           "format": "true|false"
         }
       },
       "title": "Extension",
-      "description": "An object that holds the definition of a reporting services extension."
+      "description": "An object that holds the definition of a Reporting Services extension."
     },
     "Model.ExtensionParameter": {
       "type": "object",
@@ -572,7 +566,7 @@
         },
         "Encrypted": {
           "type": "boolean",
-          "description": "Indicates whether the extension parameter value should be encrypted in the report server database.",
+          "description": "Indicates whether the extension parameter value should be encrypted in the Report Server database.",
           "format": "true|false"
         },
         "IsPassword": {
@@ -628,7 +622,7 @@
       "properties": {
         "Id": {
           "type": "string",
-          "description": "The uniquie identifier of the catalog item that is marked as a favorite.",
+          "description": "The unique identifier of the catalog item that is marked as a favorite.",
           "format": "uuid",
           "example": "01234567-89ab-cdef-0123-456789abcdef"
         },
@@ -637,7 +631,7 @@
         }
       },
       "title": "FavoriteItem",
-      "description": "An object that a reference to a catalog item that the user has marked as favorite."
+      "description": "An object that a reference to a catalog item that the user has marked as a favorite."
     },
     "Model.Folder": {
       "allOf": [
@@ -648,7 +642,7 @@
           "type": "object",
           "properties": {},
           "title": "Folder",
-          "description": "The Folder object is derived from the abstract type, CatalogItem and therefore contains all of its properties. This object specifies the definition of a Folder on the server. It does not contain additional properties beyond those specified for the base type, CatalogItem."
+          "description": "The Folder object is derived from the abstract type, CatalogItem, and therefore contains all of its properties. This object specifies the definition of a Folder on the server. It does not contain additional properties beyond those specified for the base type, CatalogItem."
         }
       ]
     },
@@ -663,30 +657,30 @@
         },
         "HistoryId": {
           "type": "string",
-          "description": "History snapshot Id by date created.",
+          "description": "History snapshot ID by date created.",
           "format": "string"
         },
         "CreationDate": {
           "type": "string",
-          "description": "Creation date of history snapshot",
+          "description": "Creation date of the history snapshot.",
           "format": "date-time",
           "example": "2017-04-13T15:51:04Z"
         },
         "Size": {
           "type": "integer",
-          "description": "Size of the history snapshot",
+          "description": "Size of the history snapshot.",
           "format": "int32"
         }
       },
       "title": "HistorySnapshot",
-      "description": "An object that contains hisotory snapshot information."
+      "description": "An object that contains history snapshot information."
     },
     "Model.HistorySnapshotOptions": {
       "type": "object",
       "properties": {
         "CatalogItemId": {
           "type": "string",
-          "description": "The Id of catalog item that this HistorySnapshotOptions belows to.",
+          "description": "The ID of the catalog item that this HistorySnapshotOptions belongs to.",
           "format": "uuid",
           "example": "01234567-89ab-cdef-0123-456789abcdef"
         },
@@ -695,14 +689,14 @@
         }
       },
       "title": "HistorySnapshotOptions",
-      "description": "An object that has a reference to a history snapshot options for given catalog."
+      "description": "An object that has a reference to a history snapshot option for a given catalog."
     },
     "Model.ItemPolicy": {
       "type": "object",
       "properties": {
         "InheritParentPolicy": {
           "type": "boolean",
-          "description": "A Boolean value that indicates whether access policy is to be inherited from the items parent item.",
+          "description": "A Boolean value that indicates whether the access policy is to be inherited from the item's parent item.",
           "format": "true|false"
         },
         "Policies": {
@@ -786,7 +780,7 @@
         "Shared"
       ],
       "title": "KpiDataItemType",
-      "description": "An enumeration of values that specify whether the KPI data item is static or shared."
+      "description": "An enumeration of values that specifies whether the KPI data item is static or shared."
     },
     "Model.KpiValueFormat": {
       "type": "string",
@@ -800,7 +794,7 @@
         "PercentWithDecimals"
       ],
       "title": "KpiValueFormat",
-      "description": "An enumeration of values that specify the available formats for KPI values."
+      "description": "An enumeration of values that specifies the available formats for KPI values."
     },
     "Model.KpiValues": {
       "type": "object",
@@ -842,7 +836,7 @@
         "Area"
       ],
       "title": "KpiVisualization",
-      "description": "An enumeration of values that specify the available types of visualizations for a KPI."
+      "description": "An enumeration of values that specifies the available types of visualizations for a KPI."
     },
     "Model.LinkedReport": {
       "allOf": [
@@ -908,7 +902,7 @@
             },
             "HasSharedDataSets": {
               "type": "boolean",
-              "description": "A Boolean value that indicates whether the MobileReport has shared data sets associated with it.",
+              "description": "A Boolean value that indicates whether the MobileReport has shared datasets associated with it.",
               "format": "true|false"
             }
           },
@@ -929,7 +923,7 @@
         },
         "DataSets": {
           "type": "array",
-          "description": "An array of objects of type DataSetItem that specify the DataSets referenced in this MobileReport.",
+          "description": "An array of objects of type DataSetItem that specifies the datasets referenced in this MobileReport.",
           "items": {
             "$ref": "#/definitions/Model.DataSetItem"
           }
@@ -953,7 +947,7 @@
         "Portrait"
       ],
       "title": "MobileReportThumbnailType",
-      "description": "An enumeration of values that specify the available orientations for Thumbnails.."
+      "description": "An enumeration of values that specifies the available orientations for Thumbnails."
     },
     "Model.MobileReportResourceGroupType": {
       "type": "string",
@@ -963,7 +957,7 @@
         "Map"
       ],
       "title": "MobileReportResourceGroupType",
-      "description": "An enumeration of values that specify the known types for MobileReport Resources."
+      "description": "An enumeration of values that specifies the known types for MobileReport Resources."
     },
     "Model.ParameterValue": {
       "type": "object",
@@ -980,7 +974,7 @@
         },
         "IsValueFieldReference": {
           "type": "boolean",
-          "description": "A boolean value that indicates if the parameter's value is a field reference.",
+          "description": "A Boolean value that indicates if the parameter's value is a field reference.",
           "format": "true|false"
         }
       },
@@ -1004,7 +998,7 @@
         }
       },
       "title": "Policy",
-      "description": "An object that specifies a set of Roles that are grouped together as a policy and can then be assigned as a group of policies to an item using the property GroupUserName."
+      "description": "An object that specifies a set of roles that are grouped together as a policy and can then be assigned as a group of policies to an item using the property GroupUserName."
     },
     "Model.PowerBIReport": {
       "allOf": [
@@ -1057,7 +1051,7 @@
             },
             "HasSharedDataSets": {
               "type": "boolean",
-              "description": "A Boolean value that indicates whether the Report has shared DataSets associated with it.",
+              "description": "A Boolean value that indicates whether the Report has shared datasets associated with it.",
               "format": "true|false"
             },
             "HasParameters": {
@@ -1096,7 +1090,7 @@
         },
         "SystemLimit": {
           "type": "integer",
-          "description": "Integer value indicating how many snapshots can be kept system wide.  Default (-1) is unlimited.",
+          "description": "Integer value indicating how many snapshots can be kept systemwide.  Default (-1) is unlimited.",
           "format": "int32"
         },
         "Schedule": {
@@ -1139,12 +1133,12 @@
         },
         "AllowBlank": {
           "type": "boolean",
-          "description": " A Boolean value that indicates whether blank is allowed for the report parameter.",
+          "description": " A Boolean value that indicates whether a blank is allowed for the report parameter.",
           "format": "true|false"
         },
         "MultiValue": {
           "type": "boolean",
-          "description": " A Boolean value that indicates whether the ReportParameter is multi-valued.",
+          "description": " A Boolean value that indicates whether the ReportParameter is multivalued.",
           "format": "true|false"
         },
         "Prompt": {
@@ -1159,17 +1153,17 @@
         },
         "QueryParameter": {
           "type": "boolean",
-          "description": "A Boolean value that indicates whether paramter is query based.",
+          "description": "A Boolean value that indicates whether the paramter is query based.",
           "format": "true|false"
         },
         "DefaultValuesQueryBased": {
           "type": "boolean",
-          "description": "A boolean value that indicates whether the default values for parameters are obtained from a query (instead of being static specified values).",
+          "description": "A Boolean value that indicates whether the default values for parameters are obtained from a query (instead of being static specified values).",
           "format": "true|false"
         },
         "ValidValuesQueryBased": {
           "type": "boolean",
-          "description": "A boolean value that indicates whether the valid values for parameters are obtained from a query (instead of being static specified values).",
+          "description": "A Boolean value that indicates whether the valid values for parameters are obtained from a query (instead of being static specified values).",
           "format": "true|false"
         },
         "DefaultValues": {
@@ -1203,7 +1197,7 @@
         },
         "DefaultValues": {
           "type": "array",
-          "description": "Array of defult values",
+          "description": "Array of default values",
           "items": {
             "type": "string"
           }
@@ -1287,7 +1281,7 @@
         },
         "Description": {
           "type": "string",
-          "description": "A string value that constains descriptive text for the Role.",
+          "description": "A string value that constains descriptive text for the role.",
           "format": "string"
         }
       },
@@ -1311,7 +1305,7 @@
         },
         "EndDateSpecified": {
           "type": "boolean",
-          "description": "A boolean value that indicates whether the schedule end is specified.",
+          "description": "A Boolean value that indicates whether the schedule end is specified.",
           "format": "true|false"
         }
       },
@@ -1323,7 +1317,7 @@
       "properties": {
         "ScheduleID": {
           "type": "string",
-          "description": "The Id property of an existing schedule that will be used in the current context.",
+          "description": "The ID property of an existing schedule that will be used in the current context.",
           "format": "string"
         },
         "Definition": {
@@ -1331,7 +1325,7 @@
         }
       },
       "title": "ScheduleReference",
-      "description": "An object that contains either a reference to a defined schedule or the schedule details for the curret context."
+      "description": "An object that contains either a reference to a defined schedule or the schedule details for the current context."
     },
     "Model.Subscription": {
       "type": "object",
@@ -1349,17 +1343,17 @@
         },
         "IsDataDriven": {
           "type": "boolean",
-          "description": "A Boolean value that specifies whether the members of the distribution list for the subscription is computed based on data.",
+          "description": "A Boolean value that specifies whether the members of the distribution list for the subscription are computed based on data.",
           "format": "true|false"
         },
         "Description": {
           "type": "string",
-          "description": "A string value that constains descriptive text about the Subscription.",
+          "description": "A string value that contains descriptive text about the Subscription.",
           "format": "string"
         },
         "Report": {
           "type": "string",
-          "description": "A string value that specifies the path of the report that is subscribed to by this subscription.",
+          "description": "A string value that specifies the path of the report that this subscription  subscribes to.",
           "format": "string"
         },
         "IsActive": {
@@ -1369,17 +1363,17 @@
         },
         "EventType": {
           "type": "string",
-          "description": "The type of Event that triggers the subscription",
+          "description": "The type of event that triggers the subscription.",
           "format": "string"
         },
         "ScheduleDescription": {
           "type": "string",
-          "description": "A string value that constains descriptive text about the schedule referenced in the Schedule property.",
+          "description": "A string value that contains descriptive text about the schedule referenced in the Schedule property.",
           "format": "string"
         },
         "LastRunTime": {
           "type": "string",
-          "description": "A date-time value that specifies the last date-time that the schedule was last run.",
+          "description": "A date-time value that specifies the date-time that the schedule was last run.",
           "format": "date-time",
           "example": "2017-04-13T15:51:04Z"
         },
@@ -1421,7 +1415,7 @@
         }
       },
       "title": "Subscription",
-      "description": "An object that defines a Subscription. A Reporting Services subscription allows a user to subscribe to a Report or DataSource and then to automatically receive and update whenever the item is updated."
+      "description": "An object that defines a subscription. A Reporting Services subscription allows a user to subscribe to a Report or Data Source and then to automatically receive an update whenever the item is updated."
     },
     "Model.System": {
       "type": "object",
@@ -1438,17 +1432,17 @@
         },
         "WebPortalRelativeUrl": {
           "type": "string",
-          "description": "A string value that specifies the URL for the Report Server Web Portal.",
+          "description": "A string value that specifies the URL for the Report Server web portal.",
           "format": "string"
         },
         "ProductName": {
           "type": "string",
-          "description": "A string value that specifies the name of the Product being used.",
+          "description": "A string value that specifies the name of the product being used.",
           "format": "string"
         },
         "ProductVersion": {
           "type": "string",
-          "description": "A string value that specifies the version.",
+          "description": "A string value that specifies the version of the product being used.",
           "format": "string"
         }
       },
@@ -1483,12 +1477,12 @@
         },
         "Username": {
           "type": "string",
-          "description": "A string value that specifies the network username for the user.",
+          "description": "A string value that specifies the network user name for the user.",
           "format": "string"
         },
         "DisplayName": {
           "type": "string",
-          "description": "A string value that specifies the a name for display for the network user.",
+          "description": "A string value that specifies the name to display for the network user.",
           "format": "string"
         },
         "HasFavoriteItems": {
@@ -1518,7 +1512,7 @@
         }
       },
       "title": "ValidValue",
-      "description": "An object that contains a value that is valid for use in its context; in the form of a label-value pair.    "
+      "description": "An object that contains a value that is valid for use in its context, in the form of a label-value pair.    "
     },
     "odata.error": {
       "type": "object",
@@ -1573,7 +1567,7 @@
         },
         "innererror": {
           "type": "object",
-          "description": "The structure of this object is service-specific"
+          "description": "The structure of this object is service-specific."
         }
       }
     }
@@ -1582,6 +1576,7 @@
     "/Me": {
       "get": {
         "summary": "Gets the User object for the current user.",
+        "operationId": "GetUserDetails",
         "tags": [
           "Me"
         ],
@@ -1620,7 +1615,7 @@
       "in": "path",
       "type": "string",
       "required": true,
-      "description": "The key (guid or path) that uniquely idendifies the object guid example \n  01234567-89ab-cdef-0123-456789abcdef  \npath example \n  path='/folder1/folder2/item'"
+      "description": "The key (GUID or path) that uniquely identifies the object. guid example \n  01234567-89ab-cdef-0123-456789abcdef  \npath example \n  path='/folder1/folder2/item'"
     },
     "top": {
       "name": "$top",
@@ -1632,13 +1627,13 @@
       "name": "$skip",
       "description": "Skip the first n items, see [OData Paging - Skip](http://docs.oasis-open.org/odata/odata/v4.0/odata-v4.0-part1-protocol.html#_Toc445374631)",
       "in": "query",
-      "type": "boolean"
+      "type": "integer"
     },
     "count": {
       "name": "$count",
       "description": "Include count of items, see [OData Count](http://docs.oasis-open.org/odata/odata/v4.0/odata-v4.0-part1-protocol.html#_Toc445374632)",
       "in": "query",
-      "type": "boolean"
+      "type": "string"
     },
     "filter": {
       "name": "$filter",
@@ -1646,52 +1641,23 @@
       "in": "query",
       "type": "string"
     },
-    "search": {
-      "name": "$search",
-      "description": "Search items by search phrases, see [OData Searching](http://docs.oasis-open.org/odata/odata/v4.0/odata-v4.0-part1-protocol.html#_Toc445374633)",
-      "in": "query",
-      "type": "string"
-    },
     "orderby": {
       "name": "$orderBy",
       "description": "Order items by property values, see [OData Sorting](http://docs.oasis-open.org/odata/odata/v4.0/odata-v4.0-part1-protocol.html#_Toc445374629)",
       "in": "query",
-      "uniqueItems": true,
-      "items": {
-        "type": "string",
-        "enum": [
-          "Id",
-          "Id desc"
-        ]
-      },
-      "type": "array"
+      "type": "string"
     },
     "expand": {
       "name": "$expand",
       "description": "Expand related entities, see [OData Expand](http://docs.oasis-open.org/odata/odata/v4.0/odata-v4.0-part1-protocol.html#_Toc445374621)",
       "in": "query",
-      "uniqueItems": true,
-      "items": {
-        "type": "string",
-        "enum": [
-          "*",
-          "Item"
-        ]
-      },
-      "type": "array"
+      "type": "string"
     },
     "select": {
       "name": "$select",
       "description": "Select properties to be returned, see [OData Select](http://docs.oasis-open.org/odata/odata/v4.0/odata-v4.0-part1-protocol.html#_Toc445374620)",
       "in": "query",
-      "uniqueItems": true,
-      "items": {
-        "type": "string",
-        "enum": [
-          "Id"
-        ]
-      },
-      "type": "array"
+      "type": "string"
     }
   },
   "x-internal-service-name": "PowerBI Report Server"
