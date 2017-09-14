@@ -107,7 +107,8 @@
   
       "template": [],
   
-      "dest": "sql-rest"
+      "dest": "sql-rest",
+      "exportRawModel": true
   
     }
   
