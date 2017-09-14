@@ -14,7 +14,6 @@
       "index":"index.md",
       "default_toc_title":"Get started with SQL & REST",
       "services":[
-        
         {
           "toc_title":"PowerBI Report Server",
           "url_group":"powerBI",
@@ -23,17 +22,7 @@
               "source":"sql-rest/api/swagger.json"
             }
           ]
-        },
-        {
-          "toc_title":"OData Service",
-          "url_group":"odata",
-          "swagger_files":[
-            {
-              "source":"sql-rest/api/generated.json"
-            }
-          ]
         }
-       
       ]
     }
   ]

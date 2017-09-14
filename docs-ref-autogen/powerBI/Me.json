@@ -13,55 +13,72 @@
   "basePath": "/reports/api/v2.0",
   "tags": [
     {
-      "name": "CatalogItems"
+      "name": "CatalogItems",
+      "description": "CatalogItems"
     },
     {
-      "name": "DataSets"
+      "name": "DataSets",
+      "description": "DataSets"
     },
     {
-      "name": "DataSources"
+      "name": "DataSources",
+      "description": "DataSources"
     },
     {
-      "name": "ExcelWorkbooks"
+      "name": "ExcelWorkbooks",
+      "description": "ExcelWorkbooks"
     },
     {
-      "name": "ExecutionLogEntries"
+      "name": "ExecutionLogEntries",
+      "description": "ExecutionLogEntries"
     },
     {
-      "name": "Extensions"
+      "name": "Extensions",
+      "description": "Extensions"
     },
     {
-      "name": "FavoriteItems"
+      "name": "FavoriteItems",
+      "description": "FavoriteItems"
     },
     {
-      "name": "Folders"
+      "name": "Folders",
+      "description": "Folders"
     },
     {
-      "name": "Kpis"
+      "name": "Kpis",
+      "description": "Kpis"
     },
     {
-      "name": "LinkedReports"
+      "name": "LinkedReports",
+      "description": "LinkedReports"
     },
     {
-      "name": "Me"
+      "name": "Me",
+      "description": "me juchen, junkui"
     },
     {
-      "name": "MobileReports"
+      "name": "MobileReports",
+      "description": "MobileReports"
     },
     {
-      "name": "PowerBIReports"
+      "name": "PowerBIReports",
+      "description": "PowerBIReports"
     },
     {
-      "name": "Reports"
+      "name": "Reports",
+      "description": "Reports"
     },
     {
-      "name": "Resources"
+      "name": "Resources",
+      "description": "Resources"
     },
     {
-      "name": "Subscriptions"
+      "name": "Subscriptions",
+      "description": "Subscriptions"
     },
     {
-      "name": "System"
+      "name": "System",
+      "description": "System"
     }
   ],
   "definitions": {
