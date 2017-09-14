@@ -1,0 +1,115 @@
+{
+  
+    "build": {
+  
+      "content": [
+  
+        {
+  
+          "src":"docs-ref-autogen",
+  
+          "files": [
+  
+            "**.json",
+  
+            "toc.md"
+  
+          ],
+  
+          "exclude": [
+  
+          ],
+  
+          "dest":"api/sql-reporting"
+  
+        },
+  
+        {
+  
+          "src":".",
+  
+          "files": [
+  
+            "index.md"
+  
+          ],
+  
+          "dest":"api/sql-reporting"
+  
+        },     
+        {
+  
+          "src":"docs-ref-conceptual",
+  
+          "files": [
+              "**.md"
+          ],
+          "exclude": [
+            "**/toc.md"
+          ],
+  
+          "dest":"api/sql-reporting"
+  
+        },
+  
+        {
+  
+          "files": [
+  
+  
+          ]
+  
+        }
+  
+      ],
+  
+      "resource": [
+  
+        {
+  
+          "files": [
+  
+            "**/*.png",
+  
+            "**/*.jpg"
+  
+          ],
+  
+          "exclude": [
+  
+            "**/obj/**",
+  
+            "**/includes/**"
+  
+          ]
+  
+        }
+  
+      ],
+  
+      "overwrite": [],
+  
+      "externalReference": [],
+  
+      "globalMetadata": {
+  
+    "author": "pacort",
+    "ms.author": "pacort",
+    "ms.topic": "reference",
+    "ms.prod": "vs-devops-alm",
+    "ms.devlang": "rest-api"
+  
+        
+  
+      },
+  
+      "fileMetadata": {},
+  
+      "template": [],
+  
+      "dest": "sql-rest"
+  
+    }
+  
+  }
+  

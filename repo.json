@@ -1,0 +1,9 @@
+{
+	"repo": [
+		{
+			"url": "https://powerbi.visualstudio.com/DefaultCollection/SQL%20Server%20Reporting%20Services/_git/docs",
+			"branch": "master",
+			"name": "sql-rest"
+		}
+	]
+}

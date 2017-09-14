@@ -1,0 +1,40 @@
+{
+  "target_api_root_dir":"docs-ref-autogen",
+  "is_operation_level":true,
+  "is_grouped_by_tag": true,
+  "apis_page_options":{
+    "enable_auto_generate":false,
+    "target_file":"docs-ref-index/index.md",
+    "summary_file":"docs-ref-index/apis-page-summary.md",
+    "service_description_metadata":"service_description"
+  },
+  "organizations":[
+    {
+      "name":"",
+      "index":"index.md",
+      "default_toc_title":"Get started with SQL & REST",
+      "services":[
+        
+        {
+          "toc_title":"PowerBI Report Server",
+          "url_group":"powerBI",
+          "swagger_files":[
+            {
+              "source":"sql-rest/api/swagger.json"
+            }
+          ]
+        },
+        {
+          "toc_title":"OData Service",
+          "url_group":"odata",
+          "swagger_files":[
+            {
+              "source":"sql-rest/api/generated.json"
+            }
+          ]
+        }
+       
+      ]
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+clone_folder: c:\projects\sql-docs-rest-apis
+
+environment:
+  op_build_user: "OpenPublishBuild"
+  op_build_user_email: "vscopbld@microsoft.com"
+  nodejs_version: "6.9.5"
+  access_token:
+    secure: JWSy9tPo2eoTYpPQplvokf4IiVk6onNBbWwAs6nNWWyQ2JaO+MRAg/QzbJnTjpUm
+  access_token_vso:
+    secure: ZOD3HHGIphV3jJL6E2ukI+Wacik6oe4Utrjq+hEnPrsc9v7BwN5yx2/uIWS8dfFc77dLaX/hhghR2AcbaKr+5A==
+  appveyor_api_token:
+    secure: A3gXEPdbPTo7Lz/JC1l2WSPJLzuTwb7EouuT3r29KgU=
+
+install:
+  - cmd: |
+        echo %APPVEYOR_REPO_BRANCH%
+        git checkout %APPVEYOR_REPO_BRANCH%
+        echo Done checking out %APPVEYOR_REPO_BRANCH%
+
+before_build:
+  - ps: |
+        if($env:APPVEYOR_SCHEDULED_BUILD -or ($env:APPVEYOR_REPO_COMMIT_AUTHOR_EMAIL -ne $env:op_build_user_email))
+        {
+          $env:is_ci_build_enabled=$true
+          echo "CI build is enabled"
+        }
+        if($env:is_ci_build_enabled)
+        {
+          Install-Product node $env:nodejs_version
+          echo "print node version"
+          node --version
+          npm install -g autorest
+          autorest --reset
+          autorest --help
+          git config --global credential.helper store
+          Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:access_token):x-oauth-basic@github.com`n"
+          Add-Content "$env:USERPROFILE\.git-credentials" "https://name:$($env:access_token_vso)@powerbi.visualstudio.com`n"
+          git config --global user.email $env:op_build_user_email
+          git config --global user.name $env:op_build_user
+          scripts\UpdateSrcRepo.ps1
+        }        
+        
+build_script:
+  - ps: |
+        if($env:is_ci_build_enabled)
+        {
+          scripts\build.ps1
+        }
+
+on_success:
+  - cmd: if "%is_ci_build_enabled%" == "True" (
+           scripts\OnSuccess.cmd %APPVEYOR_REPO_BRANCH%
+         )
