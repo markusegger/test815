@@ -1805,15 +1805,15 @@
   "x-internal-toc-name": "Charts",
   "x-internal-split-members": [
     {
-      "displayName": "Get Get Get t",
+      "displayName": "Charts_Get",
       "relativePath": "Charts/Charts_Get"
     },
     {
-      "displayName": "List List ist",
+      "displayName": "Charts_List",
       "relativePath": "Charts/Charts_List"
     },
     {
-      "displayName": "Update Update e",
+      "displayName": "Charts_Update",
       "relativePath": "Charts/Charts_Update"
     }
   ],

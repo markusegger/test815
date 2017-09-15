@@ -3618,11 +3618,11 @@
   "x-internal-toc-name": "Metrics",
   "x-internal-split-members": [
     {
-      "displayName": "Get Get Get et Definition Metrics",
+      "displayName": "Metrics_GetDefinitionMetrics",
       "relativePath": "Metrics/Metrics_GetDefinitionMetrics"
     },
     {
-      "displayName": "Get Get Get et Project Metrics",
+      "displayName": "Metrics_GetProjectMetrics",
       "relativePath": "Metrics/Metrics_GetProjectMetrics"
     }
   ],

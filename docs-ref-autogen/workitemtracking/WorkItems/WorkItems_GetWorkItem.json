@@ -166,7 +166,7 @@
             ]
           }
         ],
-        "x-internal-toc-name": "Work Get Get Get Work Item"
+        "x-internal-toc-name": "WorkItems_GetWorkItem"
       }
     }
   },

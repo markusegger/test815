@@ -185,7 +185,7 @@
             "$ref": "#/definitions/POST_wit_attachments_fileName_chunked_content2"
           }
         },
-        "x-internal-toc-name": "Create Create Create"
+        "x-internal-toc-name": "Attachments_Create"
       }
     }
   },

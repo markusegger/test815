@@ -3720,43 +3720,43 @@
   "x-internal-toc-name": "Suites",
   "x-internal-split-members": [
     {
-      "displayName": "Add Add Add d",
+      "displayName": "Suites_Add",
       "relativePath": "Suites/Suites_Add"
     },
     {
-      "displayName": "Create Create e",
+      "displayName": "Suites_Create",
       "relativePath": "Suites/Suites_Create"
     },
     {
-      "displayName": "Delete Delete e",
+      "displayName": "Suites_Delete",
       "relativePath": "Suites/Suites_Delete"
     },
     {
-      "displayName": "Get Get Get t Suites By Test Case Id",
+      "displayName": "Suites_GetSuitesByTestCaseId",
       "relativePath": "Suites/Suites_GetSuitesByTestCaseId"
     },
     {
-      "displayName": "Get Get Get t Test Case By Id",
+      "displayName": "Suites_GetTestCaseById",
       "relativePath": "Suites/Suites_GetTestCaseById"
     },
     {
-      "displayName": "Get Get Get t Test Cases",
+      "displayName": "Suites_GetTestCases",
       "relativePath": "Suites/Suites_GetTestCases"
     },
     {
-      "displayName": "Get Get Get t Test Suite By Id",
+      "displayName": "Suites_GetTestSuiteById",
       "relativePath": "Suites/Suites_GetTestSuiteById"
     },
     {
-      "displayName": "Get Get Get t Test Suites For Plan",
+      "displayName": "Suites_GetTestSuitesForPlan",
       "relativePath": "Suites/Suites_GetTestSuitesForPlan"
     },
     {
-      "displayName": "Remove Remove e Test Cases From Suite Url",
+      "displayName": "Suites_RemoveTestCasesFromSuiteUrl",
       "relativePath": "Suites/Suites_RemoveTestCasesFromSuiteUrl"
     },
     {
-      "displayName": "Update Update e",
+      "displayName": "Suites_Update",
       "relativePath": "Suites/Suites_Update"
     }
   ],

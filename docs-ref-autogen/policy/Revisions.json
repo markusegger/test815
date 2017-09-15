@@ -326,11 +326,11 @@
   "x-internal-toc-name": "Revisions",
   "x-internal-split-members": [
     {
-      "displayName": "Get Get Get Get t",
+      "displayName": "Revisions_Get",
       "relativePath": "Revisions/Revisions_Get"
     },
     {
-      "displayName": "List List List st",
+      "displayName": "Revisions_List",
       "relativePath": "Revisions/Revisions_List"
     }
   ],

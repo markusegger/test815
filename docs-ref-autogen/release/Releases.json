@@ -13268,47 +13268,47 @@
   "x-internal-toc-name": "Releases",
   "x-internal-split-members": [
     {
-      "displayName": "Create Create ate",
+      "displayName": "Releases_Create",
       "relativePath": "Releases/Releases_Create"
     },
     {
-      "displayName": "Delete Delete ete",
+      "displayName": "Releases_Delete",
       "relativePath": "Releases/Releases_Delete"
     },
     {
-      "displayName": "Get Get Get Get Log",
+      "displayName": "Releases_GetLog",
       "relativePath": "Releases/Releases_GetLog"
     },
     {
-      "displayName": "Get Get Get Get Logs",
+      "displayName": "Releases_GetLogs",
       "relativePath": "Releases/Releases_GetLogs"
     },
     {
-      "displayName": "Get Get Get Get Release",
+      "displayName": "Releases_GetRelease",
       "relativePath": "Releases/Releases_GetRelease"
     },
     {
-      "displayName": "Get Get Get Get Release Environment",
+      "displayName": "Releases_GetReleaseEnvironment",
       "relativePath": "Releases/Releases_GetReleaseEnvironment"
     },
     {
-      "displayName": "Get Get Get Get Task Log",
+      "displayName": "Releases_GetTaskLog",
       "relativePath": "Releases/Releases_GetTaskLog"
     },
     {
-      "displayName": "List List List t",
+      "displayName": "Releases_List",
       "relativePath": "Releases/Releases_List"
     },
     {
-      "displayName": "Undelete Undelete e Release",
+      "displayName": "Releases_UndeleteRelease",
       "relativePath": "Releases/Releases_UndeleteRelease"
     },
     {
-      "displayName": "Update Update ate Release Environment",
+      "displayName": "Releases_UpdateReleaseEnvironment",
       "relativePath": "Releases/Releases_UpdateReleaseEnvironment"
     },
     {
-      "displayName": "Update Update ate Release Resource",
+      "displayName": "Releases_UpdateReleaseResource",
       "relativePath": "Releases/Releases_UpdateReleaseResource"
     }
   ],

@@ -180,7 +180,7 @@
             }
           }
         },
-        "x-internal-toc-name": "Pull Get Get Get Get Pull Request By Id"
+        "x-internal-toc-name": "PullRequests_GetPullRequestById"
       }
     }
   },

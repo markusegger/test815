@@ -8543,23 +8543,23 @@
   "x-internal-toc-name": "ClassificationNodes",
   "x-internal-split-members": [
     {
-      "displayName": "Classification Create Create",
+      "displayName": "ClassificationNodes_Create",
       "relativePath": "ClassificationNodes/ClassificationNodes_Create"
     },
     {
-      "displayName": "Classification Delete Delete",
+      "displayName": "ClassificationNodes_Delete",
       "relativePath": "ClassificationNodes/ClassificationNodes_Delete"
     },
     {
-      "displayName": "Classification Get Get Get",
+      "displayName": "ClassificationNodes_Get",
       "relativePath": "ClassificationNodes/ClassificationNodes_Get"
     },
     {
-      "displayName": "Classification List List st",
+      "displayName": "ClassificationNodes_List",
       "relativePath": "ClassificationNodes/ClassificationNodes_List"
     },
     {
-      "displayName": "Classification Update Update",
+      "displayName": "ClassificationNodes_Update",
       "relativePath": "ClassificationNodes/ClassificationNodes_Update"
     }
   ],

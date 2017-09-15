@@ -253,7 +253,7 @@
             "$ref": "#/definitions/GET__ListDeployments"
           }
         },
-        "x-internal-toc-name": "Get Get Get Get Get Deployments"
+        "x-internal-toc-name": "Deployments_GetDeployments"
       }
     }
   },

@@ -5142,11 +5142,11 @@
   "x-internal-toc-name": "AnnotatedTags",
   "x-internal-split-members": [
     {
-      "displayName": "Annotated Create reate",
+      "displayName": "AnnotatedTags_Create",
       "relativePath": "AnnotatedTags/AnnotatedTags_Create"
     },
     {
-      "displayName": "Annotated Get Get et",
+      "displayName": "AnnotatedTags_Get",
       "relativePath": "AnnotatedTags/AnnotatedTags_Get"
     }
   ],

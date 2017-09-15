@@ -181,7 +181,7 @@
             "$ref": "#/definitions/GET__wit_queries__depth-2__includeDeleted-true"
           }
         },
-        "x-internal-toc-name": "List List List"
+        "x-internal-toc-name": "Queries_List"
       }
     }
   },

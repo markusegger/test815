@@ -13268,11 +13268,11 @@
   "x-internal-toc-name": "Deployments",
   "x-internal-split-members": [
     {
-      "displayName": "Get Get Get Get Get Deployments",
+      "displayName": "Deployments_GetDeployments",
       "relativePath": "Deployments/Deployments_GetDeployments"
     },
     {
-      "displayName": "Get Get Get Get Get Deployments For Multiple Environments",
+      "displayName": "Deployments_GetDeploymentsForMultipleEnvironments",
       "relativePath": "Deployments/Deployments_GetDeploymentsForMultipleEnvironments"
     }
   ],

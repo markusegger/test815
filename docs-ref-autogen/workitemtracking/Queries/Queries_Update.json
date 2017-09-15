@@ -178,7 +178,7 @@
             "$ref": "#/definitions/PATCH__wit_queries_Shared Queries__folderName_-1"
           }
         },
-        "x-internal-toc-name": "Update Update te"
+        "x-internal-toc-name": "Queries_Update"
       }
     }
   },

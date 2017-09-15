@@ -3618,27 +3618,27 @@
   "x-internal-toc-name": "Builds",
   "x-internal-split-members": [
     {
-      "displayName": "Delete Delete e",
+      "displayName": "Builds_Delete",
       "relativePath": "Builds/Builds_Delete"
     },
     {
-      "displayName": "Get Get Get t",
+      "displayName": "Builds_Get",
       "relativePath": "Builds/Builds_Get"
     },
     {
-      "displayName": "List List ist",
+      "displayName": "Builds_List",
       "relativePath": "Builds/Builds_List"
     },
     {
-      "displayName": "Queue Queue ue",
+      "displayName": "Builds_Queue",
       "relativePath": "Builds/Builds_Queue"
     },
     {
-      "displayName": "Update Update e Build",
+      "displayName": "Builds_UpdateBuild",
       "relativePath": "Builds/Builds_UpdateBuild"
     },
     {
-      "displayName": "Update Update e Builds",
+      "displayName": "Builds_UpdateBuilds",
       "relativePath": "Builds/Builds_UpdateBuilds"
     }
   ],

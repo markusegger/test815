@@ -228,7 +228,7 @@
             "$ref": "#/definitions/POST_git_pullRequestStatuses_iterationStatus"
           }
         },
-        "x-internal-toc-name": "Pull Request Iteration Create Create ate"
+        "x-internal-toc-name": "PullRequestIterationStatuses_Create"
       }
     }
   },

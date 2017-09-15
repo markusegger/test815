@@ -114,7 +114,7 @@
             "$ref": "#/definitions/GET__notification_subscriptions"
           }
         },
-        "x-internal-toc-name": "List List List List st"
+        "x-internal-toc-name": "Subscriptions_List"
       }
     }
   },

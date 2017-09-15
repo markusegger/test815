@@ -109,7 +109,7 @@
             "$ref": "#/definitions/PATCH__notification_subscriptions__subscriptionId_2"
           }
         },
-        "x-internal-toc-name": "Update Update Update te"
+        "x-internal-toc-name": "Subscriptions_Update"
       }
     }
   },

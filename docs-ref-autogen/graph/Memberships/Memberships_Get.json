@@ -103,7 +103,7 @@
             "$ref": "#/definitions/GetMembershipVSTSGroup"
           }
         },
-        "x-internal-toc-name": "Get Get Get Get Get"
+        "x-internal-toc-name": "Memberships_Get"
       }
     }
   },

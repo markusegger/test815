@@ -1805,11 +1805,11 @@
   "x-internal-toc-name": "Rows",
   "x-internal-split-members": [
     {
-      "displayName": "List List t",
+      "displayName": "Rows_List",
       "relativePath": "Rows/Rows_List"
     },
     {
-      "displayName": "Update pdate",
+      "displayName": "Rows_Update",
       "relativePath": "Rows/Rows_Update"
     }
   ],

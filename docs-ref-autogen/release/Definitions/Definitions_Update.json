@@ -166,7 +166,7 @@
             "$ref": "#/definitions/PUT__UpdateReleaseDefinition"
           }
         },
-        "x-internal-toc-name": "Update Update Update"
+        "x-internal-toc-name": "Definitions_Update"
       }
     }
   },

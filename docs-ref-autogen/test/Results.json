@@ -3720,23 +3720,23 @@
   "x-internal-toc-name": "Results",
   "x-internal-split-members": [
     {
-      "displayName": "Add Add Add dd",
+      "displayName": "Results_Add",
       "relativePath": "Results/Results_Add"
     },
     {
-      "displayName": "Get Get Get et Test Result By Id",
+      "displayName": "Results_GetTestResultById",
       "relativePath": "Results/Results_GetTestResultById"
     },
     {
-      "displayName": "Get Get Get et Test Results By Query",
+      "displayName": "Results_GetTestResultsByQuery",
       "relativePath": "Results/Results_GetTestResultsByQuery"
     },
     {
-      "displayName": "List List List",
+      "displayName": "Results_List",
       "relativePath": "Results/Results_List"
     },
     {
-      "displayName": "Update Update te",
+      "displayName": "Results_Update",
       "relativePath": "Results/Results_Update"
     }
   ],

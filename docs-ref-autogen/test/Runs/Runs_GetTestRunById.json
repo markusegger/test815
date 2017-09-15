@@ -184,7 +184,7 @@
             ]
           }
         ],
-        "x-internal-toc-name": "Get Get et Test Run By Id"
+        "x-internal-toc-name": "Runs_GetTestRunById"
       }
     }
   },

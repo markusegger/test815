@@ -1252,11 +1252,11 @@
   "x-internal-toc-name": "EventTypes",
   "x-internal-split-members": [
     {
-      "displayName": "Event Get Get Get",
+      "displayName": "EventTypes_Get",
       "relativePath": "EventTypes/EventTypes_Get"
     },
     {
-      "displayName": "Event List List st",
+      "displayName": "EventTypes_List",
       "relativePath": "EventTypes/EventTypes_List"
     }
   ],

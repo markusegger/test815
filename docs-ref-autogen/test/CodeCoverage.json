@@ -3720,15 +3720,15 @@
   "x-internal-toc-name": "CodeCoverage",
   "x-internal-split-members": [
     {
-      "displayName": "Code Get Get Get Get Build Code Coverage",
+      "displayName": "CodeCoverage_GetBuildCodeCoverage",
       "relativePath": "CodeCoverage/CodeCoverage_GetBuildCodeCoverage"
     },
     {
-      "displayName": "Code Get Get Get Get Test Run Code Coverage",
+      "displayName": "CodeCoverage_GetTestRunCodeCoverage",
       "relativePath": "CodeCoverage/CodeCoverage_GetTestRunCodeCoverage"
     },
     {
-      "displayName": "Code Update Update ate",
+      "displayName": "CodeCoverage_Update",
       "relativePath": "CodeCoverage/CodeCoverage_Update"
     }
   ],

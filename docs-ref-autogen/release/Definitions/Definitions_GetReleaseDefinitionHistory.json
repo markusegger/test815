@@ -165,7 +165,7 @@
             "$ref": "#/definitions/GET__GetReleaseDefinitionRevision"
           }
         },
-        "x-internal-toc-name": "Get Get Get Get Get Release Definition History"
+        "x-internal-toc-name": "Definitions_GetReleaseDefinitionHistory"
       }
     }
   },

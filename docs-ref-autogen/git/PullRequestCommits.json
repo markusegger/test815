@@ -5142,11 +5142,11 @@
   "x-internal-toc-name": "PullRequestCommits",
   "x-internal-split-members": [
     {
-      "displayName": "Pull Request Get Get Get et Pull Request Commits",
+      "displayName": "PullRequestCommits_GetPullRequestCommits",
       "relativePath": "PullRequestCommits/PullRequestCommits_GetPullRequestCommits"
     },
     {
-      "displayName": "Pull Request Get Get Get et Pull Request Iteration Commits",
+      "displayName": "PullRequestCommits_GetPullRequestIterationCommits",
       "relativePath": "PullRequestCommits/PullRequestCommits_GetPullRequestIterationCommits"
     }
   ],

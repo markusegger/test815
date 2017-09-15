@@ -1805,11 +1805,11 @@
   "x-internal-toc-name": "Boardfiltersettings",
   "x-internal-split-members": [
     {
-      "displayName": "Get Get Get Get Get Get Get et",
+      "displayName": "Boardfiltersettings_Get",
       "relativePath": "Boardfiltersettings/Boardfiltersettings_Get"
     },
     {
-      "displayName": "Update Update Update Update te",
+      "displayName": "Boardfiltersettings_Update",
       "relativePath": "Boardfiltersettings/Boardfiltersettings_Update"
     }
   ],

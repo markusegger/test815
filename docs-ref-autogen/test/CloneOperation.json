@@ -3720,15 +3720,15 @@
   "x-internal-toc-name": "CloneOperation",
   "x-internal-split-members": [
     {
-      "displayName": "Clone Clone Clone Clone Test Plan",
+      "displayName": "CloneOperation_CloneTestPlan",
       "relativePath": "CloneOperation/CloneOperation_CloneTestPlan"
     },
     {
-      "displayName": "Clone Clone Clone Clone Test Suite",
+      "displayName": "CloneOperation_CloneTestSuite",
       "relativePath": "CloneOperation/CloneOperation_CloneTestSuite"
     },
     {
-      "displayName": "Clone Get Get Get Get t",
+      "displayName": "CloneOperation_Get",
       "relativePath": "CloneOperation/CloneOperation_Get"
     }
   ],

@@ -2213,23 +2213,23 @@
   "x-internal-toc-name": "Groups",
   "x-internal-split-members": [
     {
-      "displayName": "Create Create e",
+      "displayName": "Groups_Create",
       "relativePath": "Groups/Groups_Create"
     },
     {
-      "displayName": "Delete Delete e",
+      "displayName": "Groups_Delete",
       "relativePath": "Groups/Groups_Delete"
     },
     {
-      "displayName": "Get Get Get t Group",
+      "displayName": "Groups_GetGroup",
       "relativePath": "Groups/Groups_GetGroup"
     },
     {
-      "displayName": "Get Get Get t Groups",
+      "displayName": "Groups_GetGroups",
       "relativePath": "Groups/Groups_GetGroups"
     },
     {
-      "displayName": "Update Update e",
+      "displayName": "Groups_Update",
       "relativePath": "Groups/Groups_Update"
     }
   ],

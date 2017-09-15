@@ -1252,11 +1252,11 @@
   "x-internal-toc-name": "Notifications",
   "x-internal-split-members": [
     {
-      "displayName": "Get Get Get Get Get et",
+      "displayName": "Notifications_Get",
       "relativePath": "Notifications/Notifications_Get"
     },
     {
-      "displayName": "List List List List st",
+      "displayName": "Notifications_List",
       "relativePath": "Notifications/Notifications_List"
     }
   ],

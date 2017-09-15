@@ -165,7 +165,7 @@
             "$ref": "#/definitions/GET__GetManualInterventions"
           }
         },
-        "x-internal-toc-name": "Manual List List List List st"
+        "x-internal-toc-name": "ManualInterventions_List"
       }
     }
   },

@@ -3720,11 +3720,11 @@
   "x-internal-toc-name": "ResultSummaryByRelease",
   "x-internal-split-members": [
     {
-      "displayName": "Result Summary By Query Query ery Test Results Report For Release",
+      "displayName": "ResultSummaryByRelease_QueryTestResultsReportForRelease",
       "relativePath": "ResultSummaryByRelease/ResultSummaryByRelease_QueryTestResultsReportForRelease"
     },
     {
-      "displayName": "Result Summary By Query Query ery Test Results Summary For Releases",
+      "displayName": "ResultSummaryByRelease_QueryTestResultsSummaryForReleases",
       "relativePath": "ResultSummaryByRelease/ResultSummaryByRelease_QueryTestResultsSummaryForReleases"
     }
   ],

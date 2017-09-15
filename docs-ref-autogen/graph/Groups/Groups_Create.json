@@ -122,7 +122,7 @@
             "$ref": "#/definitions/MaterializeAADGroupByOIDWithStorageKey"
           }
         },
-        "x-internal-toc-name": "Create Create e"
+        "x-internal-toc-name": "Groups_Create"
       }
     }
   },

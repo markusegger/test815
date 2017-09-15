@@ -153,7 +153,7 @@
             "$ref": "#/definitions/PATCH__wit_queries__folderId___undeleteDescendants-true"
           }
         },
-        "x-internal-toc-name": "Delete Delete te"
+        "x-internal-toc-name": "Queries_Delete"
       }
     }
   },

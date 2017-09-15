@@ -13268,39 +13268,39 @@
   "x-internal-toc-name": "Tags",
   "x-internal-split-members": [
     {
-      "displayName": "Add Add dd Definition Tag",
+      "displayName": "Tags_AddDefinitionTag",
       "relativePath": "Tags/Tags_AddDefinitionTag"
     },
     {
-      "displayName": "Add Add dd Definition Tags",
+      "displayName": "Tags_AddDefinitionTags",
       "relativePath": "Tags/Tags_AddDefinitionTags"
     },
     {
-      "displayName": "Add Add dd Release Tag",
+      "displayName": "Tags_AddReleaseTag",
       "relativePath": "Tags/Tags_AddReleaseTag"
     },
     {
-      "displayName": "Add Add dd Release Tags",
+      "displayName": "Tags_AddReleaseTags",
       "relativePath": "Tags/Tags_AddReleaseTags"
     },
     {
-      "displayName": "Delete elete Definition Tag",
+      "displayName": "Tags_DeleteDefinitionTag",
       "relativePath": "Tags/Tags_DeleteDefinitionTag"
     },
     {
-      "displayName": "Delete elete Release Tag",
+      "displayName": "Tags_DeleteReleaseTag",
       "relativePath": "Tags/Tags_DeleteReleaseTag"
     },
     {
-      "displayName": "Get Get et Definition Tags",
+      "displayName": "Tags_GetDefinitionTags",
       "relativePath": "Tags/Tags_GetDefinitionTags"
     },
     {
-      "displayName": "Get Get et Release Tags",
+      "displayName": "Tags_GetReleaseTags",
       "relativePath": "Tags/Tags_GetReleaseTags"
     },
     {
-      "displayName": "Get Get et Tags",
+      "displayName": "Tags_GetTags",
       "relativePath": "Tags/Tags_GetTags"
     }
   ],

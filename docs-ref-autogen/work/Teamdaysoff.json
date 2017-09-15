@@ -1805,11 +1805,11 @@
   "x-internal-toc-name": "Teamdaysoff",
   "x-internal-split-members": [
     {
-      "displayName": "Get Get Get Get Get",
+      "displayName": "Teamdaysoff_Get",
       "relativePath": "Teamdaysoff/Teamdaysoff_Get"
     },
     {
-      "displayName": "Update Update Update",
+      "displayName": "Teamdaysoff_Update",
       "relativePath": "Teamdaysoff/Teamdaysoff_Update"
     }
   ],

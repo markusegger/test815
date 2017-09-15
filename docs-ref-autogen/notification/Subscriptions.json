@@ -3116,31 +3116,31 @@
   "x-internal-toc-name": "Subscriptions",
   "x-internal-split-members": [
     {
-      "displayName": "Create Create Create te",
+      "displayName": "Subscriptions_Create",
       "relativePath": "Subscriptions/Subscriptions_Create"
     },
     {
-      "displayName": "Delete Delete Delete te",
+      "displayName": "Subscriptions_Delete",
       "relativePath": "Subscriptions/Subscriptions_Delete"
     },
     {
-      "displayName": "Get Get Get Get Get et",
+      "displayName": "Subscriptions_Get",
       "relativePath": "Subscriptions/Subscriptions_Get"
     },
     {
-      "displayName": "List List List List st",
+      "displayName": "Subscriptions_List",
       "relativePath": "Subscriptions/Subscriptions_List"
     },
     {
-      "displayName": "Query Query Query uery",
+      "displayName": "Subscriptions_Query",
       "relativePath": "Subscriptions/Subscriptions_Query"
     },
     {
-      "displayName": "Update Update Update te",
+      "displayName": "Subscriptions_Update",
       "relativePath": "Subscriptions/Subscriptions_Update"
     },
     {
-      "displayName": "Update Update Update te Subscription User Settings",
+      "displayName": "Subscriptions_UpdateSubscriptionUserSettings",
       "relativePath": "Subscriptions/Subscriptions_UpdateSubscriptionUserSettings"
     }
   ],

@@ -13268,23 +13268,23 @@
   "x-internal-toc-name": "Approvals",
   "x-internal-split-members": [
     {
-      "displayName": "Get Get Get Get t Approval",
+      "displayName": "Approvals_GetApproval",
       "relativePath": "Approvals/Approvals_GetApproval"
     },
     {
-      "displayName": "Get Get Get Get t Approval History",
+      "displayName": "Approvals_GetApprovalHistory",
       "relativePath": "Approvals/Approvals_GetApprovalHistory"
     },
     {
-      "displayName": "List List List st",
+      "displayName": "Approvals_List",
       "relativePath": "Approvals/Approvals_List"
     },
     {
-      "displayName": "Update Update date Release Approval",
+      "displayName": "Approvals_UpdateReleaseApproval",
       "relativePath": "Approvals/Approvals_UpdateReleaseApproval"
     },
     {
-      "displayName": "Update Update date Release Approvals",
+      "displayName": "Approvals_UpdateReleaseApprovals",
       "relativePath": "Approvals/Approvals_UpdateReleaseApprovals"
     }
   ],

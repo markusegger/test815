@@ -1135,11 +1135,11 @@
   "x-internal-toc-name": "Branches",
   "x-internal-split-members": [
     {
-      "displayName": "Get Get Get Get",
+      "displayName": "Branches_Get",
       "relativePath": "Branches/Branches_Get"
     },
     {
-      "displayName": "Get Get Get Get Branches",
+      "displayName": "Branches_GetBranches",
       "relativePath": "Branches/Branches_GetBranches"
     }
   ],

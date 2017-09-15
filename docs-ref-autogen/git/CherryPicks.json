@@ -5142,15 +5142,15 @@
   "x-internal-toc-name": "CherryPicks",
   "x-internal-split-members": [
     {
-      "displayName": "Cherry Create Create",
+      "displayName": "CherryPicks_Create",
       "relativePath": "CherryPicks/CherryPicks_Create"
     },
     {
-      "displayName": "Cherry Get Get Get Cherry Pick",
+      "displayName": "CherryPicks_GetCherryPick",
       "relativePath": "CherryPicks/CherryPicks_GetCherryPick"
     },
     {
-      "displayName": "Cherry Get Get Get Cherry Pick For Ref Name",
+      "displayName": "CherryPicks_GetCherryPickForRefName",
       "relativePath": "CherryPicks/CherryPicks_GetCherryPickForRefName"
     }
   ],

@@ -3618,23 +3618,23 @@
   "x-internal-toc-name": "Definitions",
   "x-internal-split-members": [
     {
-      "displayName": "Create Create Create",
+      "displayName": "Definitions_Create",
       "relativePath": "Definitions/Definitions_Create"
     },
     {
-      "displayName": "Delete Delete Delete",
+      "displayName": "Definitions_Delete",
       "relativePath": "Definitions/Definitions_Delete"
     },
     {
-      "displayName": "Get Get Get Get Get",
+      "displayName": "Definitions_Get",
       "relativePath": "Definitions/Definitions_Get"
     },
     {
-      "displayName": "List List List List",
+      "displayName": "Definitions_List",
       "relativePath": "Definitions/Definitions_List"
     },
     {
-      "displayName": "Update Update Update",
+      "displayName": "Definitions_Update",
       "relativePath": "Definitions/Definitions_Update"
     }
   ],

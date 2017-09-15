@@ -8543,19 +8543,19 @@
   "x-internal-toc-name": "Recyclebin",
   "x-internal-split-members": [
     {
-      "displayName": "Destroy Destroy troy Work Item",
+      "displayName": "Recyclebin_DestroyWorkItem",
       "relativePath": "Recyclebin/Recyclebin_DestroyWorkItem"
     },
     {
-      "displayName": "Get Get Get Get et",
+      "displayName": "Recyclebin_Get",
       "relativePath": "Recyclebin/Recyclebin_Get"
     },
     {
-      "displayName": "Get Get Get Get et Deleted Work Item References",
+      "displayName": "Recyclebin_GetDeletedWorkItemReferences",
       "relativePath": "Recyclebin/Recyclebin_GetDeletedWorkItemReferences"
     },
     {
-      "displayName": "Restore Restore tore Work Item",
+      "displayName": "Recyclebin_RestoreWorkItem",
       "relativePath": "Recyclebin/Recyclebin_RestoreWorkItem"
     }
   ],

@@ -2213,19 +2213,19 @@
   "x-internal-toc-name": "Users",
   "x-internal-split-members": [
     {
-      "displayName": "Create Create",
+      "displayName": "Users_Create",
       "relativePath": "Users/Users_Create"
     },
     {
-      "displayName": "Delete Delete",
+      "displayName": "Users_Delete",
       "relativePath": "Users/Users_Delete"
     },
     {
-      "displayName": "Get Get Get User",
+      "displayName": "Users_GetUser",
       "relativePath": "Users/Users_GetUser"
     },
     {
-      "displayName": "Get Get Get Users",
+      "displayName": "Users_GetUsers",
       "relativePath": "Users/Users_GetUsers"
     }
   ],

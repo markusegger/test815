@@ -239,27 +239,27 @@
   "x-internal-toc-name": "Versions",
   "x-internal-split-members": [
     {
-      "displayName": "Get Get Get Get Package Info",
+      "displayName": "Versions_GetPackageInfo",
       "relativePath": "Versions/Versions_GetPackageInfo"
     },
     {
-      "displayName": "Get Get Get Get Scoped Package Info",
+      "displayName": "Versions_GetScopedPackageInfo",
       "relativePath": "Versions/Versions_GetScopedPackageInfo"
     },
     {
-      "displayName": "Unpublish Unpublish Package",
+      "displayName": "Versions_UnpublishPackage",
       "relativePath": "Versions/Versions_UnpublishPackage"
     },
     {
-      "displayName": "Unpublish Unpublish Scoped Package",
+      "displayName": "Versions_UnpublishScopedPackage",
       "relativePath": "Versions/Versions_UnpublishScopedPackage"
     },
     {
-      "displayName": "Update Update ate Package",
+      "displayName": "Versions_UpdatePackage",
       "relativePath": "Versions/Versions_UpdatePackage"
     },
     {
-      "displayName": "Update Update ate Scoped Package",
+      "displayName": "Versions_UpdateScopedPackage",
       "relativePath": "Versions/Versions_UpdateScopedPackage"
     }
   ],

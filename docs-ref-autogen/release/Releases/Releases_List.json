@@ -306,7 +306,7 @@
             "$ref": "#/definitions/GET__ListAllReleasesForAReleaseDefinition"
           }
         },
-        "x-internal-toc-name": "List List List t"
+        "x-internal-toc-name": "Releases_List"
       }
     }
   },

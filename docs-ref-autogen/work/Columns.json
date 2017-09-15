@@ -1805,11 +1805,11 @@
   "x-internal-toc-name": "Columns",
   "x-internal-split-members": [
     {
-      "displayName": "List List List",
+      "displayName": "Columns_List",
       "relativePath": "Columns/Columns_List"
     },
     {
-      "displayName": "Update Update te",
+      "displayName": "Columns_Update",
       "relativePath": "Columns/Columns_Update"
     }
   ],

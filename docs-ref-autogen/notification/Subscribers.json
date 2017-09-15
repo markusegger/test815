@@ -3116,11 +3116,11 @@
   "x-internal-toc-name": "Subscribers",
   "x-internal-split-members": [
     {
-      "displayName": "Get Get Get Get Get",
+      "displayName": "Subscribers_Get",
       "relativePath": "Subscribers/Subscribers_Get"
     },
     {
-      "displayName": "Update Update Update",
+      "displayName": "Subscribers_Update",
       "relativePath": "Subscribers/Subscribers_Update"
     }
   ],

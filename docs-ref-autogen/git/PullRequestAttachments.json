@@ -5142,19 +5142,19 @@
   "x-internal-toc-name": "PullRequestAttachments",
   "x-internal-split-members": [
     {
-      "displayName": "Pull Request Create Create Create",
+      "displayName": "PullRequestAttachments_Create",
       "relativePath": "PullRequestAttachments/PullRequestAttachments_Create"
     },
     {
-      "displayName": "Pull Request Delete Delete Delete",
+      "displayName": "PullRequestAttachments_Delete",
       "relativePath": "PullRequestAttachments/PullRequestAttachments_Delete"
     },
     {
-      "displayName": "Pull Request Get Get Get Get Get Attachment Content",
+      "displayName": "PullRequestAttachments_GetAttachmentContent",
       "relativePath": "PullRequestAttachments/PullRequestAttachments_GetAttachmentContent"
     },
     {
-      "displayName": "Pull Request List List List List",
+      "displayName": "PullRequestAttachments_List",
       "relativePath": "PullRequestAttachments/PullRequestAttachments_List"
     }
   ],

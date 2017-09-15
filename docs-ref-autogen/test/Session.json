@@ -3720,15 +3720,15 @@
   "x-internal-toc-name": "Session",
   "x-internal-split-members": [
     {
-      "displayName": "Create Create te",
+      "displayName": "Session_Create",
       "relativePath": "Session/Session_Create"
     },
     {
-      "displayName": "List List List",
+      "displayName": "Session_List",
       "relativePath": "Session/Session_List"
     },
     {
-      "displayName": "Update Update te",
+      "displayName": "Session_Update",
       "relativePath": "Session/Session_Update"
     }
   ],

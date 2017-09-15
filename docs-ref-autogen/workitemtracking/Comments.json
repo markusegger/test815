@@ -8543,11 +8543,11 @@
   "x-internal-toc-name": "Comments",
   "x-internal-split-members": [
     {
-      "displayName": "Get Get Get Get Comment",
+      "displayName": "Comments_GetComment",
       "relativePath": "Comments/Comments_GetComment"
     },
     {
-      "displayName": "Get Get Get Get Comments",
+      "displayName": "Comments_GetComments",
       "relativePath": "Comments/Comments_GetComments"
     }
   ],

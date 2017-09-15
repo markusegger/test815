@@ -115,8 +115,9 @@
 
     "template": [],
 
-    "dest": "vsts-docs-rest-apis"
-
+    "dest": "vsts-docs-rest-apis",
+    "exportRawModel": true
+	
   }
 
 }

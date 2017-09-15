@@ -5142,19 +5142,19 @@
   "x-internal-toc-name": "RefsFavorites",
   "x-internal-split-members": [
     {
-      "displayName": "Refs Create Create eate",
+      "displayName": "RefsFavorites_Create",
       "relativePath": "RefsFavorites/RefsFavorites_Create"
     },
     {
-      "displayName": "Refs Delete Delete lete",
+      "displayName": "RefsFavorites_Delete",
       "relativePath": "RefsFavorites/RefsFavorites_Delete"
     },
     {
-      "displayName": "Refs Get Get Get Get t",
+      "displayName": "RefsFavorites_Get",
       "relativePath": "RefsFavorites/RefsFavorites_Get"
     },
     {
-      "displayName": "Refs List List List st",
+      "displayName": "RefsFavorites_List",
       "relativePath": "RefsFavorites/RefsFavorites_List"
     }
   ],

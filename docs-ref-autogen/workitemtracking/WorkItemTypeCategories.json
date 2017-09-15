@@ -8543,11 +8543,11 @@
   "x-internal-toc-name": "WorkItemTypeCategories",
   "x-internal-split-members": [
     {
-      "displayName": "Work Item Type Get Get Get Get et",
+      "displayName": "WorkItemTypeCategories_Get",
       "relativePath": "WorkItemTypeCategories/WorkItemTypeCategories_Get"
     },
     {
-      "displayName": "Work Item Type List List List ist",
+      "displayName": "WorkItemTypeCategories_List",
       "relativePath": "WorkItemTypeCategories/WorkItemTypeCategories_List"
     }
   ],

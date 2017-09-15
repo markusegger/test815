@@ -13268,15 +13268,15 @@
   "x-internal-toc-name": "Favorites",
   "x-internal-split-members": [
     {
-      "displayName": "Create Create eate",
+      "displayName": "Favorites_Create",
       "relativePath": "Favorites/Favorites_Create"
     },
     {
-      "displayName": "Delete Delete lete",
+      "displayName": "Favorites_Delete",
       "relativePath": "Favorites/Favorites_Delete"
     },
     {
-      "displayName": "List List List st",
+      "displayName": "Favorites_List",
       "relativePath": "Favorites/Favorites_List"
     }
   ],

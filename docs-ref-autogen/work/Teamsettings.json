@@ -1805,11 +1805,11 @@
   "x-internal-toc-name": "Teamsettings",
   "x-internal-split-members": [
     {
-      "displayName": "Get Get Get Get Get t",
+      "displayName": "Teamsettings_Get",
       "relativePath": "Teamsettings/Teamsettings_Get"
     },
     {
-      "displayName": "Update Update Update e",
+      "displayName": "Teamsettings_Update",
       "relativePath": "Teamsettings/Teamsettings_Update"
     }
   ],

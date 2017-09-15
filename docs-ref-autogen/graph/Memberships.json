@@ -2213,23 +2213,23 @@
   "x-internal-toc-name": "Memberships",
   "x-internal-split-members": [
     {
-      "displayName": "Add Add Add Add Add",
+      "displayName": "Memberships_Add",
       "relativePath": "Memberships/Memberships_Add"
     },
     {
-      "displayName": "Check Check Check ck Membership Existence",
+      "displayName": "Memberships_CheckMembershipExistence",
       "relativePath": "Memberships/Memberships_CheckMembershipExistence"
     },
     {
-      "displayName": "Get Get Get Get Get",
+      "displayName": "Memberships_Get",
       "relativePath": "Memberships/Memberships_Get"
     },
     {
-      "displayName": "List List List List",
+      "displayName": "Memberships_List",
       "relativePath": "Memberships/Memberships_List"
     },
     {
-      "displayName": "Remove Remove Remove Membership",
+      "displayName": "Memberships_RemoveMembership",
       "relativePath": "Memberships/Memberships_RemoveMembership"
     }
   ],

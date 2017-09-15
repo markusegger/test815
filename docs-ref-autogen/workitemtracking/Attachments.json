@@ -8543,11 +8543,11 @@
   "x-internal-toc-name": "Attachments",
   "x-internal-split-members": [
     {
-      "displayName": "Create Create Create",
+      "displayName": "Attachments_Create",
       "relativePath": "Attachments/Attachments_Create"
     },
     {
-      "displayName": "Get Get Get Get Get Attachment Content",
+      "displayName": "Attachments_GetAttachmentContent",
       "relativePath": "Attachments/Attachments_GetAttachmentContent"
     }
   ],

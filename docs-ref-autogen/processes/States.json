@@ -750,11 +750,11 @@
   "x-internal-toc-name": "States",
   "x-internal-split-members": [
     {
-      "displayName": "Get Get Get t",
+      "displayName": "States_Get",
       "relativePath": "States/States_Get"
     },
     {
-      "displayName": "List List ist",
+      "displayName": "States_List",
       "relativePath": "States/States_List"
     }
   ],

@@ -8543,15 +8543,15 @@
   "x-internal-toc-name": "Wiql",
   "x-internal-split-members": [
     {
-      "displayName": "Get Get et",
+      "displayName": "Wiql_Get",
       "relativePath": "Wiql/Wiql_Get"
     },
     {
-      "displayName": "Query Query By Id",
+      "displayName": "Wiql_QueryById",
       "relativePath": "Wiql/Wiql_QueryById"
     },
     {
-      "displayName": "Query Query By Wiql",
+      "displayName": "Wiql_QueryByWiql",
       "relativePath": "Wiql/Wiql_QueryByWiql"
     }
   ],

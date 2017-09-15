@@ -3720,27 +3720,27 @@
   "x-internal-toc-name": "Attachments",
   "x-internal-split-members": [
     {
-      "displayName": "Create Create Create Test Iteration Result Attachment",
+      "displayName": "Attachments_CreateTestIterationResultAttachment",
       "relativePath": "Attachments/Attachments_CreateTestIterationResultAttachment"
     },
     {
-      "displayName": "Create Create Create Test Run Attachment",
+      "displayName": "Attachments_CreateTestRunAttachment",
       "relativePath": "Attachments/Attachments_CreateTestRunAttachment"
     },
     {
-      "displayName": "Get Get Get Get Get Test Result Attachment Content",
+      "displayName": "Attachments_GetTestResultAttachmentContent",
       "relativePath": "Attachments/Attachments_GetTestResultAttachmentContent"
     },
     {
-      "displayName": "Get Get Get Get Get Test Result Attachments",
+      "displayName": "Attachments_GetTestResultAttachments",
       "relativePath": "Attachments/Attachments_GetTestResultAttachments"
     },
     {
-      "displayName": "Get Get Get Get Get Test Run Attachment Content",
+      "displayName": "Attachments_GetTestRunAttachmentContent",
       "relativePath": "Attachments/Attachments_GetTestRunAttachmentContent"
     },
     {
-      "displayName": "Get Get Get Get Get Test Run Attachments",
+      "displayName": "Attachments_GetTestRunAttachments",
       "relativePath": "Attachments/Attachments_GetTestRunAttachments"
     }
   ],

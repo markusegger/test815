@@ -219,7 +219,7 @@
             "$ref": "#/definitions/GET_git_pullRequestStatuses_iterationStatuses"
           }
         },
-        "x-internal-toc-name": "Pull Request Iteration List List List t"
+        "x-internal-toc-name": "PullRequestIterationStatuses_List"
       }
     }
   },

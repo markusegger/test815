@@ -13268,15 +13268,15 @@
   "x-internal-toc-name": "ManualInterventions",
   "x-internal-split-members": [
     {
-      "displayName": "Manual Get Get Get Get Get et",
+      "displayName": "ManualInterventions_Get",
       "relativePath": "ManualInterventions/ManualInterventions_Get"
     },
     {
-      "displayName": "Manual List List List List st",
+      "displayName": "ManualInterventions_List",
       "relativePath": "ManualInterventions/ManualInterventions_List"
     },
     {
-      "displayName": "Manual Update Update Update te",
+      "displayName": "ManualInterventions_Update",
       "relativePath": "ManualInterventions/ManualInterventions_Update"
     }
   ],

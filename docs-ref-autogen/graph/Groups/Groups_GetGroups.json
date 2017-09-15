@@ -116,7 +116,7 @@
             "$ref": "#/definitions/GetAllGroups"
           }
         },
-        "x-internal-toc-name": "Get Get Get t Groups"
+        "x-internal-toc-name": "Groups_GetGroups"
       }
     }
   },

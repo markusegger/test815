@@ -221,7 +221,7 @@
             ]
           }
         ],
-        "x-internal-toc-name": "Pull Get Get Get Get Pull Requests By Project"
+        "x-internal-toc-name": "PullRequests_GetPullRequestsByProject"
       }
     }
   },

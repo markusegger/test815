@@ -5142,27 +5142,27 @@
   "x-internal-toc-name": "PullRequestReviewers",
   "x-internal-split-members": [
     {
-      "displayName": "Pull Request Create Create eate Pull Request Reviewer",
+      "displayName": "PullRequestReviewers_CreatePullRequestReviewer",
       "relativePath": "PullRequestReviewers/PullRequestReviewers_CreatePullRequestReviewer"
     },
     {
-      "displayName": "Pull Request Create Create eate Pull Request Reviewers",
+      "displayName": "PullRequestReviewers_CreatePullRequestReviewers",
       "relativePath": "PullRequestReviewers/PullRequestReviewers_CreatePullRequestReviewers"
     },
     {
-      "displayName": "Pull Request Delete Delete lete",
+      "displayName": "PullRequestReviewers_Delete",
       "relativePath": "PullRequestReviewers/PullRequestReviewers_Delete"
     },
     {
-      "displayName": "Pull Request Get Get Get Get t",
+      "displayName": "PullRequestReviewers_Get",
       "relativePath": "PullRequestReviewers/PullRequestReviewers_Get"
     },
     {
-      "displayName": "Pull Request List List List st",
+      "displayName": "PullRequestReviewers_List",
       "relativePath": "PullRequestReviewers/PullRequestReviewers_List"
     },
     {
-      "displayName": "Pull Request Update Update date",
+      "displayName": "PullRequestReviewers_Update",
       "relativePath": "PullRequestReviewers/PullRequestReviewers_Update"
     }
   ],

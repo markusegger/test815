@@ -118,7 +118,7 @@
             "$ref": "#/definitions/MaterializeAADUserByOIDWithStorageKey"
           }
         },
-        "x-internal-toc-name": "Create Create"
+        "x-internal-toc-name": "Users_Create"
       }
     }
   },

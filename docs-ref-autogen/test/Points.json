@@ -3720,19 +3720,19 @@
   "x-internal-toc-name": "Points",
   "x-internal-split-members": [
     {
-      "displayName": "Get Get Get t Point",
+      "displayName": "Points_GetPoint",
       "relativePath": "Points/Points_GetPoint"
     },
     {
-      "displayName": "Get Get Get t Points By Query",
+      "displayName": "Points_GetPointsByQuery",
       "relativePath": "Points/Points_GetPointsByQuery"
     },
     {
-      "displayName": "List List ist",
+      "displayName": "Points_List",
       "relativePath": "Points/Points_List"
     },
     {
-      "displayName": "Update Update e",
+      "displayName": "Points_Update",
       "relativePath": "Points/Points_Update"
     }
   ],

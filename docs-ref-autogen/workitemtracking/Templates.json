@@ -8543,23 +8543,23 @@
   "x-internal-toc-name": "Templates",
   "x-internal-split-members": [
     {
-      "displayName": "Create Create eate",
+      "displayName": "Templates_Create",
       "relativePath": "Templates/Templates_Create"
     },
     {
-      "displayName": "Delete Delete lete",
+      "displayName": "Templates_Delete",
       "relativePath": "Templates/Templates_Delete"
     },
     {
-      "displayName": "Get Get Get Get t",
+      "displayName": "Templates_Get",
       "relativePath": "Templates/Templates_Get"
     },
     {
-      "displayName": "List List List st",
+      "displayName": "Templates_List",
       "relativePath": "Templates/Templates_List"
     },
     {
-      "displayName": "Replace Replace ace Template",
+      "displayName": "Templates_ReplaceTemplate",
       "relativePath": "Templates/Templates_ReplaceTemplate"
     }
   ],

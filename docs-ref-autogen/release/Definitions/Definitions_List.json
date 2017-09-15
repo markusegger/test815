@@ -253,7 +253,7 @@
             "$ref": "#/definitions/GET_ListAllReleaseDefinitionsWithArtifactsExpanded"
           }
         },
-        "x-internal-toc-name": "List List List List"
+        "x-internal-toc-name": "Definitions_List"
       }
     }
   },

@@ -5142,19 +5142,19 @@
   "x-internal-toc-name": "ImportRequests",
   "x-internal-split-members": [
     {
-      "displayName": "Import Create Create ate",
+      "displayName": "ImportRequests_Create",
       "relativePath": "ImportRequests/ImportRequests_Create"
     },
     {
-      "displayName": "Import Get Get Get Get",
+      "displayName": "ImportRequests_Get",
       "relativePath": "ImportRequests/ImportRequests_Get"
     },
     {
-      "displayName": "Import Query Query uery",
+      "displayName": "ImportRequests_Query",
       "relativePath": "ImportRequests/ImportRequests_Query"
     },
     {
-      "displayName": "Import Update Update ate",
+      "displayName": "ImportRequests_Update",
       "relativePath": "ImportRequests/ImportRequests_Update"
     }
   ],

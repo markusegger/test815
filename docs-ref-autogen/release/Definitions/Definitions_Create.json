@@ -166,7 +166,7 @@
             "$ref": "#/definitions/POST__CreateReleaseDefinition"
           }
         },
-        "x-internal-toc-name": "Create Create Create"
+        "x-internal-toc-name": "Definitions_Create"
       }
     }
   },

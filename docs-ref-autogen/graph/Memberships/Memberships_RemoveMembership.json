@@ -94,7 +94,7 @@
             "$ref": "#/definitions/DeleteMembershipUser"
           }
         },
-        "x-internal-toc-name": "Remove Remove Remove Membership"
+        "x-internal-toc-name": "Memberships_RemoveMembership"
       }
     }
   },

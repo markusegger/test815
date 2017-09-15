@@ -156,7 +156,7 @@
             "description": "successful operation"
           }
         },
-        "x-internal-toc-name": "Send Send Send d Summary Mail"
+        "x-internal-toc-name": "Sendmail_SendSummaryMail"
       }
     }
   },

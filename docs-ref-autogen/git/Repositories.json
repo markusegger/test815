@@ -5142,23 +5142,23 @@
   "x-internal-toc-name": "Repositories",
   "x-internal-split-members": [
     {
-      "displayName": "Create Create Create e",
+      "displayName": "Repositories_Create",
       "relativePath": "Repositories/Repositories_Create"
     },
     {
-      "displayName": "Delete Delete Delete e",
+      "displayName": "Repositories_Delete",
       "relativePath": "Repositories/Repositories_Delete"
     },
     {
-      "displayName": "Get Get Get Get Get t",
+      "displayName": "Repositories_Get",
       "relativePath": "Repositories/Repositories_Get"
     },
     {
-      "displayName": "List List List List t",
+      "displayName": "Repositories_List",
       "relativePath": "Repositories/Repositories_List"
     },
     {
-      "displayName": "Update Update Update e",
+      "displayName": "Repositories_Update",
       "relativePath": "Repositories/Repositories_Update"
     }
   ],

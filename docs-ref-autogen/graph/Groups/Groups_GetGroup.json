@@ -93,7 +93,7 @@
             "$ref": "#/definitions/GetGroup-AddRemoveAADGroupByOID"
           }
         },
-        "x-internal-toc-name": "Get Get Get t Group"
+        "x-internal-toc-name": "Groups_GetGroup"
       }
     }
   },

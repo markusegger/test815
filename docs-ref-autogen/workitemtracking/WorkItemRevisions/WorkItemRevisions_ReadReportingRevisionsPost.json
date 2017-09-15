@@ -182,7 +182,7 @@
             "$ref": "#/definitions/POST__wit_reporting_workItemRevisions_watermark-794"
           }
         },
-        "x-internal-toc-name": "Work Item Read Read Read ad Reporting Revisions Post"
+        "x-internal-toc-name": "WorkItemRevisions_ReadReportingRevisionsPost"
       }
     }
   },

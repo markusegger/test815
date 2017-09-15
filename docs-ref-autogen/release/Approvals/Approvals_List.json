@@ -225,7 +225,7 @@
             "$ref": "#/definitions/GET__ListPendingApprovalsForASpecificARelease"
           }
         },
-        "x-internal-toc-name": "List List List st"
+        "x-internal-toc-name": "Approvals_List"
       }
     }
   },

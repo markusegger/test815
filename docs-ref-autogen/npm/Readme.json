@@ -239,11 +239,11 @@
   "x-internal-toc-name": "Readme",
   "x-internal-split-members": [
     {
-      "displayName": "Get Get Get t Readme Scoped Package",
+      "displayName": "Readme_GetReadmeScopedPackage",
       "relativePath": "Readme/Readme_GetReadmeScopedPackage"
     },
     {
-      "displayName": "Get Get Get t Readme Unscoped Package",
+      "displayName": "Readme_GetReadmeUnscopedPackage",
       "relativePath": "Readme/Readme_GetReadmeUnscopedPackage"
     }
   ],

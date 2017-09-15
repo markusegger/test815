@@ -178,7 +178,7 @@
             "$ref": "#/definitions/GET__GetARelease"
           }
         },
-        "x-internal-toc-name": "Get Get Get Get Release"
+        "x-internal-toc-name": "Releases_GetRelease"
       }
     }
   },

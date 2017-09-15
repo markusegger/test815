@@ -92,7 +92,7 @@
             "$ref": "#/definitions/PATCH__projects__project__properties2"
           }
         },
-        "x-internal-toc-name": "Set Set Set Set Project Properties"
+        "x-internal-toc-name": "Projects_SetProjectProperties"
       }
     }
   },

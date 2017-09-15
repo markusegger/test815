@@ -109,7 +109,7 @@
             "$ref": "#/definitions/GetAllUsers"
           }
         },
-        "x-internal-toc-name": "Get Get Get Users"
+        "x-internal-toc-name": "Users_GetUsers"
       }
     }
   },

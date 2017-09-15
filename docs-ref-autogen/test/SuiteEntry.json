@@ -3720,11 +3720,11 @@
   "x-internal-toc-name": "SuiteEntry",
   "x-internal-split-members": [
     {
-      "displayName": "Suite List List st",
+      "displayName": "SuiteEntry_List",
       "relativePath": "SuiteEntry/SuiteEntry_List"
     },
     {
-      "displayName": "Suite Reorder eorder Suite Entries",
+      "displayName": "SuiteEntry_ReorderSuiteEntries",
       "relativePath": "SuiteEntry/SuiteEntry_ReorderSuiteEntries"
     }
   ],

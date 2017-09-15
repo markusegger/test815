@@ -3720,19 +3720,19 @@
   "x-internal-toc-name": "WorkItems",
   "x-internal-split-members": [
     {
-      "displayName": "Work Add Add Add",
+      "displayName": "WorkItems_Add",
       "relativePath": "WorkItems/WorkItems_Add"
     },
     {
-      "displayName": "Work Delete Delete",
+      "displayName": "WorkItems_Delete",
       "relativePath": "WorkItems/WorkItems_Delete"
     },
     {
-      "displayName": "Work Query Query y Test Method Linked Work Items",
+      "displayName": "WorkItems_QueryTestMethodLinkedWorkItems",
       "relativePath": "WorkItems/WorkItems_QueryTestMethodLinkedWorkItems"
     },
     {
-      "displayName": "Work Query Query y Test Result Work Items",
+      "displayName": "WorkItems_QueryTestResultWorkItems",
       "relativePath": "WorkItems/WorkItems_QueryTestResultWorkItems"
     }
   ],

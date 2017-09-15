@@ -5142,15 +5142,15 @@
   "x-internal-toc-name": "Pushes",
   "x-internal-split-members": [
     {
-      "displayName": "Create Create e",
+      "displayName": "Pushes_Create",
       "relativePath": "Pushes/Pushes_Create"
     },
     {
-      "displayName": "Get Get Get t",
+      "displayName": "Pushes_Get",
       "relativePath": "Pushes/Pushes_Get"
     },
     {
-      "displayName": "List List ist",
+      "displayName": "Pushes_List",
       "relativePath": "Pushes/Pushes_List"
     }
   ],

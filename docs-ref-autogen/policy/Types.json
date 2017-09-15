@@ -326,11 +326,11 @@
   "x-internal-toc-name": "Types",
   "x-internal-split-members": [
     {
-      "displayName": "Get Get Get",
+      "displayName": "Types_Get",
       "relativePath": "Types/Types_Get"
     },
     {
-      "displayName": "List List st",
+      "displayName": "Types_List",
       "relativePath": "Types/Types_List"
     }
   ],

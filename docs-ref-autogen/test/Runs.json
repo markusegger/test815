@@ -3720,27 +3720,27 @@
   "x-internal-toc-name": "Runs",
   "x-internal-split-members": [
     {
-      "displayName": "Create reate",
+      "displayName": "Runs_Create",
       "relativePath": "Runs/Runs_Create"
     },
     {
-      "displayName": "Delete elete",
+      "displayName": "Runs_Delete",
       "relativePath": "Runs/Runs_Delete"
     },
     {
-      "displayName": "Get Get et Test Run By Id",
+      "displayName": "Runs_GetTestRunById",
       "relativePath": "Runs/Runs_GetTestRunById"
     },
     {
-      "displayName": "Get Get et Test Run Statistics",
+      "displayName": "Runs_GetTestRunStatistics",
       "relativePath": "Runs/Runs_GetTestRunStatistics"
     },
     {
-      "displayName": "List List t",
+      "displayName": "Runs_List",
       "relativePath": "Runs/Runs_List"
     },
     {
-      "displayName": "Update pdate",
+      "displayName": "Runs_Update",
       "relativePath": "Runs/Runs_Update"
     }
   ],

@@ -100,7 +100,7 @@
             "$ref": "#/definitions/GET__notification_eventTypes_publisherId-_publisherId_"
           }
         },
-        "x-internal-toc-name": "Event List List st"
+        "x-internal-toc-name": "EventTypes_List"
       }
     }
   },

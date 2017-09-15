@@ -3618,39 +3618,39 @@
   "x-internal-toc-name": "Tags",
   "x-internal-split-members": [
     {
-      "displayName": "Add Add dd Build Tag",
+      "displayName": "Tags_AddBuildTag",
       "relativePath": "Tags/Tags_AddBuildTag"
     },
     {
-      "displayName": "Add Add dd Build Tags",
+      "displayName": "Tags_AddBuildTags",
       "relativePath": "Tags/Tags_AddBuildTags"
     },
     {
-      "displayName": "Add Add dd Definition Tag",
+      "displayName": "Tags_AddDefinitionTag",
       "relativePath": "Tags/Tags_AddDefinitionTag"
     },
     {
-      "displayName": "Add Add dd Definition Tags",
+      "displayName": "Tags_AddDefinitionTags",
       "relativePath": "Tags/Tags_AddDefinitionTags"
     },
     {
-      "displayName": "Delete elete Build Tag",
+      "displayName": "Tags_DeleteBuildTag",
       "relativePath": "Tags/Tags_DeleteBuildTag"
     },
     {
-      "displayName": "Delete elete Definition Tag",
+      "displayName": "Tags_DeleteDefinitionTag",
       "relativePath": "Tags/Tags_DeleteDefinitionTag"
     },
     {
-      "displayName": "Get Get et Build Tags",
+      "displayName": "Tags_GetBuildTags",
       "relativePath": "Tags/Tags_GetBuildTags"
     },
     {
-      "displayName": "Get Get et Definition Tags",
+      "displayName": "Tags_GetDefinitionTags",
       "relativePath": "Tags/Tags_GetDefinitionTags"
     },
     {
-      "displayName": "Get Get et Tags",
+      "displayName": "Tags_GetTags",
       "relativePath": "Tags/Tags_GetTags"
     }
   ],

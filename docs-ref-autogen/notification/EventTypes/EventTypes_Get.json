@@ -94,7 +94,7 @@
             "$ref": "#/definitions/GET__notification_eventTypes__eventTypeId_"
           }
         },
-        "x-internal-toc-name": "Event Get Get Get"
+        "x-internal-toc-name": "EventTypes_Get"
       }
     }
   },

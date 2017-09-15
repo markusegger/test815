@@ -5142,11 +5142,11 @@
   "x-internal-toc-name": "Blobs",
   "x-internal-split-members": [
     {
-      "displayName": "Get Get Get Blob",
+      "displayName": "Blobs_GetBlob",
       "relativePath": "Blobs/Blobs_GetBlob"
     },
     {
-      "displayName": "Get Get Get Blobs Zip",
+      "displayName": "Blobs_GetBlobsZip",
       "relativePath": "Blobs/Blobs_GetBlobsZip"
     }
   ],

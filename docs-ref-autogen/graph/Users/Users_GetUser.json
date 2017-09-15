@@ -93,7 +93,7 @@
             "$ref": "#/definitions/GetUserAAD"
           }
         },
-        "x-internal-toc-name": "Get Get Get User"
+        "x-internal-toc-name": "Users_GetUser"
       }
     }
   },

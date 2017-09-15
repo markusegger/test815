@@ -5142,15 +5142,15 @@
   "x-internal-toc-name": "PullRequestCommentLikes",
   "x-internal-split-members": [
     {
-      "displayName": "Pull Request Comment Create Create",
+      "displayName": "PullRequestCommentLikes_Create",
       "relativePath": "PullRequestCommentLikes/PullRequestCommentLikes_Create"
     },
     {
-      "displayName": "Pull Request Comment Delete Delete",
+      "displayName": "PullRequestCommentLikes_Delete",
       "relativePath": "PullRequestCommentLikes/PullRequestCommentLikes_Delete"
     },
     {
-      "displayName": "Pull Request Comment List List st",
+      "displayName": "PullRequestCommentLikes_List",
       "relativePath": "PullRequestCommentLikes/PullRequestCommentLikes_List"
     }
   ],

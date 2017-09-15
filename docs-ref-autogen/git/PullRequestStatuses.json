@@ -5142,23 +5142,23 @@
   "x-internal-toc-name": "PullRequestStatuses",
   "x-internal-split-members": [
     {
-      "displayName": "Pull Request Create Create ate",
+      "displayName": "PullRequestStatuses_Create",
       "relativePath": "PullRequestStatuses/PullRequestStatuses_Create"
     },
     {
-      "displayName": "Pull Request Delete Delete ete",
+      "displayName": "PullRequestStatuses_Delete",
       "relativePath": "PullRequestStatuses/PullRequestStatuses_Delete"
     },
     {
-      "displayName": "Pull Request Get Get Get Get",
+      "displayName": "PullRequestStatuses_Get",
       "relativePath": "PullRequestStatuses/PullRequestStatuses_Get"
     },
     {
-      "displayName": "Pull Request List List List t",
+      "displayName": "PullRequestStatuses_List",
       "relativePath": "PullRequestStatuses/PullRequestStatuses_List"
     },
     {
-      "displayName": "Pull Request Update Update ate",
+      "displayName": "PullRequestStatuses_Update",
       "relativePath": "PullRequestStatuses/PullRequestStatuses_Update"
     }
   ],

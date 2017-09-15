@@ -539,27 +539,27 @@
   "x-internal-toc-name": "Dashboards",
   "x-internal-split-members": [
     {
-      "displayName": "Create Create reate",
+      "displayName": "Dashboards_Create",
       "relativePath": "Dashboards/Dashboards_Create"
     },
     {
-      "displayName": "Delete Delete elete",
+      "displayName": "Dashboards_Delete",
       "relativePath": "Dashboards/Dashboards_Delete"
     },
     {
-      "displayName": "Get Get Get Get et",
+      "displayName": "Dashboards_Get",
       "relativePath": "Dashboards/Dashboards_Get"
     },
     {
-      "displayName": "List List List ist",
+      "displayName": "Dashboards_List",
       "relativePath": "Dashboards/Dashboards_List"
     },
     {
-      "displayName": "Replace Replace lace Dashboard",
+      "displayName": "Dashboards_ReplaceDashboard",
       "relativePath": "Dashboards/Dashboards_ReplaceDashboard"
     },
     {
-      "displayName": "Replace Replace lace Dashboards",
+      "displayName": "Dashboards_ReplaceDashboards",
       "relativePath": "Dashboards/Dashboards_ReplaceDashboards"
     }
   ],

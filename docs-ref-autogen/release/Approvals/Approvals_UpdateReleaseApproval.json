@@ -174,7 +174,7 @@
             "$ref": "#/definitions/PATCH__UpdateStatusOfAnApprovalFromPendingToApproved"
           }
         },
-        "x-internal-toc-name": "Update Update date Release Approval"
+        "x-internal-toc-name": "Approvals_UpdateReleaseApproval"
       }
     }
   },

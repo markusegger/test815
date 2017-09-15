@@ -8543,11 +8543,11 @@
   "x-internal-toc-name": "WorkItemRevisions",
   "x-internal-split-members": [
     {
-      "displayName": "Work Item Read Read Read ad Reporting Revisions Get",
+      "displayName": "WorkItemRevisions_ReadReportingRevisionsGet",
       "relativePath": "WorkItemRevisions/WorkItemRevisions_ReadReportingRevisionsGet"
     },
     {
-      "displayName": "Work Item Read Read Read ad Reporting Revisions Post",
+      "displayName": "WorkItemRevisions_ReadReportingRevisionsPost",
       "relativePath": "WorkItemRevisions/WorkItemRevisions_ReadReportingRevisionsPost"
     }
   ],

@@ -1805,11 +1805,11 @@
   "x-internal-toc-name": "Teamfieldvalues",
   "x-internal-split-members": [
     {
-      "displayName": "Get Get Get Get Get Get t",
+      "displayName": "Teamfieldvalues_Get",
       "relativePath": "Teamfieldvalues/Teamfieldvalues_Get"
     },
     {
-      "displayName": "Update Update Update date",
+      "displayName": "Teamfieldvalues_Update",
       "relativePath": "Teamfieldvalues/Teamfieldvalues_Update"
     }
   ],

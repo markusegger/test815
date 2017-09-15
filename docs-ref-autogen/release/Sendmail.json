@@ -13268,11 +13268,11 @@
   "x-internal-toc-name": "Sendmail",
   "x-internal-split-members": [
     {
-      "displayName": "List List List t",
+      "displayName": "Sendmail_List",
       "relativePath": "Sendmail/Sendmail_List"
     },
     {
-      "displayName": "Send Send Send d Summary Mail",
+      "displayName": "Sendmail_SendSummaryMail",
       "relativePath": "Sendmail/Sendmail_SendSummaryMail"
     }
   ],

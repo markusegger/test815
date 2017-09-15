@@ -1805,23 +1805,23 @@
   "x-internal-toc-name": "Plans",
   "x-internal-split-members": [
     {
-      "displayName": "Create Create",
+      "displayName": "Plans_Create",
       "relativePath": "Plans/Plans_Create"
     },
     {
-      "displayName": "Delete Delete",
+      "displayName": "Plans_Delete",
       "relativePath": "Plans/Plans_Delete"
     },
     {
-      "displayName": "Get Get Get",
+      "displayName": "Plans_Get",
       "relativePath": "Plans/Plans_Get"
     },
     {
-      "displayName": "List List st",
+      "displayName": "Plans_List",
       "relativePath": "Plans/Plans_List"
     },
     {
-      "displayName": "Update Update",
+      "displayName": "Plans_Update",
       "relativePath": "Plans/Plans_Update"
     }
   ],

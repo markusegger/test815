@@ -239,11 +239,11 @@
   "x-internal-toc-name": "Content",
   "x-internal-split-members": [
     {
-      "displayName": "Get Get Get et Content Scoped Package",
+      "displayName": "Content_GetContentScopedPackage",
       "relativePath": "Content/Content_GetContentScopedPackage"
     },
     {
-      "displayName": "Get Get Get et Content Unscoped Package",
+      "displayName": "Content_GetContentUnscopedPackage",
       "relativePath": "Content/Content_GetContentUnscopedPackage"
     }
   ],

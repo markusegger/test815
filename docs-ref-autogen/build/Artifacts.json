@@ -3618,15 +3618,15 @@
   "x-internal-toc-name": "Artifacts",
   "x-internal-split-members": [
     {
-      "displayName": "Create Create eate",
+      "displayName": "Artifacts_Create",
       "relativePath": "Artifacts/Artifacts_Create"
     },
     {
-      "displayName": "Get Get Get Get t Artifact",
+      "displayName": "Artifacts_GetArtifact",
       "relativePath": "Artifacts/Artifacts_GetArtifact"
     },
     {
-      "displayName": "List List List st",
+      "displayName": "Artifacts_List",
       "relativePath": "Artifacts/Artifacts_List"
     }
   ],

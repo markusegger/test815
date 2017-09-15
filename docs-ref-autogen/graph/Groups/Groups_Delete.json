@@ -87,7 +87,7 @@
             "$ref": "#/definitions/DeleteGroup"
           }
         },
-        "x-internal-toc-name": "Delete Delete e"
+        "x-internal-toc-name": "Groups_Delete"
       }
     }
   },

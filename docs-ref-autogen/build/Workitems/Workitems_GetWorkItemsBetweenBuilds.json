@@ -155,7 +155,7 @@
             }
           }
         },
-        "x-internal-toc-name": "Get Get Get Get t Work Items Between Builds"
+        "x-internal-toc-name": "Workitems_GetWorkItemsBetweenBuilds"
       }
     }
   },

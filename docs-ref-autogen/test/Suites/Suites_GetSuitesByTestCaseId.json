@@ -180,7 +180,7 @@
             ]
           }
         ],
-        "x-internal-toc-name": "Get Get Get t Suites By Test Case Id"
+        "x-internal-toc-name": "Suites_GetSuitesByTestCaseId"
       }
     }
   },

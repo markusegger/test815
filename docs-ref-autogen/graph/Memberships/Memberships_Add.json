@@ -100,7 +100,7 @@
             "$ref": "#/definitions/CreateMembershipVSTSGroup"
           }
         },
-        "x-internal-toc-name": "Add Add Add Add Add"
+        "x-internal-toc-name": "Memberships_Add"
       }
     }
   },

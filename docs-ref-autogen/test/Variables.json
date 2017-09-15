@@ -3720,23 +3720,23 @@
   "x-internal-toc-name": "Variables",
   "x-internal-split-members": [
     {
-      "displayName": "Create Create eate",
+      "displayName": "Variables_Create",
       "relativePath": "Variables/Variables_Create"
     },
     {
-      "displayName": "Delete Delete lete",
+      "displayName": "Variables_Delete",
       "relativePath": "Variables/Variables_Delete"
     },
     {
-      "displayName": "Get Get Get Get t",
+      "displayName": "Variables_Get",
       "relativePath": "Variables/Variables_Get"
     },
     {
-      "displayName": "List List List st",
+      "displayName": "Variables_List",
       "relativePath": "Variables/Variables_List"
     },
     {
-      "displayName": "Update Update date",
+      "displayName": "Variables_Update",
       "relativePath": "Variables/Variables_Update"
     }
   ],

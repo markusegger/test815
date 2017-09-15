@@ -13268,11 +13268,11 @@
   "x-internal-toc-name": "Releasesettings",
   "x-internal-split-members": [
     {
-      "displayName": "Get Get Get Get Get Get t",
+      "displayName": "Releasesettings_Get",
       "relativePath": "Releasesettings/Releasesettings_Get"
     },
     {
-      "displayName": "Update Update Update date",
+      "displayName": "Releasesettings_Update",
       "relativePath": "Releasesettings/Releasesettings_Update"
     }
   ],

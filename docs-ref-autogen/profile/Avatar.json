@@ -411,19 +411,19 @@
   "x-internal-toc-name": "Avatar",
   "x-internal-split-members": [
     {
-      "displayName": "Get Get Get t Avatar",
+      "displayName": "Avatar_GetAvatar",
       "relativePath": "Avatar/Avatar_GetAvatar"
     },
     {
-      "displayName": "Get Get Get t Avatar Preview",
+      "displayName": "Avatar_GetAvatarPreview",
       "relativePath": "Avatar/Avatar_GetAvatarPreview"
     },
     {
-      "displayName": "Reset Reset et Avatar",
+      "displayName": "Avatar_ResetAvatar",
       "relativePath": "Avatar/Avatar_ResetAvatar"
     },
     {
-      "displayName": "Set Set Set t Avatar",
+      "displayName": "Avatar_SetAvatar",
       "relativePath": "Avatar/Avatar_SetAvatar"
     }
   ],

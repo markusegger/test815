@@ -3618,19 +3618,19 @@
   "x-internal-toc-name": "Templates",
   "x-internal-split-members": [
     {
-      "displayName": "Delete Delete lete",
+      "displayName": "Templates_Delete",
       "relativePath": "Templates/Templates_Delete"
     },
     {
-      "displayName": "Get Get Get Get t",
+      "displayName": "Templates_Get",
       "relativePath": "Templates/Templates_Get"
     },
     {
-      "displayName": "List List List st",
+      "displayName": "Templates_List",
       "relativePath": "Templates/Templates_List"
     },
     {
-      "displayName": "Save Save Save ve Template",
+      "displayName": "Templates_SaveTemplate",
       "relativePath": "Templates/Templates_SaveTemplate"
     }
   ],

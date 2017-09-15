@@ -170,7 +170,7 @@
             "$ref": "#/definitions/GET__wit_wiql__queryId_-1"
           }
         },
-        "x-internal-toc-name": "Query Query By Id"
+        "x-internal-toc-name": "Wiql_QueryById"
       }
     }
   },

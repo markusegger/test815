@@ -1135,11 +1135,11 @@
   "x-internal-toc-name": "Labels",
   "x-internal-split-members": [
     {
-      "displayName": "Get Get Get t",
+      "displayName": "Labels_Get",
       "relativePath": "Labels/Labels_Get"
     },
     {
-      "displayName": "List List ist",
+      "displayName": "Labels_List",
       "relativePath": "Labels/Labels_List"
     }
   ],

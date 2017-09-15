@@ -94,7 +94,7 @@
             "$ref": "#/definitions/CheckMembershipExistenceUser"
           }
         },
-        "x-internal-toc-name": "Check Check Check ck Membership Existence"
+        "x-internal-toc-name": "Memberships_CheckMembershipExistence"
       }
     }
   },

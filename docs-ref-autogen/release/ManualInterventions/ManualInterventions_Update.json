@@ -185,7 +185,7 @@
             "$ref": "#/definitions/PATCH__RejectManualIntervention"
           }
         },
-        "x-internal-toc-name": "Manual Update Update Update te"
+        "x-internal-toc-name": "ManualInterventions_Update"
       }
     }
   },

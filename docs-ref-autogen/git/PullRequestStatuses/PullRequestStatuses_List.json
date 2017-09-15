@@ -211,7 +211,7 @@
             "$ref": "#/definitions/GET_git_pullRequestStatuses_statuses"
           }
         },
-        "x-internal-toc-name": "Pull Request List List List t"
+        "x-internal-toc-name": "PullRequestStatuses_List"
       }
     }
   },

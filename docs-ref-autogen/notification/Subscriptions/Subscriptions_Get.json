@@ -102,7 +102,7 @@
             "$ref": "#/definitions/GET__notification_subscriptions__subscriptionId_"
           }
         },
-        "x-internal-toc-name": "Get Get Get Get Get et"
+        "x-internal-toc-name": "Subscriptions_Get"
       }
     }
   },

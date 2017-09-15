@@ -411,19 +411,19 @@
   "x-internal-toc-name": "Attributes",
   "x-internal-split-members": [
     {
-      "displayName": "Delete Delete elete",
+      "displayName": "Attributes_Delete",
       "relativePath": "Attributes/Attributes_Delete"
     },
     {
-      "displayName": "Get Get Get Get et",
+      "displayName": "Attributes_Get",
       "relativePath": "Attributes/Attributes_Get"
     },
     {
-      "displayName": "Set Set Set Set et Profile Attribute",
+      "displayName": "Attributes_SetProfileAttribute",
       "relativePath": "Attributes/Attributes_SetProfileAttribute"
     },
     {
-      "displayName": "Set Set Set Set et Profile Attributes",
+      "displayName": "Attributes_SetProfileAttributes",
       "relativePath": "Attributes/Attributes_SetProfileAttributes"
     }
   ],

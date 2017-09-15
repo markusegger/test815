@@ -1805,11 +1805,11 @@
   "x-internal-toc-name": "Cardrulesettings",
   "x-internal-split-members": [
     {
-      "displayName": "Get Get Get Get Get Get et",
+      "displayName": "Cardrulesettings_Get",
       "relativePath": "Cardrulesettings/Cardrulesettings_Get"
     },
     {
-      "displayName": "Update Update Update pdate",
+      "displayName": "Cardrulesettings_Update",
       "relativePath": "Cardrulesettings/Cardrulesettings_Update"
     }
   ],

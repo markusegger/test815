@@ -1805,11 +1805,11 @@
   "x-internal-toc-name": "Boardusersettings",
   "x-internal-split-members": [
     {
-      "displayName": "Get Get Get Get Get Get Get",
+      "displayName": "Boardusersettings_Get",
       "relativePath": "Boardusersettings/Boardusersettings_Get"
     },
     {
-      "displayName": "Update Update Update Update",
+      "displayName": "Boardusersettings_Update",
       "relativePath": "Boardusersettings/Boardusersettings_Update"
     }
   ],

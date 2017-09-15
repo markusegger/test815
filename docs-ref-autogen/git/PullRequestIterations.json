@@ -5142,11 +5142,11 @@
   "x-internal-toc-name": "PullRequestIterations",
   "x-internal-split-members": [
     {
-      "displayName": "Pull Request Get Get Get Get et",
+      "displayName": "PullRequestIterations_Get",
       "relativePath": "PullRequestIterations/PullRequestIterations_Get"
     },
     {
-      "displayName": "Pull Request List List List ist",
+      "displayName": "PullRequestIterations_List",
       "relativePath": "PullRequestIterations/PullRequestIterations_List"
     }
   ],

@@ -128,7 +128,7 @@
             "description": "successful operation"
           }
         },
-        "x-internal-toc-name": "Delete Delete"
+        "x-internal-toc-name": "Plans_Delete"
       }
     }
   },

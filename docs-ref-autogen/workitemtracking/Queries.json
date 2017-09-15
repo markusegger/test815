@@ -8543,23 +8543,23 @@
   "x-internal-toc-name": "Queries",
   "x-internal-split-members": [
     {
-      "displayName": "Create Create te",
+      "displayName": "Queries_Create",
       "relativePath": "Queries/Queries_Create"
     },
     {
-      "displayName": "Delete Delete te",
+      "displayName": "Queries_Delete",
       "relativePath": "Queries/Queries_Delete"
     },
     {
-      "displayName": "Get Get Get et",
+      "displayName": "Queries_Get",
       "relativePath": "Queries/Queries_Get"
     },
     {
-      "displayName": "List List List",
+      "displayName": "Queries_List",
       "relativePath": "Queries/Queries_List"
     },
     {
-      "displayName": "Update Update te",
+      "displayName": "Queries_Update",
       "relativePath": "Queries/Queries_Update"
     }
   ],

@@ -98,7 +98,7 @@
             "$ref": "#/definitions/GET__projects__project__properties_keys-_propertyName_,_wildcard_"
           }
         },
-        "x-internal-toc-name": "List List List t"
+        "x-internal-toc-name": "Projects_List"
       }
     }
   },

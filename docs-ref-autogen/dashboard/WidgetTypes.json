@@ -539,11 +539,11 @@
   "x-internal-toc-name": "WidgetTypes",
   "x-internal-split-members": [
     {
-      "displayName": "Widget Get Get Get Widget Metadata",
+      "displayName": "WidgetTypes_GetWidgetMetadata",
       "relativePath": "WidgetTypes/WidgetTypes_GetWidgetMetadata"
     },
     {
-      "displayName": "Widget Get Get Get Widget Types",
+      "displayName": "WidgetTypes_GetWidgetTypes",
       "relativePath": "WidgetTypes/WidgetTypes_GetWidgetTypes"
     }
   ],

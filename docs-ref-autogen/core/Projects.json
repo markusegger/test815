@@ -408,11 +408,11 @@
   "x-internal-toc-name": "Projects",
   "x-internal-split-members": [
     {
-      "displayName": "List List List t",
+      "displayName": "Projects_List",
       "relativePath": "Projects/Projects_List"
     },
     {
-      "displayName": "Set Set Set Set Project Properties",
+      "displayName": "Projects_SetProjectProperties",
       "relativePath": "Projects/Projects_SetProjectProperties"
     }
   ],

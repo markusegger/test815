@@ -5142,27 +5142,27 @@
   "x-internal-toc-name": "PullRequests",
   "x-internal-split-members": [
     {
-      "displayName": "Pull Create Create ate",
+      "displayName": "PullRequests_Create",
       "relativePath": "PullRequests/PullRequests_Create"
     },
     {
-      "displayName": "Pull Get Get Get Get Pull Request",
+      "displayName": "PullRequests_GetPullRequest",
       "relativePath": "PullRequests/PullRequests_GetPullRequest"
     },
     {
-      "displayName": "Pull Get Get Get Get Pull Request By Id",
+      "displayName": "PullRequests_GetPullRequestById",
       "relativePath": "PullRequests/PullRequests_GetPullRequestById"
     },
     {
-      "displayName": "Pull Get Get Get Get Pull Requests",
+      "displayName": "PullRequests_GetPullRequests",
       "relativePath": "PullRequests/PullRequests_GetPullRequests"
     },
     {
-      "displayName": "Pull Get Get Get Get Pull Requests By Project",
+      "displayName": "PullRequests_GetPullRequestsByProject",
       "relativePath": "PullRequests/PullRequests_GetPullRequestsByProject"
     },
     {
-      "displayName": "Pull Update Update ate",
+      "displayName": "PullRequests_Update",
       "relativePath": "PullRequests/PullRequests_Update"
     }
   ],

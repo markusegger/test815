@@ -8543,11 +8543,11 @@
   "x-internal-toc-name": "WorkItemTypeTemplate",
   "x-internal-split-members": [
     {
-      "displayName": "Work Item Type Export Export ort Work Item Type Definition",
+      "displayName": "WorkItemTypeTemplate_ExportWorkItemTypeDefinition",
       "relativePath": "WorkItemTypeTemplate/WorkItemTypeTemplate_ExportWorkItemTypeDefinition"
     },
     {
-      "displayName": "Work Item Type Update Update ate",
+      "displayName": "WorkItemTypeTemplate_Update",
       "relativePath": "WorkItemTypeTemplate/WorkItemTypeTemplate_Update"
     }
   ],

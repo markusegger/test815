@@ -13268,11 +13268,11 @@
   "x-internal-toc-name": "Tasks",
   "x-internal-split-members": [
     {
-      "displayName": "Get Get Get Tasks",
+      "displayName": "Tasks_GetTasks",
       "relativePath": "Tasks/Tasks_GetTasks"
     },
     {
-      "displayName": "Get Get Get Tasks For Task Group",
+      "displayName": "Tasks_GetTasksForTaskGroup",
       "relativePath": "Tasks/Tasks_GetTasksForTaskGroup"
     }
   ],

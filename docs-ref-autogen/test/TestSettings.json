@@ -3720,15 +3720,15 @@
   "x-internal-toc-name": "TestSettings",
   "x-internal-split-members": [
     {
-      "displayName": "Test Create Create ate",
+      "displayName": "TestSettings_Create",
       "relativePath": "TestSettings/TestSettings_Create"
     },
     {
-      "displayName": "Test Delete Delete ete",
+      "displayName": "TestSettings_Delete",
       "relativePath": "TestSettings/TestSettings_Delete"
     },
     {
-      "displayName": "Test Get Get Get Get",
+      "displayName": "TestSettings_Get",
       "relativePath": "TestSettings/TestSettings_Get"
     }
   ],

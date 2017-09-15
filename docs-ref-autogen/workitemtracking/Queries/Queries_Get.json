@@ -194,7 +194,7 @@
             "$ref": "#/definitions/GET__wit_queries__hierarchicalQueryId___expand-clauses"
           }
         },
-        "x-internal-toc-name": "Get Get Get et"
+        "x-internal-toc-name": "Queries_Get"
       }
     }
   },

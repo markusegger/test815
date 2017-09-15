@@ -5142,15 +5142,15 @@
   "x-internal-toc-name": "ForkSyncRequests",
   "x-internal-split-members": [
     {
-      "displayName": "Fork Sync Create Create ate",
+      "displayName": "ForkSyncRequests_Create",
       "relativePath": "ForkSyncRequests/ForkSyncRequests_Create"
     },
     {
-      "displayName": "Fork Sync Get Get Get Get",
+      "displayName": "ForkSyncRequests_Get",
       "relativePath": "ForkSyncRequests/ForkSyncRequests_Get"
     },
     {
-      "displayName": "Fork Sync List List List t",
+      "displayName": "ForkSyncRequests_List",
       "relativePath": "ForkSyncRequests/ForkSyncRequests_List"
     }
   ],

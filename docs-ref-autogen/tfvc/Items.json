@@ -1135,11 +1135,11 @@
   "x-internal-toc-name": "Items",
   "x-internal-split-members": [
     {
-      "displayName": "Get Get Get Item",
+      "displayName": "Items_GetItem",
       "relativePath": "Items/Items_GetItem"
     },
     {
-      "displayName": "List List st",
+      "displayName": "Items_List",
       "relativePath": "Items/Items_List"
     }
   ],

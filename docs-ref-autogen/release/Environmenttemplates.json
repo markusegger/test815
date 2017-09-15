@@ -13268,15 +13268,15 @@
   "x-internal-toc-name": "Environmenttemplates",
   "x-internal-split-members": [
     {
-      "displayName": "Create Create Create Create ate",
+      "displayName": "Environmenttemplates_Create",
       "relativePath": "Environmenttemplates/Environmenttemplates_Create"
     },
     {
-      "displayName": "Delete Delete Delete Delete ete",
+      "displayName": "Environmenttemplates_Delete",
       "relativePath": "Environmenttemplates/Environmenttemplates_Delete"
     },
     {
-      "displayName": "Get Get Get Get Get Get Get Get",
+      "displayName": "Environmenttemplates_Get",
       "relativePath": "Environmenttemplates/Environmenttemplates_Get"
     }
   ],

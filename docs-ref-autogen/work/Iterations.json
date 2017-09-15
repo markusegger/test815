@@ -1805,19 +1805,19 @@
   "x-internal-toc-name": "Iterations",
   "x-internal-split-members": [
     {
-      "displayName": "Delete Delete elete",
+      "displayName": "Iterations_Delete",
       "relativePath": "Iterations/Iterations_Delete"
     },
     {
-      "displayName": "Get Get Get Get et",
+      "displayName": "Iterations_Get",
       "relativePath": "Iterations/Iterations_Get"
     },
     {
-      "displayName": "List List List ist",
+      "displayName": "Iterations_List",
       "relativePath": "Iterations/Iterations_List"
     },
     {
-      "displayName": "Post Post Post ost Team Iteration",
+      "displayName": "Iterations_PostTeamIteration",
       "relativePath": "Iterations/Iterations_PostTeamIteration"
     }
   ],

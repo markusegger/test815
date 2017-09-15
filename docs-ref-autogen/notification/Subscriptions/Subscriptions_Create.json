@@ -102,7 +102,7 @@
             "$ref": "#/definitions/POST__notification_subscriptions2"
           }
         },
-        "x-internal-toc-name": "Create Create Create te"
+        "x-internal-toc-name": "Subscriptions_Create"
       }
     }
   },

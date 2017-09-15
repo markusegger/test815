@@ -102,7 +102,7 @@
             "$ref": "#/definitions/POST__notification_subscriptionQuery"
           }
         },
-        "x-internal-toc-name": "Query Query Query uery"
+        "x-internal-toc-name": "Subscriptions_Query"
       }
     }
   },

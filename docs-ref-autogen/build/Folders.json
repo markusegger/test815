@@ -3618,19 +3618,19 @@
   "x-internal-toc-name": "Folders",
   "x-internal-split-members": [
     {
-      "displayName": "Create Create te",
+      "displayName": "Folders_Create",
       "relativePath": "Folders/Folders_Create"
     },
     {
-      "displayName": "Delete Delete te",
+      "displayName": "Folders_Delete",
       "relativePath": "Folders/Folders_Delete"
     },
     {
-      "displayName": "List List List",
+      "displayName": "Folders_List",
       "relativePath": "Folders/Folders_List"
     },
     {
-      "displayName": "Update Update te",
+      "displayName": "Folders_Update",
       "relativePath": "Folders/Folders_Update"
     }
   ],

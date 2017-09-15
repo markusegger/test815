@@ -5142,11 +5142,11 @@
   "x-internal-toc-name": "Commits",
   "x-internal-split-members": [
     {
-      "displayName": "Get Get Get et",
+      "displayName": "Commits_Get",
       "relativePath": "Commits/Commits_Get"
     },
     {
-      "displayName": "Get Get Get et Commits",
+      "displayName": "Commits_GetCommits",
       "relativePath": "Commits/Commits_GetCommits"
     }
   ],

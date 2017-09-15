@@ -326,23 +326,23 @@
   "x-internal-toc-name": "Configurations",
   "x-internal-split-members": [
     {
-      "displayName": "Create Create Create ate",
+      "displayName": "Configurations_Create",
       "relativePath": "Configurations/Configurations_Create"
     },
     {
-      "displayName": "Delete Delete Delete ete",
+      "displayName": "Configurations_Delete",
       "relativePath": "Configurations/Configurations_Delete"
     },
     {
-      "displayName": "Get Get Get Get Get Get",
+      "displayName": "Configurations_Get",
       "relativePath": "Configurations/Configurations_Get"
     },
     {
-      "displayName": "List List List List ist",
+      "displayName": "Configurations_List",
       "relativePath": "Configurations/Configurations_List"
     },
     {
-      "displayName": "Update Update Update ate",
+      "displayName": "Configurations_Update",
       "relativePath": "Configurations/Configurations_Update"
     }
   ],

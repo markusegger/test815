@@ -1805,11 +1805,11 @@
   "x-internal-toc-name": "Cardsettings",
   "x-internal-split-members": [
     {
-      "displayName": "Get Get Get Get Get t",
+      "displayName": "Cardsettings_Get",
       "relativePath": "Cardsettings/Cardsettings_Get"
     },
     {
-      "displayName": "Update Update Update e",
+      "displayName": "Cardsettings_Update",
       "relativePath": "Cardsettings/Cardsettings_Update"
     }
   ],

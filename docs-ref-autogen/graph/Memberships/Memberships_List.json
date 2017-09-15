@@ -118,7 +118,7 @@
             "$ref": "#/definitions/BatchGetMembershipsVSTSGroupUp"
           }
         },
-        "x-internal-toc-name": "List List List List"
+        "x-internal-toc-name": "Memberships_List"
       }
     }
   },

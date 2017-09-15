@@ -3618,11 +3618,11 @@
   "x-internal-toc-name": "Changes",
   "x-internal-split-members": [
     {
-      "displayName": "Get Get Get et Build Changes",
+      "displayName": "Changes_GetBuildChanges",
       "relativePath": "Changes/Changes_GetBuildChanges"
     },
     {
-      "displayName": "Get Get Get et Changes Between Builds",
+      "displayName": "Changes_GetChangesBetweenBuilds",
       "relativePath": "Changes/Changes_GetChangesBetweenBuilds"
     }
   ],

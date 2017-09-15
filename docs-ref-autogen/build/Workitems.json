@@ -3618,15 +3618,15 @@
   "x-internal-toc-name": "Workitems",
   "x-internal-split-members": [
     {
-      "displayName": "Get Get Get Get t Build Work Items Refs",
+      "displayName": "Workitems_GetBuildWorkItemsRefs",
       "relativePath": "Workitems/Workitems_GetBuildWorkItemsRefs"
     },
     {
-      "displayName": "Get Get Get Get t Build Work Items Refs From Commits",
+      "displayName": "Workitems_GetBuildWorkItemsRefsFromCommits",
       "relativePath": "Workitems/Workitems_GetBuildWorkItemsRefsFromCommits"
     },
     {
-      "displayName": "Get Get Get Get t Work Items Between Builds",
+      "displayName": "Workitems_GetWorkItemsBetweenBuilds",
       "relativePath": "Workitems/Workitems_GetWorkItemsBetweenBuilds"
     }
   ],

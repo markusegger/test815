@@ -1805,15 +1805,15 @@
   "x-internal-toc-name": "Boards",
   "x-internal-split-members": [
     {
-      "displayName": "Get Get Get t",
+      "displayName": "Boards_Get",
       "relativePath": "Boards/Boards_Get"
     },
     {
-      "displayName": "List List ist",
+      "displayName": "Boards_List",
       "relativePath": "Boards/Boards_List"
     },
     {
-      "displayName": "Set Set Set t Board Options",
+      "displayName": "Boards_SetBoardOptions",
       "relativePath": "Boards/Boards_SetBoardOptions"
     }
   ],

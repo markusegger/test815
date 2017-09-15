@@ -3720,11 +3720,11 @@
   "x-internal-toc-name": "ResultRetentionSettings",
   "x-internal-split-members": [
     {
-      "displayName": "Result Retention Get Get Get Get",
+      "displayName": "ResultRetentionSettings_Get",
       "relativePath": "ResultRetentionSettings/ResultRetentionSettings_Get"
     },
     {
-      "displayName": "Result Retention Update Update ate",
+      "displayName": "ResultRetentionSettings_Update",
       "relativePath": "ResultRetentionSettings/ResultRetentionSettings_Update"
     }
   ],

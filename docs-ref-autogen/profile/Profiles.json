@@ -411,15 +411,15 @@
   "x-internal-toc-name": "Profiles",
   "x-internal-split-members": [
     {
-      "displayName": "Create Create ate",
+      "displayName": "Profiles_Create",
       "relativePath": "Profiles/Profiles_Create"
     },
     {
-      "displayName": "Get Get Get Get",
+      "displayName": "Profiles_Get",
       "relativePath": "Profiles/Profiles_Get"
     },
     {
-      "displayName": "Update Update ate",
+      "displayName": "Profiles_Update",
       "relativePath": "Profiles/Profiles_Update"
     }
   ],

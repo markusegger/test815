@@ -135,7 +135,7 @@
             "$ref": "#/definitions/GetWorkItemIcons"
           }
         },
-        "x-internal-toc-name": "Work Item List List st"
+        "x-internal-toc-name": "WorkItemIcons_List"
       }
     }
   },

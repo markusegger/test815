@@ -182,7 +182,7 @@
             "$ref": "#/definitions/POST__wit_wiql"
           }
         },
-        "x-internal-toc-name": "Query Query By Wiql"
+        "x-internal-toc-name": "Wiql_QueryByWiql"
       }
     }
   },

@@ -750,23 +750,23 @@
   "x-internal-toc-name": "Rules",
   "x-internal-split-members": [
     {
-      "displayName": "Add Add Add",
+      "displayName": "Rules_Add",
       "relativePath": "Rules/Rules_Add"
     },
     {
-      "displayName": "Delete Delete",
+      "displayName": "Rules_Delete",
       "relativePath": "Rules/Rules_Delete"
     },
     {
-      "displayName": "Get Get Get",
+      "displayName": "Rules_Get",
       "relativePath": "Rules/Rules_Get"
     },
     {
-      "displayName": "List List st",
+      "displayName": "Rules_List",
       "relativePath": "Rules/Rules_List"
     },
     {
-      "displayName": "Update Update",
+      "displayName": "Rules_Update",
       "relativePath": "Rules/Rules_Update"
     }
   ],

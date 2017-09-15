@@ -3720,11 +3720,11 @@
   "x-internal-toc-name": "Iterations",
   "x-internal-split-members": [
     {
-      "displayName": "Get Get Get Get et",
+      "displayName": "Iterations_Get",
       "relativePath": "Iterations/Iterations_Get"
     },
     {
-      "displayName": "List List List ist",
+      "displayName": "Iterations_List",
       "relativePath": "Iterations/Iterations_List"
     }
   ],

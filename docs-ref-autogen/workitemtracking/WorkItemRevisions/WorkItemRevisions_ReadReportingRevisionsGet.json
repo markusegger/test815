@@ -224,7 +224,7 @@
             "$ref": "#/definitions/GET__wit_reporting_workItemRevisions_includeIdentityRef-true_watermark-794"
           }
         },
-        "x-internal-toc-name": "Work Item Read Read Read ad Reporting Revisions Get"
+        "x-internal-toc-name": "WorkItemRevisions_ReadReportingRevisionsGet"
       }
     }
   },

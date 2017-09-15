@@ -8543,11 +8543,11 @@
   "x-internal-toc-name": "Updates",
   "x-internal-split-members": [
     {
-      "displayName": "Get Get Get et",
+      "displayName": "Updates_Get",
       "relativePath": "Updates/Updates_Get"
     },
     {
-      "displayName": "List List List",
+      "displayName": "Updates_List",
       "relativePath": "Updates/Updates_List"
     }
   ],

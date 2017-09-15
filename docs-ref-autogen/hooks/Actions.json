@@ -1252,11 +1252,11 @@
   "x-internal-toc-name": "Actions",
   "x-internal-split-members": [
     {
-      "displayName": "Get Get Get et",
+      "displayName": "Actions_Get",
       "relativePath": "Actions/Actions_Get"
     },
     {
-      "displayName": "List List List",
+      "displayName": "Actions_List",
       "relativePath": "Actions/Actions_List"
     }
   ],

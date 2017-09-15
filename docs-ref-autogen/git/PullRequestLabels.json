@@ -5142,19 +5142,19 @@
   "x-internal-toc-name": "PullRequestLabels",
   "x-internal-split-members": [
     {
-      "displayName": "Pull Request Create Create e",
+      "displayName": "PullRequestLabels_Create",
       "relativePath": "PullRequestLabels/PullRequestLabels_Create"
     },
     {
-      "displayName": "Pull Request Delete Delete e",
+      "displayName": "PullRequestLabels_Delete",
       "relativePath": "PullRequestLabels/PullRequestLabels_Delete"
     },
     {
-      "displayName": "Pull Request Get Get Get t",
+      "displayName": "PullRequestLabels_Get",
       "relativePath": "PullRequestLabels/PullRequestLabels_Get"
     },
     {
-      "displayName": "Pull Request List List ist",
+      "displayName": "PullRequestLabels_List",
       "relativePath": "PullRequestLabels/PullRequestLabels_List"
     }
   ],

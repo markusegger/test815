@@ -5142,19 +5142,19 @@
   "x-internal-toc-name": "PullRequestThreads",
   "x-internal-split-members": [
     {
-      "displayName": "Pull Request Create Create te",
+      "displayName": "PullRequestThreads_Create",
       "relativePath": "PullRequestThreads/PullRequestThreads_Create"
     },
     {
-      "displayName": "Pull Request Get Get Get et",
+      "displayName": "PullRequestThreads_Get",
       "relativePath": "PullRequestThreads/PullRequestThreads_Get"
     },
     {
-      "displayName": "Pull Request List List List",
+      "displayName": "PullRequestThreads_List",
       "relativePath": "PullRequestThreads/PullRequestThreads_List"
     },
     {
-      "displayName": "Pull Request Update Update te",
+      "displayName": "PullRequestThreads_Update",
       "relativePath": "PullRequestThreads/PullRequestThreads_Update"
     }
   ],

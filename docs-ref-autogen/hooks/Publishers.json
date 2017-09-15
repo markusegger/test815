@@ -1252,11 +1252,11 @@
   "x-internal-toc-name": "Publishers",
   "x-internal-split-members": [
     {
-      "displayName": "Get Get Get Get et",
+      "displayName": "Publishers_Get",
       "relativePath": "Publishers/Publishers_Get"
     },
     {
-      "displayName": "List List List ist",
+      "displayName": "Publishers_List",
       "relativePath": "Publishers/Publishers_List"
     }
   ],

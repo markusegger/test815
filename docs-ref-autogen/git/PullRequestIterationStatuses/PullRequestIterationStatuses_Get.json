@@ -224,7 +224,7 @@
             "$ref": "#/definitions/GET_git_pullRequestStatuses_iterationStatus"
           }
         },
-        "x-internal-toc-name": "Pull Request Iteration Get Get Get Get"
+        "x-internal-toc-name": "PullRequestIterationStatuses_Get"
       }
     }
   },

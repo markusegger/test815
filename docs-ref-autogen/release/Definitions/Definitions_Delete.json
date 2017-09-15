@@ -170,7 +170,7 @@
             "$ref": "#/definitions/DELETE__DeleteReleaseDefinition"
           }
         },
-        "x-internal-toc-name": "Delete Delete Delete"
+        "x-internal-toc-name": "Definitions_Delete"
       }
     }
   },

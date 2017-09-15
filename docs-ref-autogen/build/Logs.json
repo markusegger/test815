@@ -3618,11 +3618,11 @@
   "x-internal-toc-name": "Logs",
   "x-internal-split-members": [
     {
-      "displayName": "Get Get et Build Log",
+      "displayName": "Logs_GetBuildLog",
       "relativePath": "Logs/Logs_GetBuildLog"
     },
     {
-      "displayName": "Get Get et Build Logs",
+      "displayName": "Logs_GetBuildLogs",
       "relativePath": "Logs/Logs_GetBuildLogs"
     }
   ],

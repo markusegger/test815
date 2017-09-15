@@ -182,7 +182,7 @@
             "$ref": "#/definitions/PATCH__UpdateReleaseEnvironment"
           }
         },
-        "x-internal-toc-name": "Update Update ate Release Environment"
+        "x-internal-toc-name": "Releases_UpdateReleaseEnvironment"
       }
     }
   },

@@ -88,7 +88,7 @@
             "$ref": "#/definitions/DELETE__notification_subscriptions__subscriptionId_"
           }
         },
-        "x-internal-toc-name": "Delete Delete Delete te"
+        "x-internal-toc-name": "Subscriptions_Delete"
       }
     }
   },

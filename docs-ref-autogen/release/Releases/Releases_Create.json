@@ -166,7 +166,7 @@
             "$ref": "#/definitions/POST__CreateARelease"
           }
         },
-        "x-internal-toc-name": "Create Create ate"
+        "x-internal-toc-name": "Releases_Create"
       }
     }
   },

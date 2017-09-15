@@ -8543,27 +8543,27 @@
   "x-internal-toc-name": "WorkItems",
   "x-internal-split-members": [
     {
-      "displayName": "Work Create Create",
+      "displayName": "WorkItems_Create",
       "relativePath": "WorkItems/WorkItems_Create"
     },
     {
-      "displayName": "Work Delete Delete",
+      "displayName": "WorkItems_Delete",
       "relativePath": "WorkItems/WorkItems_Delete"
     },
     {
-      "displayName": "Work Get Get Get Work Item",
+      "displayName": "WorkItems_GetWorkItem",
       "relativePath": "WorkItems/WorkItems_GetWorkItem"
     },
     {
-      "displayName": "Work Get Get Get Work Item Template",
+      "displayName": "WorkItems_GetWorkItemTemplate",
       "relativePath": "WorkItems/WorkItems_GetWorkItemTemplate"
     },
     {
-      "displayName": "Work List List st",
+      "displayName": "WorkItems_List",
       "relativePath": "WorkItems/WorkItems_List"
     },
     {
-      "displayName": "Work Update Update",
+      "displayName": "WorkItems_Update",
       "relativePath": "WorkItems/WorkItems_Update"
     }
   ],

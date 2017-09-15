@@ -750,23 +750,23 @@
   "x-internal-toc-name": "Processes",
   "x-internal-split-members": [
     {
-      "displayName": "Create Create eate",
+      "displayName": "Processes_Create",
       "relativePath": "Processes/Processes_Create"
     },
     {
-      "displayName": "Delete Delete lete",
+      "displayName": "Processes_Delete",
       "relativePath": "Processes/Processes_Delete"
     },
     {
-      "displayName": "Get Get Get Get t",
+      "displayName": "Processes_Get",
       "relativePath": "Processes/Processes_Get"
     },
     {
-      "displayName": "List List List st",
+      "displayName": "Processes_List",
       "relativePath": "Processes/Processes_List"
     },
     {
-      "displayName": "Update Update date",
+      "displayName": "Processes_Update",
       "relativePath": "Processes/Processes_Update"
     }
   ],

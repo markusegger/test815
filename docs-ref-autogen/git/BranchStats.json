@@ -5142,11 +5142,11 @@
   "x-internal-toc-name": "BranchStats",
   "x-internal-split-members": [
     {
-      "displayName": "Branch Get Get Get",
+      "displayName": "BranchStats_Get",
       "relativePath": "BranchStats/BranchStats_Get"
     },
     {
-      "displayName": "Branch Get Get Get Branch Stats Batch",
+      "displayName": "BranchStats_GetBranchStatsBatch",
       "relativePath": "BranchStats/BranchStats_GetBranchStatsBatch"
     }
   ],

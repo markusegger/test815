@@ -115,7 +115,7 @@
             "$ref": "#/definitions/PUT__notification_subscriptions__sharedSubscriptionId__userSettings_me"
           }
         },
-        "x-internal-toc-name": "Update Update Update te Subscription User Settings"
+        "x-internal-toc-name": "Subscriptions_UpdateSubscriptionUserSettings"
       }
     }
   },

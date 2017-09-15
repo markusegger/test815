@@ -3618,11 +3618,11 @@
   "x-internal-toc-name": "Settings",
   "x-internal-split-members": [
     {
-      "displayName": "Get Get Get Get",
+      "displayName": "Settings_Get",
       "relativePath": "Settings/Settings_Get"
     },
     {
-      "displayName": "Update Update ate",
+      "displayName": "Settings_Update",
       "relativePath": "Settings/Settings_Update"
     }
   ],

@@ -13268,11 +13268,11 @@
   "x-internal-toc-name": "Versions",
   "x-internal-split-members": [
     {
-      "displayName": "Get Get Get Get Artifact Versions",
+      "displayName": "Versions_GetArtifactVersions",
       "relativePath": "Versions/Versions_GetArtifactVersions"
     },
     {
-      "displayName": "Get Get Get Get Artifact Versions For Sources",
+      "displayName": "Versions_GetArtifactVersionsForSources",
       "relativePath": "Versions/Versions_GetArtifactVersionsForSources"
     }
   ],

@@ -3116,11 +3116,11 @@
   "x-internal-toc-name": "NotificationReasons",
   "x-internal-split-members": [
     {
-      "displayName": "Notification Get Get Get et",
+      "displayName": "NotificationReasons_Get",
       "relativePath": "NotificationReasons/NotificationReasons_Get"
     },
     {
-      "displayName": "Notification List List List",
+      "displayName": "NotificationReasons_List",
       "relativePath": "NotificationReasons/NotificationReasons_List"
     }
   ],

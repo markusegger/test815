@@ -170,7 +170,7 @@
             "$ref": "#/definitions/GET__GetManualIntervention"
           }
         },
-        "x-internal-toc-name": "Manual Get Get Get Get Get et"
+        "x-internal-toc-name": "ManualInterventions_Get"
       }
     }
   },

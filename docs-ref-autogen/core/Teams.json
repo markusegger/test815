@@ -184,23 +184,23 @@
   "x-internal-toc-name": "Teams",
   "x-internal-split-members": [
     {
-      "displayName": "Create Create",
+      "displayName": "Teams_Create",
       "relativePath": "Teams/Teams_Create"
     },
     {
-      "displayName": "Delete Delete",
+      "displayName": "Teams_Delete",
       "relativePath": "Teams/Teams_Delete"
     },
     {
-      "displayName": "Get Get Get",
+      "displayName": "Teams_Get",
       "relativePath": "Teams/Teams_Get"
     },
     {
-      "displayName": "List List st",
+      "displayName": "Teams_List",
       "relativePath": "Teams/Teams_List"
     },
     {
-      "displayName": "Update Update",
+      "displayName": "Teams_Update",
       "relativePath": "Teams/Teams_Update"
     }
   ],

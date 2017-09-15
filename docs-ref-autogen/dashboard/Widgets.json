@@ -539,35 +539,35 @@
   "x-internal-toc-name": "Widgets",
   "x-internal-split-members": [
     {
-      "displayName": "Create Create te",
+      "displayName": "Widgets_Create",
       "relativePath": "Widgets/Widgets_Create"
     },
     {
-      "displayName": "Delete Delete te",
+      "displayName": "Widgets_Delete",
       "relativePath": "Widgets/Widgets_Delete"
     },
     {
-      "displayName": "Get Get Get et Widget",
+      "displayName": "Widgets_GetWidget",
       "relativePath": "Widgets/Widgets_GetWidget"
     },
     {
-      "displayName": "Get Get Get et Widgets",
+      "displayName": "Widgets_GetWidgets",
       "relativePath": "Widgets/Widgets_GetWidgets"
     },
     {
-      "displayName": "Replace Replace e Widget",
+      "displayName": "Widgets_ReplaceWidget",
       "relativePath": "Widgets/Widgets_ReplaceWidget"
     },
     {
-      "displayName": "Replace Replace e Widgets",
+      "displayName": "Widgets_ReplaceWidgets",
       "relativePath": "Widgets/Widgets_ReplaceWidgets"
     },
     {
-      "displayName": "Update Update te Widget",
+      "displayName": "Widgets_UpdateWidget",
       "relativePath": "Widgets/Widgets_UpdateWidget"
     },
     {
-      "displayName": "Update Update te Widgets",
+      "displayName": "Widgets_UpdateWidgets",
       "relativePath": "Widgets/Widgets_UpdateWidgets"
     }
   ],

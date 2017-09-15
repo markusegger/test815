@@ -3618,19 +3618,19 @@
   "x-internal-toc-name": "Properties",
   "x-internal-split-members": [
     {
-      "displayName": "Get Get Get Get et Build Properties",
+      "displayName": "Properties_GetBuildProperties",
       "relativePath": "Properties/Properties_GetBuildProperties"
     },
     {
-      "displayName": "Get Get Get Get et Definition Properties",
+      "displayName": "Properties_GetDefinitionProperties",
       "relativePath": "Properties/Properties_GetDefinitionProperties"
     },
     {
-      "displayName": "Update Update pdate Build Properties",
+      "displayName": "Properties_UpdateBuildProperties",
       "relativePath": "Properties/Properties_UpdateBuildProperties"
     },
     {
-      "displayName": "Update Update pdate Definition Properties",
+      "displayName": "Properties_UpdateDefinitionProperties",
       "relativePath": "Properties/Properties_UpdateDefinitionProperties"
     }
   ],

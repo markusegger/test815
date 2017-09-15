@@ -5142,15 +5142,15 @@
   "x-internal-toc-name": "Reverts",
   "x-internal-split-members": [
     {
-      "displayName": "Create Create te",
+      "displayName": "Reverts_Create",
       "relativePath": "Reverts/Reverts_Create"
     },
     {
-      "displayName": "Get Get Get et Revert",
+      "displayName": "Reverts_GetRevert",
       "relativePath": "Reverts/Reverts_GetRevert"
     },
     {
-      "displayName": "Get Get Get et Revert For Ref Name",
+      "displayName": "Reverts_GetRevertForRefName",
       "relativePath": "Reverts/Reverts_GetRevertForRefName"
     }
   ],

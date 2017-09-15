@@ -164,11 +164,11 @@
   "x-internal-toc-name": "Processes",
   "x-internal-split-members": [
     {
-      "displayName": "Get Get Get Get t",
+      "displayName": "Processes_Get",
       "relativePath": "Processes/Processes_Get"
     },
     {
-      "displayName": "List List List st",
+      "displayName": "Processes_List",
       "relativePath": "Processes/Processes_List"
     }
   ],

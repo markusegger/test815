@@ -750,11 +750,11 @@
   "x-internal-toc-name": "Behaviors",
   "x-internal-split-members": [
     {
-      "displayName": "Get Get Get Get t",
+      "displayName": "Behaviors_Get",
       "relativePath": "Behaviors/Behaviors_Get"
     },
     {
-      "displayName": "List List List st",
+      "displayName": "Behaviors_List",
       "relativePath": "Behaviors/Behaviors_List"
     }
   ],

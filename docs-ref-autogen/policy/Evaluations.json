@@ -326,15 +326,15 @@
   "x-internal-toc-name": "Evaluations",
   "x-internal-split-members": [
     {
-      "displayName": "Get Get Get Get Get",
+      "displayName": "Evaluations_Get",
       "relativePath": "Evaluations/Evaluations_Get"
     },
     {
-      "displayName": "List List List List",
+      "displayName": "Evaluations_List",
       "relativePath": "Evaluations/Evaluations_List"
     },
     {
-      "displayName": "Requeue Requeue queue Policy Evaluation",
+      "displayName": "Evaluations_RequeuePolicyEvaluation",
       "relativePath": "Evaluations/Evaluations_RequeuePolicyEvaluation"
     }
   ],

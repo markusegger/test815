@@ -3618,11 +3618,11 @@
   "x-internal-toc-name": "Controllers",
   "x-internal-split-members": [
     {
-      "displayName": "Get Get Get Get Get",
+      "displayName": "Controllers_Get",
       "relativePath": "Controllers/Controllers_Get"
     },
     {
-      "displayName": "List List List List",
+      "displayName": "Controllers_List",
       "relativePath": "Controllers/Controllers_List"
     }
   ],

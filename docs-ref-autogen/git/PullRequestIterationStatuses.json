@@ -5142,23 +5142,23 @@
   "x-internal-toc-name": "PullRequestIterationStatuses",
   "x-internal-split-members": [
     {
-      "displayName": "Pull Request Iteration Create Create ate",
+      "displayName": "PullRequestIterationStatuses_Create",
       "relativePath": "PullRequestIterationStatuses/PullRequestIterationStatuses_Create"
     },
     {
-      "displayName": "Pull Request Iteration Delete Delete ete",
+      "displayName": "PullRequestIterationStatuses_Delete",
       "relativePath": "PullRequestIterationStatuses/PullRequestIterationStatuses_Delete"
     },
     {
-      "displayName": "Pull Request Iteration Get Get Get Get",
+      "displayName": "PullRequestIterationStatuses_Get",
       "relativePath": "PullRequestIterationStatuses/PullRequestIterationStatuses_Get"
     },
     {
-      "displayName": "Pull Request Iteration List List List t",
+      "displayName": "PullRequestIterationStatuses_List",
       "relativePath": "PullRequestIterationStatuses/PullRequestIterationStatuses_List"
     },
     {
-      "displayName": "Pull Request Iteration Update Update ate",
+      "displayName": "PullRequestIterationStatuses_Update",
       "relativePath": "PullRequestIterationStatuses/PullRequestIterationStatuses_Update"
     }
   ],

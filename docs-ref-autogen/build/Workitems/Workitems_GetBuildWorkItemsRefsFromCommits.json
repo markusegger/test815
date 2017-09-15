@@ -169,7 +169,7 @@
             ]
           }
         ],
-        "x-internal-toc-name": "Get Get Get Get t Build Work Items Refs From Commits"
+        "x-internal-toc-name": "Workitems_GetBuildWorkItemsRefsFromCommits"
       }
     }
   },

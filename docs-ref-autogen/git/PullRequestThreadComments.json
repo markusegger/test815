@@ -5142,23 +5142,23 @@
   "x-internal-toc-name": "PullRequestThreadComments",
   "x-internal-split-members": [
     {
-      "displayName": "Pull Request Thread Create Create ate",
+      "displayName": "PullRequestThreadComments_Create",
       "relativePath": "PullRequestThreadComments/PullRequestThreadComments_Create"
     },
     {
-      "displayName": "Pull Request Thread Delete Delete ete",
+      "displayName": "PullRequestThreadComments_Delete",
       "relativePath": "PullRequestThreadComments/PullRequestThreadComments_Delete"
     },
     {
-      "displayName": "Pull Request Thread Get Get Get Get",
+      "displayName": "PullRequestThreadComments_Get",
       "relativePath": "PullRequestThreadComments/PullRequestThreadComments_Get"
     },
     {
-      "displayName": "Pull Request Thread List List List t",
+      "displayName": "PullRequestThreadComments_List",
       "relativePath": "PullRequestThreadComments/PullRequestThreadComments_List"
     },
     {
-      "displayName": "Pull Request Thread Update Update ate",
+      "displayName": "PullRequestThreadComments_Update",
       "relativePath": "PullRequestThreadComments/PullRequestThreadComments_Update"
     }
   ],

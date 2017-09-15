@@ -87,7 +87,7 @@
             "$ref": "#/definitions/DeleteUserAAD"
           }
         },
-        "x-internal-toc-name": "Delete Delete"
+        "x-internal-toc-name": "Users_Delete"
       }
     }
   },
