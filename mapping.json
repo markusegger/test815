@@ -12,17 +12,193 @@
     {
       "name":"",
       "index":"index.md",
-      "default_toc_title":"Get started with SQL & REST",
+      "default_toc_title":"Get started with VSTS & REST",
       "services":[
+        
         {
-          "toc_title":"PowerBI Report Server",
-          "url_group":"powerBI",
+          "toc_title":"Build",
+          "url_group":"build",
           "swagger_files":[
             {
-              "source":"sql-rest/api/swagger.json"
+              "source":"vsts-rest-api-specs/specification/build/4.0/build.json"
+            }
+          ]
+        },
+      
+
+        {
+          "toc_title":"Core",
+          "url_group":"core",
+          "swagger_files":[
+            {
+              "source":"vsts-rest-api-specs/specification/core/4.0/process.json"
+            },
+            {
+              "source":"vsts-rest-api-specs/specification/core/4.0/project.json"
+            },
+            {
+              "source":"vsts-rest-api-specs/specification/core/4.0/team.json"
+            }
+          ]
+        },
+       
+        {
+          "toc_title":"Dashboard",
+          "url_group":"dashboard",
+          "swagger_files":[
+            {
+              "source":"vsts-rest-api-specs/specification/dashboard/4.0/dashboard.json"
+            }
+          ]
+        },
+        
+        {
+          "toc_title":"Graph",
+          "url_group":"graph",
+          "swagger_files":[
+            {
+              "source":"vsts-rest-api-specs/specification/graph/4.0/graph.json"
+            }
+          ]
+        },
+        
+               
+        {
+          "toc_title":"Git",
+          "url_group":"git",
+          "swagger_files":[
+            {
+              "source":"vsts-rest-api-specs/specification/git/4.0/git.json"
+            }
+          ]
+        },
+        
+        {
+          "toc_title":"Notification",
+          "url_group":"notification",
+          "swagger_files":[
+            {
+              "source":"vsts-rest-api-specs/specification/notification/4.0/notification.json"
+            }
+          ]
+        },
+
+        {
+          "toc_title":"Npm",
+          "url_group":"npm",
+          "swagger_files":[
+            {
+              "source":"vsts-rest-api-specs/specification/npm/4.0/npm.json"
+            }
+          ]
+        },        
+       
+
+     {
+          "toc_title":"Operations",
+          "url_group":"operations",
+          "swagger_files":[
+            {
+              "source":"vsts-rest-api-specs/specification/operations/4.0/operations.json"
+            }
+          ]
+        },
+
+
+        {
+          "toc_title":"Policy",
+          "url_group":"policy",
+          "swagger_files":[
+            {
+              "source":"vsts-rest-api-specs/specification/policy/4.0/policy.json"
+            }
+          ]
+        },
+
+        {
+          "toc_title":"Processes",
+          "url_group":"processes",
+          "swagger_files":[
+            {
+              "source":"vsts-rest-api-specs/specification/processes/4.0/workItemTrackingProcess.json"
+            }
+          ]
+        },
+        {
+          "toc_title":"Profile",
+          "url_group":"profile",
+          "swagger_files":[
+            {
+              "source":"vsts-rest-api-specs/specification/profile/4.0/profile.json"
+            }
+          ]
+        },
+        
+       
+
+        {
+          "toc_title":"Release",
+          "url_group":"release",
+          "swagger_files":[
+            {
+              "source":"vsts-rest-api-specs/specification/release/4.0/release.json"
+            }
+          ]
+        },
+        
+      
+       
+        
+        {
+          "toc_title":"Hooks",
+          "url_group":"hooks",
+          "swagger_files":[
+            {
+              "source":"vsts-rest-api-specs/specification/hooks/4.0/serviceHooks.json"
+            }
+          ]
+        },
+        
+        {
+          "toc_title":"Test",
+          "url_group":"test",
+          "swagger_files":[
+            {
+              "source":"vsts-rest-api-specs/specification/test/4.0/test.json"
+            }
+          ]
+        },
+        
+        
+        {
+          "toc_title":"Tfvc",
+          "url_group":"tfvc",
+          "swagger_files":[
+            {
+              "source":"vsts-rest-api-specs/specification/tfvc/4.0/tfvc.json"
+            }
+          ]
+        },
+        
+        {
+          "toc_title":"Work",
+          "url_group":"work",
+          "swagger_files":[
+            {
+              "source":"vsts-rest-api-specs/specification/work/4.0/work.json"
+            }
+          ]
+        },
+        {
+          "toc_title":"WorkItemTracking",
+          "url_group":"workitemtracking",
+          "swagger_files":[
+            {
+              "source":"vsts-rest-api-specs/specification/wit/4.0/workItemTracking.json"
             }
           ]
         }
+       
       ]
     }
   ]

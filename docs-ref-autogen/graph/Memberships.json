@@ -1,0 +1,2237 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Graph",
+    "description": "",
+    "termsOfService": "https://go.microsoft.com/fwlink/?LinkId=329770",
+    "contact": {
+      "name": "nugetvss",
+      "email": "nugetvss@microsoft.com"
+    },
+    "license": {
+      "name": "MICROSOFT SOFTWARE LICENSE TERMS",
+      "url": "https://go.microsoft.com/fwlink/?LinkId=329770"
+    },
+    "version": "4.1"
+  },
+  "host": "fabrikam-fiber-inc.visualstudio.com",
+  "x-ms-parameterized-host": {
+    "hostTemplate": "{accountName}.visualstudio.com",
+    "parameters": [
+      {
+        "name": "accountName",
+        "description": "The name of the Visual Studio Team Services account.",
+        "required": true,
+        "type": "string",
+        "in": "path"
+      }
+    ]
+  },
+  "x-ms-vss-area": "Graph",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "descriptors"
+    },
+    {
+      "name": "groups"
+    },
+    {
+      "name": "memberships"
+    },
+    {
+      "name": "membershipstates"
+    },
+    {
+      "name": "storagekeys"
+    },
+    {
+      "name": "subjectlookup"
+    },
+    {
+      "name": "users"
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "paths": {},
+  "definitions": {
+    "GraphCachePolicies": {
+      "description": "",
+      "type": "object",
+      "properties": {
+        "cacheSize": {
+          "description": "Size of the cache",
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "GraphDescriptorResult": {
+      "description": "",
+      "type": "object",
+      "properties": {
+        "_links": {
+          "description": "This field contains zero or more interesting links about the graph descriptor. These links may be invoked to obtain additional relationships or more detailed information about this graph descriptor.",
+          "$ref": "#/definitions/ReferenceLinks"
+        },
+        "value": {
+          "readOnly": true,
+          "type": "string"
+        }
+      }
+    },
+    "GraphGlobalExtendedPropertyBatch": {
+      "description": "",
+      "type": "object",
+      "properties": {
+        "propertyNameFilters": {
+          "readOnly": true,
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "subjectDescriptors": {
+          "readOnly": true,
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "GraphGroup": {
+      "description": "",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/GraphMember"
+        }
+      ],
+      "properties": {
+        "description": {
+          "description": "A short phrase to help human readers disambiguate groups with similar names",
+          "readOnly": true,
+          "type": "string"
+        },
+        "isCrossProject": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isGlobalScope": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isRestrictedVisible": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "localScopeId": {
+          "readOnly": true,
+          "type": "string",
+          "format": "uuid"
+        },
+        "scopeId": {
+          "readOnly": true,
+          "type": "string",
+          "format": "uuid"
+        },
+        "scopeName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "scopeType": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "securingHostId": {
+          "readOnly": true,
+          "type": "string",
+          "format": "uuid"
+        },
+        "specialType": {
+          "readOnly": true,
+          "type": "string"
+        }
+      }
+    },
+    "GraphGroupCreationContext": {
+      "description": "Do not attempt to use this type to create a new group. This type does not contain sufficient fields to create a new group.",
+      "type": "object",
+      "properties": {
+        "storageKey": {
+          "description": "Optional: If provided, we will use this identifier for the storage key of the created group",
+          "type": "string",
+          "format": "uuid"
+        }
+      }
+    },
+    "GraphGroupMailAddressCreationContext": {
+      "description": "Use this type to create a new group using the mail address as a reference to an existing group from an external AD or AAD backed provider. This is the subset of GraphGroup fields required for creation of a group for the AAD and AD use case.",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/GraphGroupCreationContext"
+        }
+      ],
+      "properties": {
+        "mailAddress": {
+          "description": "This should be the mail address or the group in the source AD or AAD provider. Example: jamal@contoso.com Team Services will communicate with the source provider to fill all other fields on creation.",
+          "type": "string"
+        }
+      }
+    },
+    "GraphGroupOriginIdCreationContext": {
+      "description": "Use this type to create a new group using the OriginID as a reference to an existing group from an external AD or AAD backed provider. This is the subset of GraphGroup fields required for creation of a group for the AD and AAD use case.",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/GraphGroupCreationContext"
+        }
+      ],
+      "properties": {
+        "originId": {
+          "description": "This should be the object id or sid of the group from the source AD or AAD provider. Example: d47d025a-ce2f-4a79-8618-e8862ade30dd Team Services will communicate with the source provider to fill all other fields on creation.",
+          "type": "string"
+        }
+      }
+    },
+    "GraphGroupVstsCreationContext": {
+      "description": "Use this type to create a new Vsts group that is not backed by an external provider.",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/GraphGroupCreationContext"
+        }
+      ],
+      "properties": {
+        "crossProject": {
+          "description": "For internal use only in back compat scenarios.",
+          "type": "boolean"
+        },
+        "description": {
+          "description": "Used by VSTS groups; if set this will be the group description, otherwise ignored",
+          "type": "string"
+        },
+        "descriptor": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Used by VSTS groups; if set this will be the group DisplayName, otherwise ignored",
+          "type": "string"
+        },
+        "restrictedVisibility": {
+          "description": "For internal use only in back compat scenarios.",
+          "type": "boolean"
+        },
+        "specialGroupType": {
+          "description": "For internal use only in back compat scenarios.",
+          "type": "string"
+        }
+      }
+    },
+    "GraphMember": {
+      "description": "",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/GraphSubject"
+        }
+      ],
+      "properties": {
+        "cuid": {
+          "description": "The Consistently Unique Identifier of the subject",
+          "readOnly": true,
+          "type": "string",
+          "format": "uuid"
+        },
+        "domain": {
+          "description": "This represents the name of the container of origin for a graph member. (For MSA this is \"Windows Live ID\", for AD the name of the domain, for AAD the tenantID of the directory, for VSTS groups the ScopeId, etc)",
+          "readOnly": true,
+          "type": "string"
+        },
+        "mailAddress": {
+          "description": "The email address of record for a given graph member. This may be different than the principal name.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "principalName": {
+          "description": "This is the PrincipalName of this graph member from the source provider. The source provider may change this field over time and it is not guaranteed to be immutable for the life of the graph member by VSTS.",
+          "readOnly": true,
+          "type": "string"
+        }
+      }
+    },
+    "GraphMembership": {
+      "description": "",
+      "type": "object",
+      "properties": {
+        "_links": {
+          "description": "This field contains zero or more interesting links about the graph membership. These links may be invoked to obtain additional relationships or more detailed information about this graph membership.",
+          "$ref": "#/definitions/ReferenceLinks"
+        },
+        "containerDescriptor": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "memberDescriptor": {
+          "readOnly": true,
+          "type": "string"
+        }
+      }
+    },
+    "GraphMembershipState": {
+      "description": "",
+      "type": "object",
+      "properties": {
+        "_links": {
+          "description": "This field contains zero or more interesting links about the graph membership state. These links may be invoked to obtain additional relationships or more detailed information about this graph membership state.",
+          "$ref": "#/definitions/ReferenceLinks"
+        },
+        "active": {
+          "readOnly": true,
+          "type": "boolean"
+        }
+      }
+    },
+    "GraphMembershipTraversal": {
+      "description": "",
+      "type": "object",
+      "properties": {
+        "incompletenessReason": {
+          "description": "Reason why the subject could not be traversed completely",
+          "type": "string"
+        },
+        "isComplete": {
+          "description": "When true, the subject is traversed completely",
+          "type": "boolean"
+        },
+        "subjectDescriptor": {
+          "description": "The traversed subject descriptor",
+          "type": "string"
+        },
+        "traversedSubjectIds": {
+          "description": "Subject descriptor ids of the traversed members",
+          "readOnly": true,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "traversedSubjects": {
+          "description": "Subject descriptors of the traversed members",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "GraphScope": {
+      "description": "",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/GraphSubject"
+        }
+      ],
+      "properties": {
+        "administratorDescriptor": {
+          "description": "The subject descriptor that references the administrators group for this scope. Only members of this group can change the contents of this scope or assign other users permissions to access this scope.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "isGlobal": {
+          "description": "When true, this scope is also a securing host for one or more scopes.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "parentDescriptor": {
+          "description": "The subject descriptor for the closest account or organization in the ancestor tree of this scope.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "scopeType": {
+          "description": "The type of this scope. Typically ServiceHost or TeamProject.",
+          "readOnly": true,
+          "enum": [
+            "generic",
+            "serviceHost",
+            "teamProject"
+          ],
+          "x-ms-enum": {
+            "name": "Microsoft.VisualStudio.Services.Identity.GroupScopeType"
+          }
+        },
+        "securingHostDescriptor": {
+          "description": "The subject descriptor for the containing organization in the ancestor tree of this scope.",
+          "readOnly": true,
+          "type": "string"
+        }
+      }
+    },
+    "GraphScopeCreationContext": {
+      "description": "This type is the subset of fields that can be provided by the user to create a Vsts scope. Scope creation is currently limited to internal back-compat scenarios. End users that attempt to create a scope with this API will fail.",
+      "type": "object",
+      "properties": {
+        "adminGroupDescription": {
+          "description": "Set this field to override the default description of this scope's admin group.",
+          "type": "string"
+        },
+        "adminGroupName": {
+          "description": "All scopes have an Administrator Group that controls access to the contents of the scope. Set this field to use a non-default group name for that administrators group.",
+          "type": "string"
+        },
+        "creatorId": {
+          "description": "Set this optional field if this scope is created on behalf of a user other than the user making the request. This should be the Id of the user that is not the requester.",
+          "type": "string",
+          "format": "uuid"
+        },
+        "name": {
+          "description": "The scope must be provided with a unique name within the parent scope. This means the created scope can have a parent or child with the same name, but no siblings with the same name.",
+          "type": "string"
+        },
+        "scopeType": {
+          "description": "The type of scope being created.",
+          "enum": [
+            "generic",
+            "serviceHost",
+            "teamProject"
+          ],
+          "x-ms-enum": {
+            "name": "Microsoft.VisualStudio.Services.Identity.GroupScopeType"
+          }
+        },
+        "storageKey": {
+          "description": "An optional ID that uniquely represents the scope within it's parent scope. If this parameter is not provided, Vsts will generate on automatically.",
+          "type": "string",
+          "format": "uuid"
+        }
+      }
+    },
+    "GraphStorageKeyResult": {
+      "description": "",
+      "type": "object",
+      "properties": {
+        "_links": {
+          "description": "This field contains zero or more interesting links about the graph storage key. These links may be invoked to obtain additional relationships or more detailed information about this graph storage key.",
+          "$ref": "#/definitions/ReferenceLinks"
+        },
+        "value": {
+          "readOnly": true,
+          "type": "string",
+          "format": "uuid"
+        }
+      }
+    },
+    "GraphSubject": {
+      "description": "",
+      "type": "object",
+      "properties": {
+        "_links": {
+          "description": "This field contains zero or more interesting links about the graph subject. These links may be invoked to obtain additional relationships or more detailed information about this graph subject.",
+          "$ref": "#/definitions/ReferenceLinks"
+        },
+        "descriptor": {
+          "description": "The descriptor is the primary way to reference the graph subject while the system is running. This field will uniquely identify the same graph subject across both Accounts and Organizations.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "This is the non-unique display name of the graph subject. To change this field, you must alter its value in the source provider.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "legacyDescriptor": {
+          "description": "[Internal Use Only] The legacy descriptor is here in case you need to access old version IMS using identity descriptor.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "origin": {
+          "description": "The type of source provider for the origin identifier (ex:AD, AAD, MSA)",
+          "readOnly": true,
+          "type": "string"
+        },
+        "originId": {
+          "description": "The unique identifier from the system of origin. Typically a sid, object id or Guid. Linking and unlinking operations can cause this value to change for a user because the user is not backed by a different provider and has a different unique id in the new provider.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "subjectKind": {
+          "description": "This field identifies the type of the graph subject (ex: Group, Scope, User).",
+          "readOnly": true,
+          "type": "string"
+        },
+        "url": {
+          "description": "This url is the full route to the source resource of this graph subject.",
+          "readOnly": true,
+          "type": "string"
+        }
+      }
+    },
+    "GraphSubjectLookup": {
+      "description": "",
+      "type": "object",
+      "properties": {
+        "lookupKeys": {
+          "readOnly": true,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GraphSubjectLookupKey"
+          }
+        }
+      }
+    },
+    "GraphSubjectLookupKey": {
+      "description": "",
+      "type": "object",
+      "properties": {
+        "descriptor": {
+          "readOnly": true,
+          "type": "string"
+        }
+      }
+    },
+    "GraphSystemSubject": {
+      "description": "",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/GraphSubject"
+        }
+      ],
+      "properties": {}
+    },
+    "GraphUser": {
+      "description": "",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/GraphMember"
+        }
+      ],
+      "properties": {
+        "basicAuthAlias": {
+          "description": "The alias that is used for Basic Authentication flows (alternative authentication credentials)",
+          "readOnly": true,
+          "type": "string"
+        },
+        "metaType": {
+          "description": "The meta type of the user in the origin, such as \"member\", \"guest\", etc. See UserMetaType for the set of possible values.",
+          "readOnly": true,
+          "type": "string"
+        }
+      }
+    },
+    "GraphUserCreationContext": {
+      "description": "Do not attempt to use this type to create a new user. Use one of the subclasses instead. This type does not contain sufficient fields to create a new user.",
+      "type": "object",
+      "properties": {
+        "storageKey": {
+          "description": "Optional: If provided, we will use this identifier for the storage key of the created user",
+          "type": "string",
+          "format": "uuid"
+        }
+      }
+    },
+    "GraphUserMailAddressCreationContext": {
+      "description": "Use this type to create a new user using the mail address as a reference to an existing user from an external AD or AAD backed provider. This is the subset of GraphUser fields required for creation of a GraphUser for the AD and AAD use case when looking up the user by its mail address in the backing provider.",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/GraphUserCreationContext"
+        }
+      ],
+      "properties": {
+        "mailAddress": {
+          "type": "string"
+        }
+      }
+    },
+    "GraphUserOriginIdCreationContext": {
+      "description": "Use this type to create a new user using the OriginID as a reference to an existing user from an external AD or AAD backed provider. This is the subset of GraphUser fields required for creation of a GraphUser for the AD and AAD use case when looking up the user by its unique ID in the backing provider.",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/GraphUserCreationContext"
+        }
+      ],
+      "properties": {
+        "originId": {
+          "description": "This should be the object id or sid of the user from the source AD or AAD provider. Example: d47d025a-ce2f-4a79-8618-e8862ade30dd Team Services will communicate with the source provider to fill all other fields on creation.",
+          "type": "string"
+        }
+      }
+    },
+    "GraphUserPrincipalNameCreationContext": {
+      "description": "Use this type to create a new user using the principal name as a reference to an existing user from an external AD or AAD backed provider. This is the subset of GraphUser fields required for creation of a GraphUser for the AD and AAD use case when looking up the user by its principal name in the backing provider.",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/GraphUserCreationContext"
+        }
+      ],
+      "properties": {
+        "principalName": {
+          "description": "This should be the principal name or upn of the user in the source AD or AAD provider. Example: jamal@contoso.com Team Services will communicate with the source provider to fill all other fields on creation.",
+          "type": "string"
+        }
+      }
+    },
+    "IdentityDescriptor": {
+      "description": "An Identity descriptor is a wrapper for the identity type (Windows SID, Passport) along with a unique identifier such as the SID or PUID.",
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "description": "The unique identifier for this identity, not exceeding 256 chars, which will be persisted.",
+          "type": "string"
+        },
+        "identityType": {
+          "description": "Type of descriptor (for example, Windows, Passport, etc.).",
+          "type": "string"
+        }
+      }
+    },
+    "IdentityKeyMap": {
+      "description": "",
+      "type": "object",
+      "properties": {
+        "cuid": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "storageKey": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "subjectType": {
+          "type": "string"
+        }
+      }
+    },
+    "JsonPatchDocument": {
+      "description": "The JSON model for JSON Patch Operations",
+      "type": "object",
+      "allOf": [
+        {
+          "type": "array",
+          "items": {}
+        }
+      ],
+      "properties": {}
+    },
+    "JsonPatchOperation": {
+      "description": "The JSON model for a JSON Patch operation",
+      "type": "object",
+      "properties": {
+        "from": {
+          "description": "The path to copy from for the Move/Copy operation.",
+          "type": "string"
+        },
+        "op": {
+          "description": "The patch operation",
+          "enum": [
+            "add",
+            "remove",
+            "replace",
+            "move",
+            "copy",
+            "test"
+          ],
+          "x-ms-enum": {
+            "name": "Microsoft.VisualStudio.Services.WebApi.Patch.Operation"
+          }
+        },
+        "path": {
+          "description": "The path for the operation",
+          "type": "string"
+        },
+        "value": {
+          "description": "The value for the operation. This is either a primitive or a JToken.",
+          "type": "object"
+        }
+      }
+    },
+    "PagedGraphGroups": {
+      "description": "",
+      "type": "object",
+      "properties": {
+        "continuationToken": {
+          "description": "This will be non-null if there is another page of data. There will never be more than one continuation token returned by a request.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "graphGroups": {
+          "description": "The enumerable list of groups found within a page.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GraphGroup"
+          }
+        }
+      }
+    },
+    "PagedGraphUsers": {
+      "description": "",
+      "type": "object",
+      "properties": {
+        "continuationToken": {
+          "description": "This will be non-null if there is another page of data. There will never be more than one continuation token returned by a request.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "graphUsers": {
+          "description": "The enumerable set of users found within a page.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GraphUser"
+          }
+        }
+      }
+    },
+    "PropertiesCollection": {
+      "description": "",
+      "type": "object",
+      "properties": {
+        "count": {
+          "description": "The count of properties in the collection.",
+          "readOnly": true,
+          "type": "integer",
+          "format": "int32"
+        },
+        "item": {
+          "type": "object"
+        },
+        "keys": {
+          "description": "The set of keys in the collection.",
+          "readOnly": true,
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "values": {
+          "description": "The set of values in the collection.",
+          "readOnly": true,
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "ReferenceLinks": {
+      "description": "The class to represent a collection of REST reference links.  Example: `{ self: { href: \"http://localhost:8080/tfs/DefaultCollection/_apis/wit/workItems/1\" } }`",
+      "type": "object",
+      "properties": {
+        "links": {
+          "description": "The readonly view of the links.  Because Reference links are readonly, we only want to expose them as read only.",
+          "readOnly": true,
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "VssJsonCollectionWrapper": {
+      "description": "This class is used to serialized collections as a single JSON object on the wire, to avoid serializing JSON arrays directly to the client, which can be a security hole",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/VssJsonCollectionWrapperBase"
+        }
+      ],
+      "properties": {
+        "value": {
+          "readOnly": true,
+          "type": "string",
+          "format": "T"
+        }
+      }
+    },
+    "VssJsonCollectionWrapperBase": {
+      "description": "",
+      "type": "object",
+      "properties": {
+        "count": {
+          "readOnly": true,
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "GetDescriptorById": {
+      "parameters": {},
+      "responses": {
+        "400": {
+          "body": {
+            "$id": "1",
+            "innerException": null,
+            "message": "Input parameter '9b71f216-4c4f-6b74-a911-efb0fa9c777f' is not a valid local id.",
+            "typeName": "Microsoft.VisualStudio.Services.Graph.InvalidGetDescriptorRequestException, Microsoft.VisualStudio.Services.WebApi",
+            "typeKey": "InvalidGetDescriptorRequestException",
+            "errorCode": 0,
+            "eventId": 3000
+          }
+        }
+      },
+      "x-ms-vss-migrated": true,
+      "x-ms-vss-example-request": {
+        "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/descriptors/9b71f216-4c4f-6b74-a911-efb0fa9c777f"
+      }
+    },
+    "CreateGroup": {
+      "parameters": {
+        "body": {
+          "displayName": "Developers-4f05433f-2916-4385-8cda-927c065d660a",
+          "description": "Group created via client library"
+        }
+      },
+      "responses": {
+        "201": {
+          "body": {
+            "subjectKind": "group",
+            "description": "Group created via client library",
+            "specialType": "Generic",
+            "scopeId": "51ac8d19-6694-459f-a65e-bec30e9e2e33",
+            "scopeType": "ServiceHost",
+            "scopeName": "Ftottentest2",
+            "localScopeId": "51ac8d19-6694-459f-a65e-bec30e9e2e33",
+            "securingHostId": "f35b9015-cde8-4834-a1d5-09e8f359cb85",
+            "isGlobalScope": true,
+            "cuid": "6fcc899a-f059-403c-a993-9c4ca47bd6f0",
+            "domain": "vstfs:///Framework/IdentityDomain/51ac8d19-6694-459f-a65e-bec30e9e2e33",
+            "principalName": "Developers-4f05433f-2916-4385-8cda-927c065d660a",
+            "mailAddress": null,
+            "origin": "vsts",
+            "originId": "6fcc899a-f059-403c-a993-9c4ca47bd6f0",
+            "displayName": "[Ftottentest2]\\Developers-4f05433f-2916-4385-8cda-927c065d660a",
+            "_links": {
+              "self": {
+                "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMS0xMDU5NTc0MzA1LTIxMDA1NTIwMDctMjY3OTY1MTI2MS04NzAxMTI3NDY"
+              },
+              "memberships": {
+                "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/memberships/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMS0xMDU5NTc0MzA1LTIxMDA1NTIwMDctMjY3OTY1MTI2MS04NzAxMTI3NDY"
+              }
+            },
+            "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMS0xMDU5NTc0MzA1LTIxMDA1NTIwMDctMjY3OTY1MTI2MS04NzAxMTI3NDY",
+            "descriptor": "TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMS0xMDU5NTc0MzA1LTIxMDA1NTIwMDctMjY3OTY1MTI2MS04NzAxMTI3NDY"
+          }
+        }
+      },
+      "x-ms-vss-migrated": true,
+      "x-ms-vss-example-request": {
+        "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups"
+      }
+    },
+    "MaterializeAADGroupByOID": {
+      "parameters": {
+        "body": {
+          "originId": "77ed2186-aaf6-4299-ac9e-37ba282c2b95"
+        }
+      },
+      "responses": {
+        "201": {
+          "body": {
+            "subjectKind": "group",
+            "description": "Full time employees working on Fabrikam",
+            "specialType": "AzureActiveDirectoryApplicationGroup",
+            "scopeId": "f35b9015-cde8-4834-a1d5-09e8f359cb85",
+            "scopeType": "ServiceHost",
+            "scopeName": "TEAM FOUNDATION",
+            "localScopeId": "f35b9015-cde8-4834-a1d5-09e8f359cb85",
+            "securingHostId": "f35b9015-cde8-4834-a1d5-09e8f359cb85",
+            "isCrossProject": true,
+            "isGlobalScope": true,
+            "cuid": "5f2fed65-0b55-410c-b821-e9bff685f514",
+            "domain": "vstfs:///Framework/IdentityDomain/f35b9015-cde8-4834-a1d5-09e8f359cb85",
+            "principalName": "Full Time Engineers",
+            "mailAddress": null,
+            "origin": "aad",
+            "originId": "77ed2186-aaf6-4299-ac9e-37ba282c2b95",
+            "displayName": "[TEAM FOUNDATION]\\Full Time Engineers",
+            "_links": {
+              "self": {
+                "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMTIwNDQwMDk2OS0yNDAyOTg2NDEzLTIxNzk0MDg2MTYtMy0yMjUwMzcwNDIzLTQxMzgzNzU0OTAtMjg5NjA1MDEwNi02NzM5ODMzODE"
+              },
+              "memberships": {
+                "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/memberships/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMTIwNDQwMDk2OS0yNDAyOTg2NDEzLTIxNzk0MDg2MTYtMy0yMjUwMzcwNDIzLTQxMzgzNzU0OTAtMjg5NjA1MDEwNi02NzM5ODMzODE"
+              }
+            },
+            "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMTIwNDQwMDk2OS0yNDAyOTg2NDEzLTIxNzk0MDg2MTYtMy0yMjUwMzcwNDIzLTQxMzgzNzU0OTAtMjg5NjA1MDEwNi02NzM5ODMzODE",
+            "descriptor": "TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMTIwNDQwMDk2OS0yNDAyOTg2NDEzLTIxNzk0MDg2MTYtMy0yMjUwMzcwNDIzLTQxMzgzNzU0OTAtMjg5NjA1MDEwNi02NzM5ODMzODE"
+          }
+        }
+      },
+      "x-ms-vss-migrated": true,
+      "x-ms-vss-example-request": {
+        "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups"
+      }
+    },
+    "MaterializeAADGroupByOIDAsMember": {
+      "parameters": {
+        "groupDescriptors": "TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMS0xMTU0Nzg2MjAyLTE2Mjc1MDU3MzEtMjE3MzU4NTE3My0yMjY2NjA3MzIz",
+        "body": {
+          "originId": "7dee3381-2ec2-41c2-869a-7afe9b574095"
+        }
+      },
+      "responses": {
+        "201": {
+          "body": {
+            "subjectKind": "group",
+            "description": "Test engineers",
+            "specialType": "AzureActiveDirectoryApplicationGroup",
+            "scopeId": "f35b9015-cde8-4834-a1d5-09e8f359cb85",
+            "scopeType": "ServiceHost",
+            "scopeName": "TEAM FOUNDATION",
+            "localScopeId": "f35b9015-cde8-4834-a1d5-09e8f359cb85",
+            "securingHostId": "f35b9015-cde8-4834-a1d5-09e8f359cb85",
+            "isCrossProject": true,
+            "isGlobalScope": true,
+            "cuid": "f2a65f03-1688-4399-9bc0-5c041737a43c",
+            "domain": "vstfs:///Framework/IdentityDomain/f35b9015-cde8-4834-a1d5-09e8f359cb85",
+            "principalName": "Testers",
+            "mailAddress": null,
+            "origin": "aad",
+            "originId": "7dee3381-2ec2-41c2-869a-7afe9b574095",
+            "displayName": "[TEAM FOUNDATION]\\Testers",
+            "_links": {
+              "self": {
+                "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMTIwNDQwMDk2OS0yNDAyOTg2NDEzLTIxNzk0MDg2MTYtMy0yMTY3NjY0MjUzLTMyNTc4NDQyODktMjI1ODI3MDk3NC0yNjA2MTg2NjQ1"
+              },
+              "memberships": {
+                "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/memberships/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMTIwNDQwMDk2OS0yNDAyOTg2NDEzLTIxNzk0MDg2MTYtMy0yMTY3NjY0MjUzLTMyNTc4NDQyODktMjI1ODI3MDk3NC0yNjA2MTg2NjQ1"
+              }
+            },
+            "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMTIwNDQwMDk2OS0yNDAyOTg2NDEzLTIxNzk0MDg2MTYtMy0yMTY3NjY0MjUzLTMyNTc4NDQyODktMjI1ODI3MDk3NC0yNjA2MTg2NjQ1",
+            "descriptor": "TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMTIwNDQwMDk2OS0yNDAyOTg2NDEzLTIxNzk0MDg2MTYtMy0yMTY3NjY0MjUzLTMyNTc4NDQyODktMjI1ODI3MDk3NC0yNjA2MTg2NjQ1"
+          }
+        }
+      },
+      "x-ms-vss-migrated": true,
+      "x-ms-vss-example-request": {
+        "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups?groupDescriptors=TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMS0xMTU0Nzg2MjAyLTE2Mjc1MDU3MzEtMjE3MzU4NTE3My0yMjY2NjA3MzIz"
+      }
+    },
+    "MaterializeAADGroupByOIDWithStorageKey": {
+      "parameters": {
+        "body": {
+          "originId": "f0d20172-7b96-42f6-9436-941433654b48",
+          "storageKey": "07890a9a-24aa-44a1-8ca7-e8410da75c2c"
+        }
+      },
+      "responses": {
+        "201": {
+          "body": {
+            "subjectKind": "group",
+            "description": "Part time engineers",
+            "specialType": "AzureActiveDirectoryApplicationGroup",
+            "scopeId": "f35b9015-cde8-4834-a1d5-09e8f359cb85",
+            "scopeType": "ServiceHost",
+            "scopeName": "TEAM FOUNDATION",
+            "localScopeId": "f35b9015-cde8-4834-a1d5-09e8f359cb85",
+            "securingHostId": "f35b9015-cde8-4834-a1d5-09e8f359cb85",
+            "isCrossProject": true,
+            "isGlobalScope": true,
+            "cuid": "07890a9a-24aa-44a1-8ca7-e8410da75c2c",
+            "domain": "vstfs:///Framework/IdentityDomain/f35b9015-cde8-4834-a1d5-09e8f359cb85",
+            "principalName": "Part Time Engineers",
+            "mailAddress": null,
+            "origin": "aad",
+            "originId": "f0d20172-7b96-42f6-9436-941433654b48",
+            "displayName": "[TEAM FOUNDATION]\\Part Time Engineers",
+            "_links": {
+              "self": {
+                "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMTIwNDQwMDk2OS0yNDAyOTg2NDEzLTIxNzk0MDg2MTYtMy0xOTEyNzIyMTYwLTI1MjQ3MDYzNzAtMjQ4NjYwNDgyMC04NjIyNzY0MjQ"
+              },
+              "memberships": {
+                "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/memberships/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMTIwNDQwMDk2OS0yNDAyOTg2NDEzLTIxNzk0MDg2MTYtMy0xOTEyNzIyMTYwLTI1MjQ3MDYzNzAtMjQ4NjYwNDgyMC04NjIyNzY0MjQ"
+              }
+            },
+            "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMTIwNDQwMDk2OS0yNDAyOTg2NDEzLTIxNzk0MDg2MTYtMy0xOTEyNzIyMTYwLTI1MjQ3MDYzNzAtMjQ4NjYwNDgyMC04NjIyNzY0MjQ",
+            "descriptor": "TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMTIwNDQwMDk2OS0yNDAyOTg2NDEzLTIxNzk0MDg2MTYtMy0xOTEyNzIyMTYwLTI1MjQ3MDYzNzAtMjQ4NjYwNDgyMC04NjIyNzY0MjQ"
+          }
+        }
+      },
+      "x-ms-vss-migrated": true,
+      "x-ms-vss-example-request": {
+        "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups"
+      }
+    },
+    "GetAllGroups": {
+      "parameters": {},
+      "responses": {
+        "200": {
+          "body": {
+            "count": 20,
+            "value": [
+              {
+                "subjectKind": "group",
+                "description": "Members of this group have service-level permissions in this organization. For service accounts only.",
+                "specialType": "ServiceApplicationGroup",
+                "scopeId": "f35b9015-cde8-4834-a1d5-09e8f359cb85",
+                "scopeType": "ServiceHost",
+                "scopeName": "TEAM FOUNDATION",
+                "localScopeId": "f35b9015-cde8-4834-a1d5-09e8f359cb85",
+                "securingHostId": "f35b9015-cde8-4834-a1d5-09e8f359cb85",
+                "isGlobalScope": true,
+                "cuid": "dc6f785f-8d4f-4ab1-83c1-06a61c488fff",
+                "domain": "vstfs:///Framework/IdentityDomain/f35b9015-cde8-4834-a1d5-09e8f359cb85",
+                "principalName": "Organization Service Accounts",
+                "mailAddress": null,
+                "origin": "vsts",
+                "originId": "dc6f785f-8d4f-4ab1-83c1-06a61c488fff",
+                "displayName": "[TEAM FOUNDATION]\\Organization Service Accounts",
+                "_links": {
+                  "self": {
+                    "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMzYxNzgyMjU5LTM5MDU3NjIzNzYtMjcxNTA5MzQ4MC00MDgyNzQ4MjkzLTAtMC0wLTAtMg"
+                  },
+                  "memberships": {
+                    "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/memberships/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMzYxNzgyMjU5LTM5MDU3NjIzNzYtMjcxNTA5MzQ4MC00MDgyNzQ4MjkzLTAtMC0wLTAtMg"
+                  }
+                },
+                "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMzYxNzgyMjU5LTM5MDU3NjIzNzYtMjcxNTA5MzQ4MC00MDgyNzQ4MjkzLTAtMC0wLTAtMg",
+                "descriptor": "TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMzYxNzgyMjU5LTM5MDU3NjIzNzYtMjcxNTA5MzQ4MC00MDgyNzQ4MjkzLTAtMC0wLTAtMg"
+              },
+              {
+                "subjectKind": "group",
+                "description": "Members of this group can perform all operations in the team project.",
+                "specialType": "AdministrativeApplicationGroup",
+                "scopeId": "74b198d6-da27-4d7e-8a39-701848fa25a7",
+                "scopeType": "TeamProject",
+                "scopeName": "MyFirstProject",
+                "localScopeId": "9befaaba-2aed-42f1-bbd3-5447a49a467a",
+                "securingHostId": "f35b9015-cde8-4834-a1d5-09e8f359cb85",
+                "cuid": "328b13b9-8d49-420d-87ae-0fed25f38fc0",
+                "domain": "vstfs:///Classification/TeamProject/9befaaba-2aed-42f1-bbd3-5447a49a467a",
+                "principalName": "Project Administrators",
+                "mailAddress": null,
+                "origin": "vsts",
+                "originId": "328b13b9-8d49-420d-87ae-0fed25f38fc0",
+                "displayName": "[MyFirstProject]\\Project Administrators",
+                "_links": {
+                  "self": {
+                    "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMzYwMDMzMTEyNC02Njg2MzA2MDUtMjMxOTAyMDA1Ni0xMjI0MzUzMTkxLTAtMC0wLTAtMQ"
+                  },
+                  "memberships": {
+                    "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/memberships/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMzYwMDMzMTEyNC02Njg2MzA2MDUtMjMxOTAyMDA1Ni0xMjI0MzUzMTkxLTAtMC0wLTAtMQ"
+                  }
+                },
+                "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMzYwMDMzMTEyNC02Njg2MzA2MDUtMjMxOTAyMDA1Ni0xMjI0MzUzMTkxLTAtMC0wLTAtMQ",
+                "descriptor": "TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMzYwMDMzMTEyNC02Njg2MzA2MDUtMjMxOTAyMDA1Ni0xMjI0MzUzMTkxLTAtMC0wLTAtMQ"
+              },
+              {
+                "subjectKind": "group",
+                "description": "Members of this group can add, modify, and delete items within the team project.",
+                "specialType": "Generic",
+                "scopeId": "74b198d6-da27-4d7e-8a39-701848fa25a7",
+                "scopeType": "TeamProject",
+                "scopeName": "MyFirstProject",
+                "localScopeId": "9befaaba-2aed-42f1-bbd3-5447a49a467a",
+                "securingHostId": "f35b9015-cde8-4834-a1d5-09e8f359cb85",
+                "cuid": "b86a3329-07c4-44c2-b622-289631ba333c",
+                "domain": "vstfs:///Classification/TeamProject/9befaaba-2aed-42f1-bbd3-5447a49a467a",
+                "principalName": "Contributors",
+                "mailAddress": null,
+                "origin": "vsts",
+                "originId": "b86a3329-07c4-44c2-b622-289631ba333c",
+                "displayName": "[MyFirstProject]\\Contributors",
+                "_links": {
+                  "self": {
+                    "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMzEzMTc2NDYzNS0zOTc5MDE0NDY2LTMxNTExODkwNjMtMjc2MTU3NDAxMC0xLTI1MTkzMzE0NTctMjY4OTUxNDU3Mi0yNzQ5MDA4OTMwLTIwNDk1MTIzOA"
+                  },
+                  "memberships": {
+                    "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/memberships/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMzEzMTc2NDYzNS0zOTc5MDE0NDY2LTMxNTExODkwNjMtMjc2MTU3NDAxMC0xLTI1MTkzMzE0NTctMjY4OTUxNDU3Mi0yNzQ5MDA4OTMwLTIwNDk1MTIzOA"
+                  }
+                },
+                "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMzEzMTc2NDYzNS0zOTc5MDE0NDY2LTMxNTExODkwNjMtMjc2MTU3NDAxMC0xLTI1MTkzMzE0NTctMjY4OTUxNDU3Mi0yNzQ5MDA4OTMwLTIwNDk1MTIzOA",
+                "descriptor": "TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMzEzMTc2NDYzNS0zOTc5MDE0NDY2LTMxNTExODkwNjMtMjc2MTU3NDAxMC0xLTI1MTkzMzE0NTctMjY4OTUxNDU3Mi0yNzQ5MDA4OTMwLTIwNDk1MTIzOA"
+              },
+              {
+                "subjectKind": "group",
+                "description": "Members of this group should include the service accounts used by the test controllers set up for this project collection.",
+                "specialType": "Generic",
+                "scopeId": "51ac8d19-6694-459f-a65e-bec30e9e2e33",
+                "scopeType": "ServiceHost",
+                "scopeName": "Ftottentest2",
+                "localScopeId": "51ac8d19-6694-459f-a65e-bec30e9e2e33",
+                "securingHostId": "f35b9015-cde8-4834-a1d5-09e8f359cb85",
+                "isGlobalScope": true,
+                "cuid": "ab1dca1f-af76-45cb-b2b2-50d9872be189",
+                "domain": "vstfs:///Framework/IdentityDomain/51ac8d19-6694-459f-a65e-bec30e9e2e33",
+                "principalName": "Project Collection Test Service Accounts",
+                "mailAddress": null,
+                "origin": "vsts",
+                "originId": "ab1dca1f-af76-45cb-b2b2-50d9872be189",
+                "displayName": "[Ftottentest2]\\Project Collection Test Service Accounts",
+                "_links": {
+                  "self": {
+                    "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMC0wLTAtNC0x"
+                  },
+                  "memberships": {
+                    "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/memberships/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMC0wLTAtNC0x"
+                  }
+                },
+                "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMC0wLTAtNC0x",
+                "descriptor": "TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMC0wLTAtNC0x"
+              },
+              {
+                "subjectKind": "group",
+                "description": "This group should only include service accounts used by proxies set up for this team project collection.",
+                "specialType": "Generic",
+                "scopeId": "51ac8d19-6694-459f-a65e-bec30e9e2e33",
+                "scopeType": "ServiceHost",
+                "scopeName": "Ftottentest2",
+                "localScopeId": "51ac8d19-6694-459f-a65e-bec30e9e2e33",
+                "securingHostId": "f35b9015-cde8-4834-a1d5-09e8f359cb85",
+                "isGlobalScope": true,
+                "cuid": "5567713a-c746-439c-86a7-518cee7490c7",
+                "domain": "vstfs:///Framework/IdentityDomain/51ac8d19-6694-459f-a65e-bec30e9e2e33",
+                "principalName": "Project Collection Proxy Service Accounts",
+                "mailAddress": null,
+                "origin": "vsts",
+                "originId": "5567713a-c746-439c-86a7-518cee7490c7",
+                "displayName": "[Ftottentest2]\\Project Collection Proxy Service Accounts",
+                "_links": {
+                  "self": {
+                    "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMC0wLTAtNS0x"
+                  },
+                  "memberships": {
+                    "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/memberships/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMC0wLTAtNS0x"
+                  }
+                },
+                "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMC0wLTAtNS0x",
+                "descriptor": "TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMC0wLTAtNS0x"
+              },
+              {
+                "subjectKind": "group",
+                "description": "Members of this group have been invited to this organization.",
+                "specialType": "Generic",
+                "scopeId": "f35b9015-cde8-4834-a1d5-09e8f359cb85",
+                "scopeType": "ServiceHost",
+                "scopeName": "TEAM FOUNDATION",
+                "localScopeId": "f35b9015-cde8-4834-a1d5-09e8f359cb85",
+                "securingHostId": "f35b9015-cde8-4834-a1d5-09e8f359cb85",
+                "isGlobalScope": true,
+                "cuid": "1f08c2c8-77f2-4b46-845a-5a1304418b72",
+                "domain": "vstfs:///Framework/IdentityDomain/f35b9015-cde8-4834-a1d5-09e8f359cb85",
+                "principalName": "Organization Invited Users",
+                "mailAddress": null,
+                "origin": "vsts",
+                "originId": "1f08c2c8-77f2-4b46-845a-5a1304418b72",
+                "displayName": "[TEAM FOUNDATION]\\Organization Invited Users",
+                "_links": {
+                  "self": {
+                    "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMzYxNzgyMjU5LTM5MDU3NjIzNzYtMjcxNTA5MzQ4MC00MDgyNzQ4MjkzLTAtMC0wLTAtNDA5Ng"
+                  },
+                  "memberships": {
+                    "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/memberships/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMzYxNzgyMjU5LTM5MDU3NjIzNzYtMjcxNTA5MzQ4MC00MDgyNzQ4MjkzLTAtMC0wLTAtNDA5Ng"
+                  }
+                },
+                "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMzYxNzgyMjU5LTM5MDU3NjIzNzYtMjcxNTA5MzQ4MC00MDgyNzQ4MjkzLTAtMC0wLTAtNDA5Ng",
+                "descriptor": "TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMzYxNzgyMjU5LTM5MDU3NjIzNzYtMjcxNTA5MzQ4MC00MDgyNzQ4MjkzLTAtMC0wLTAtNDA5Ng"
+              },
+              {
+                "subjectKind": "group",
+                "description": "Identities which are granted explicit permission to a resource will be automatically added to this group if they were not previously a member of any other group.",
+                "specialType": "Generic",
+                "scopeId": "51ac8d19-6694-459f-a65e-bec30e9e2e33",
+                "scopeType": "ServiceHost",
+                "scopeName": "Ftottentest2",
+                "localScopeId": "51ac8d19-6694-459f-a65e-bec30e9e2e33",
+                "securingHostId": "f35b9015-cde8-4834-a1d5-09e8f359cb85",
+                "isCrossProject": true,
+                "isGlobalScope": true,
+                "cuid": "ff70a1cb-c0cb-4c8b-bde7-61b9216d1b99",
+                "domain": "vstfs:///Framework/IdentityDomain/51ac8d19-6694-459f-a65e-bec30e9e2e33",
+                "principalName": "Security Service Group",
+                "mailAddress": null,
+                "origin": "vsts",
+                "originId": "ff70a1cb-c0cb-4c8b-bde7-61b9216d1b99",
+                "displayName": "[Ftottentest2]\\Security Service Group",
+                "_links": {
+                  "self": {
+                    "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMC0wLTAtMC01"
+                  },
+                  "memberships": {
+                    "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/memberships/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMC0wLTAtMC01"
+                  }
+                },
+                "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMC0wLTAtMC01",
+                "descriptor": "TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMC0wLTAtMC01"
+              },
+              {
+                "subjectKind": "group",
+                "description": "This application group contains Team Project Collection service accounts.",
+                "specialType": "ServiceApplicationGroup",
+                "scopeId": "51ac8d19-6694-459f-a65e-bec30e9e2e33",
+                "scopeType": "ServiceHost",
+                "scopeName": "Ftottentest2",
+                "localScopeId": "51ac8d19-6694-459f-a65e-bec30e9e2e33",
+                "securingHostId": "f35b9015-cde8-4834-a1d5-09e8f359cb85",
+                "isGlobalScope": true,
+                "cuid": "84a0e509-4a81-40fd-9f88-6d7cc1747f2f",
+                "domain": "vstfs:///Framework/IdentityDomain/51ac8d19-6694-459f-a65e-bec30e9e2e33",
+                "principalName": "Project Collection Service Accounts",
+                "mailAddress": null,
+                "origin": "vsts",
+                "originId": "84a0e509-4a81-40fd-9f88-6d7cc1747f2f",
+                "displayName": "[Ftottentest2]\\Project Collection Service Accounts",
+                "_links": {
+                  "self": {
+                    "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMC0wLTAtMC0y"
+                  },
+                  "memberships": {
+                    "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/memberships/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMC0wLTAtMC0y"
+                  }
+                },
+                "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMC0wLTAtMC0y",
+                "descriptor": "TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMC0wLTAtMC0y"
+              },
+              {
+                "subjectKind": "group",
+                "description": "Members of this group can perform all operations in this organization.",
+                "specialType": "AdministrativeApplicationGroup",
+                "scopeId": "f35b9015-cde8-4834-a1d5-09e8f359cb85",
+                "scopeType": "ServiceHost",
+                "scopeName": "TEAM FOUNDATION",
+                "localScopeId": "f35b9015-cde8-4834-a1d5-09e8f359cb85",
+                "securingHostId": "f35b9015-cde8-4834-a1d5-09e8f359cb85",
+                "isGlobalScope": true,
+                "cuid": "57738193-9ee2-4e79-838f-9a3560490b13",
+                "domain": "vstfs:///Framework/IdentityDomain/f35b9015-cde8-4834-a1d5-09e8f359cb85",
+                "principalName": "Organization Administrators",
+                "mailAddress": null,
+                "origin": "vsts",
+                "originId": "57738193-9ee2-4e79-838f-9a3560490b13",
+                "displayName": "[TEAM FOUNDATION]\\Organization Administrators",
+                "_links": {
+                  "self": {
+                    "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMzYxNzgyMjU5LTM5MDU3NjIzNzYtMjcxNTA5MzQ4MC00MDgyNzQ4MjkzLTAtMC0wLTAtMQ"
+                  },
+                  "memberships": {
+                    "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/memberships/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMzYxNzgyMjU5LTM5MDU3NjIzNzYtMjcxNTA5MzQ4MC00MDgyNzQ4MjkzLTAtMC0wLTAtMQ"
+                  }
+                },
+                "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMzYxNzgyMjU5LTM5MDU3NjIzNzYtMjcxNTA5MzQ4MC00MDgyNzQ4MjkzLTAtMC0wLTAtMQ",
+                "descriptor": "TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMzYxNzgyMjU5LTM5MDU3NjIzNzYtMjcxNTA5MzQ4MC00MDgyNzQ4MjkzLTAtMC0wLTAtMQ"
+              },
+              {
+                "subjectKind": "group",
+                "description": "Members of this group should include accounts for people who should be able to administer the build resources.",
+                "specialType": "Generic",
+                "scopeId": "51ac8d19-6694-459f-a65e-bec30e9e2e33",
+                "scopeType": "ServiceHost",
+                "scopeName": "Ftottentest2",
+                "localScopeId": "51ac8d19-6694-459f-a65e-bec30e9e2e33",
+                "securingHostId": "f35b9015-cde8-4834-a1d5-09e8f359cb85",
+                "isGlobalScope": true,
+                "cuid": "940725b7-bd60-4670-9445-a8b0f30b78be",
+                "domain": "vstfs:///Framework/IdentityDomain/51ac8d19-6694-459f-a65e-bec30e9e2e33",
+                "principalName": "Project Collection Build Administrators",
+                "mailAddress": null,
+                "origin": "vsts",
+                "originId": "940725b7-bd60-4670-9445-a8b0f30b78be",
+                "displayName": "[Ftottentest2]\\Project Collection Build Administrators",
+                "_links": {
+                  "self": {
+                    "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMC0wLTAtMS0y"
+                  },
+                  "memberships": {
+                    "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/memberships/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMC0wLTAtMS0y"
+                  }
+                },
+                "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMC0wLTAtMS0y",
+                "descriptor": "TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMC0wLTAtMS0y"
+              },
+              {
+                "subjectKind": "group",
+                "description": "This application group contains all users and groups that have access to the Team Project Collection.",
+                "specialType": "EveryoneApplicationGroup",
+                "scopeId": "51ac8d19-6694-459f-a65e-bec30e9e2e33",
+                "scopeType": "ServiceHost",
+                "scopeName": "Ftottentest2",
+                "localScopeId": "51ac8d19-6694-459f-a65e-bec30e9e2e33",
+                "securingHostId": "f35b9015-cde8-4834-a1d5-09e8f359cb85",
+                "isGlobalScope": true,
+                "cuid": "0d4e2b1d-9eb0-4abb-a23a-b05706e6406c",
+                "domain": "vstfs:///Framework/IdentityDomain/51ac8d19-6694-459f-a65e-bec30e9e2e33",
+                "principalName": "Project Collection Valid Users",
+                "mailAddress": null,
+                "origin": "vsts",
+                "originId": "0d4e2b1d-9eb0-4abb-a23a-b05706e6406c",
+                "displayName": "[Ftottentest2]\\Project Collection Valid Users",
+                "_links": {
+                  "self": {
+                    "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMC0wLTAtMC0z"
+                  },
+                  "memberships": {
+                    "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/memberships/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMC0wLTAtMC0z"
+                  }
+                },
+                "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMC0wLTAtMC0z",
+                "descriptor": "TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMC0wLTAtMC0z"
+              },
+              {
+                "subjectKind": "group",
+                "description": "Members of this group can create, modify and delete build definitions and manage queued and completed builds.",
+                "specialType": "Generic",
+                "scopeId": "74b198d6-da27-4d7e-8a39-701848fa25a7",
+                "scopeType": "TeamProject",
+                "scopeName": "MyFirstProject",
+                "localScopeId": "9befaaba-2aed-42f1-bbd3-5447a49a467a",
+                "securingHostId": "f35b9015-cde8-4834-a1d5-09e8f359cb85",
+                "cuid": "f410188f-4328-49bc-a575-b188ed2f8ca6",
+                "domain": "vstfs:///Classification/TeamProject/9befaaba-2aed-42f1-bbd3-5447a49a467a",
+                "principalName": "Build Administrators",
+                "mailAddress": null,
+                "origin": "vsts",
+                "originId": "f410188f-4328-49bc-a575-b188ed2f8ca6",
+                "displayName": "[MyFirstProject]\\Build Administrators",
+                "_links": {
+                  "self": {
+                    "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMzEzMTc2NDYzNS0zOTc5MDE0NDY2LTMxNTExODkwNjMtMjc2MTU3NDAxMC0xLTI3OTU4MjU2MjMtMTY4ODM2Mzg1Mi0yMjIwODYyMzc5LTE4ODM4MjE2MDM"
+                  },
+                  "memberships": {
+                    "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/memberships/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMzEzMTc2NDYzNS0zOTc5MDE0NDY2LTMxNTExODkwNjMtMjc2MTU3NDAxMC0xLTI3OTU4MjU2MjMtMTY4ODM2Mzg1Mi0yMjIwODYyMzc5LTE4ODM4MjE2MDM"
+                  }
+                },
+                "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMzEzMTc2NDYzNS0zOTc5MDE0NDY2LTMxNTExODkwNjMtMjc2MTU3NDAxMC0xLTI3OTU4MjU2MjMtMTY4ODM2Mzg1Mi0yMjIwODYyMzc5LTE4ODM4MjE2MDM",
+                "descriptor": "TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMzEzMTc2NDYzNS0zOTc5MDE0NDY2LTMxNTExODkwNjMtMjc2MTU3NDAxMC0xLTI3OTU4MjU2MjMtMTY4ODM2Mzg1Mi0yMjIwODYyMzc5LTE4ODM4MjE2MDM"
+              },
+              {
+                "subjectKind": "group",
+                "description": "This group includes service principals defined in Azure Active Directory.",
+                "specialType": "Generic",
+                "scopeId": "f35b9015-cde8-4834-a1d5-09e8f359cb85",
+                "scopeType": "ServiceHost",
+                "scopeName": "TEAM FOUNDATION",
+                "localScopeId": "f35b9015-cde8-4834-a1d5-09e8f359cb85",
+                "securingHostId": "f35b9015-cde8-4834-a1d5-09e8f359cb85",
+                "isGlobalScope": true,
+                "cuid": "78386491-051e-4d32-8136-c49c3854f931",
+                "domain": "vstfs:///Framework/IdentityDomain/f35b9015-cde8-4834-a1d5-09e8f359cb85",
+                "principalName": "Azure Active Directory Service Principals",
+                "mailAddress": null,
+                "origin": "vsts",
+                "originId": "78386491-051e-4d32-8136-c49c3854f931",
+                "displayName": "[TEAM FOUNDATION]\\Azure Active Directory Service Principals",
+                "_links": {
+                  "self": {
+                    "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMzYxNzgyMjU5LTM5MDU3NjIzNzYtMjcxNTA5MzQ4MC00MDgyNzQ4MjkzLTAtMC0wLTAtOA"
+                  },
+                  "memberships": {
+                    "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/memberships/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMzYxNzgyMjU5LTM5MDU3NjIzNzYtMjcxNTA5MzQ4MC00MDgyNzQ4MjkzLTAtMC0wLTAtOA"
+                  }
+                },
+                "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMzYxNzgyMjU5LTM5MDU3NjIzNzYtMjcxNTA5MzQ4MC00MDgyNzQ4MjkzLTAtMC0wLTAtOA",
+                "descriptor": "TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMzYxNzgyMjU5LTM5MDU3NjIzNzYtMjcxNTA5MzQ4MC00MDgyNzQ4MjkzLTAtMC0wLTAtOA"
+              },
+              {
+                "subjectKind": "group",
+                "description": "Members of this group should include the service accounts used by the build services set up for this project collection.",
+                "specialType": "Generic",
+                "scopeId": "51ac8d19-6694-459f-a65e-bec30e9e2e33",
+                "scopeType": "ServiceHost",
+                "scopeName": "Ftottentest2",
+                "localScopeId": "51ac8d19-6694-459f-a65e-bec30e9e2e33",
+                "securingHostId": "f35b9015-cde8-4834-a1d5-09e8f359cb85",
+                "isGlobalScope": true,
+                "cuid": "f1800a83-7211-4996-b8c7-c85997595e50",
+                "domain": "vstfs:///Framework/IdentityDomain/51ac8d19-6694-459f-a65e-bec30e9e2e33",
+                "principalName": "Project Collection Build Service Accounts",
+                "mailAddress": null,
+                "origin": "vsts",
+                "originId": "f1800a83-7211-4996-b8c7-c85997595e50",
+                "displayName": "[Ftottentest2]\\Project Collection Build Service Accounts",
+                "_links": {
+                  "self": {
+                    "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMC0wLTAtMS0x"
+                  },
+                  "memberships": {
+                    "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/memberships/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMC0wLTAtMS0x"
+                  }
+                },
+                "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMC0wLTAtMS0x",
+                "descriptor": "TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMC0wLTAtMS0x"
+              },
+              {
+                "subjectKind": "group",
+                "description": "Members of this group have acess to the team project.",
+                "specialType": "EveryoneApplicationGroup",
+                "scopeId": "74b198d6-da27-4d7e-8a39-701848fa25a7",
+                "scopeType": "TeamProject",
+                "scopeName": "MyFirstProject",
+                "localScopeId": "9befaaba-2aed-42f1-bbd3-5447a49a467a",
+                "securingHostId": "f35b9015-cde8-4834-a1d5-09e8f359cb85",
+                "cuid": "8d635fff-8214-40d4-94be-cb8d871609b7",
+                "domain": "vstfs:///Classification/TeamProject/9befaaba-2aed-42f1-bbd3-5447a49a467a",
+                "principalName": "Project Valid Users",
+                "mailAddress": null,
+                "origin": "vsts",
+                "originId": "8d635fff-8214-40d4-94be-cb8d871609b7",
+                "displayName": "[MyFirstProject]\\Project Valid Users",
+                "_links": {
+                  "self": {
+                    "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMzYwMDMzMTEyNC02Njg2MzA2MDUtMjMxOTAyMDA1Ni0xMjI0MzUzMTkxLTAtMC0wLTAtMw"
+                  },
+                  "memberships": {
+                    "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/memberships/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMzYwMDMzMTEyNC02Njg2MzA2MDUtMjMxOTAyMDA1Ni0xMjI0MzUzMTkxLTAtMC0wLTAtMw"
+                  }
+                },
+                "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMzYwMDMzMTEyNC02Njg2MzA2MDUtMjMxOTAyMDA1Ni0xMjI0MzUzMTkxLTAtMC0wLTAtMw",
+                "descriptor": "TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMzYwMDMzMTEyNC02Njg2MzA2MDUtMjMxOTAyMDA1Ni0xMjI0MzUzMTkxLTAtMC0wLTAtMw"
+              },
+              {
+                "subjectKind": "group",
+                "description": "Members of this application group can perform all privileged operations on the Team Project Collection.",
+                "specialType": "AdministrativeApplicationGroup",
+                "scopeId": "51ac8d19-6694-459f-a65e-bec30e9e2e33",
+                "scopeType": "ServiceHost",
+                "scopeName": "Ftottentest2",
+                "localScopeId": "51ac8d19-6694-459f-a65e-bec30e9e2e33",
+                "securingHostId": "f35b9015-cde8-4834-a1d5-09e8f359cb85",
+                "isGlobalScope": true,
+                "cuid": "60c3c5e7-f4f2-4577-8df3-d8e19da324bb",
+                "domain": "vstfs:///Framework/IdentityDomain/51ac8d19-6694-459f-a65e-bec30e9e2e33",
+                "principalName": "Project Collection Administrators",
+                "mailAddress": null,
+                "origin": "vsts",
+                "originId": "60c3c5e7-f4f2-4577-8df3-d8e19da324bb",
+                "displayName": "[Ftottentest2]\\Project Collection Administrators",
+                "_links": {
+                  "self": {
+                    "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMC0wLTAtMC0x"
+                  },
+                  "memberships": {
+                    "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/memberships/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMC0wLTAtMC0x"
+                  }
+                },
+                "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMC0wLTAtMC0x",
+                "descriptor": "TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMC0wLTAtMC0x"
+              },
+              {
+                "subjectKind": "group",
+                "description": "The default project team.",
+                "specialType": "Generic",
+                "scopeId": "74b198d6-da27-4d7e-8a39-701848fa25a7",
+                "scopeType": "TeamProject",
+                "scopeName": "MyFirstProject",
+                "localScopeId": "9befaaba-2aed-42f1-bbd3-5447a49a467a",
+                "securingHostId": "f35b9015-cde8-4834-a1d5-09e8f359cb85",
+                "cuid": "e09a1a7d-54fb-476c-9e3f-efae11ffbcb2",
+                "domain": "vstfs:///Classification/TeamProject/9befaaba-2aed-42f1-bbd3-5447a49a467a",
+                "principalName": "MyFirstProject Team",
+                "mailAddress": null,
+                "origin": "vsts",
+                "originId": "e09a1a7d-54fb-476c-9e3f-efae11ffbcb2",
+                "displayName": "[MyFirstProject]\\MyFirstProject Team",
+                "_links": {
+                  "self": {
+                    "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMzEzMTc2NDYzNS0zOTc5MDE0NDY2LTMxNTExODkwNjMtMjc2MTU3NDAxMC0xLTI2MDIxNzc5NTQtMTIyOTY3Nzg4OS0yODI5NzA2NjYxLTkzMTQzNDUxMQ"
+                  },
+                  "memberships": {
+                    "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/memberships/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMzEzMTc2NDYzNS0zOTc5MDE0NDY2LTMxNTExODkwNjMtMjc2MTU3NDAxMC0xLTI2MDIxNzc5NTQtMTIyOTY3Nzg4OS0yODI5NzA2NjYxLTkzMTQzNDUxMQ"
+                  }
+                },
+                "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMzEzMTc2NDYzNS0zOTc5MDE0NDY2LTMxNTExODkwNjMtMjc2MTU3NDAxMC0xLTI2MDIxNzc5NTQtMTIyOTY3Nzg4OS0yODI5NzA2NjYxLTkzMTQzNDUxMQ",
+                "descriptor": "TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMzEzMTc2NDYzNS0zOTc5MDE0NDY2LTMxNTExODkwNjMtMjc2MTU3NDAxMC0xLTI2MDIxNzc5NTQtMTIyOTY3Nzg4OS0yODI5NzA2NjYxLTkzMTQzNDUxMQ"
+              },
+              {
+                "subjectKind": "group",
+                "description": "Members of this group have anonymous-level permissions for the Team Project Collection.",
+                "specialType": "Generic",
+                "scopeId": "51ac8d19-6694-459f-a65e-bec30e9e2e33",
+                "scopeType": "ServiceHost",
+                "scopeName": "Ftottentest2",
+                "localScopeId": "51ac8d19-6694-459f-a65e-bec30e9e2e33",
+                "securingHostId": "f35b9015-cde8-4834-a1d5-09e8f359cb85",
+                "isGlobalScope": true,
+                "cuid": "514834a7-d31b-479b-81d0-f1b3fdd18008",
+                "domain": "vstfs:///Framework/IdentityDomain/51ac8d19-6694-459f-a65e-bec30e9e2e33",
+                "principalName": "Project Collection Anonymous Users",
+                "mailAddress": null,
+                "origin": "vsts",
+                "originId": "514834a7-d31b-479b-81d0-f1b3fdd18008",
+                "displayName": "[Ftottentest2]\\Project Collection Anonymous Users",
+                "_links": {
+                  "self": {
+                    "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMC0wLTAtMC02"
+                  },
+                  "memberships": {
+                    "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/memberships/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMC0wLTAtMC02"
+                  }
+                },
+                "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMC0wLTAtMC02",
+                "descriptor": "TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMC0wLTAtMC02"
+              },
+              {
+                "subjectKind": "group",
+                "description": "Members of this group have access to the team project.",
+                "specialType": "Generic",
+                "scopeId": "74b198d6-da27-4d7e-8a39-701848fa25a7",
+                "scopeType": "TeamProject",
+                "scopeName": "MyFirstProject",
+                "localScopeId": "9befaaba-2aed-42f1-bbd3-5447a49a467a",
+                "securingHostId": "f35b9015-cde8-4834-a1d5-09e8f359cb85",
+                "cuid": "83f1dfa1-ef08-45bf-b0f8-f53dd5c349f6",
+                "domain": "vstfs:///Classification/TeamProject/9befaaba-2aed-42f1-bbd3-5447a49a467a",
+                "principalName": "Readers",
+                "mailAddress": null,
+                "origin": "vsts",
+                "originId": "83f1dfa1-ef08-45bf-b0f8-f53dd5c349f6",
+                "displayName": "[MyFirstProject]\\Readers",
+                "_links": {
+                  "self": {
+                    "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMzEzMTc2NDYzNS0zOTc5MDE0NDY2LTMxNTExODkwNjMtMjc2MTU3NDAxMC0xLTE0MzQxNjg0MzItMjg5NTY5Nzc0Mi0yNjgzMTk2NzM2LTM4MTQ2MzU4NjE"
+                  },
+                  "memberships": {
+                    "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/memberships/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMzEzMTc2NDYzNS0zOTc5MDE0NDY2LTMxNTExODkwNjMtMjc2MTU3NDAxMC0xLTE0MzQxNjg0MzItMjg5NTY5Nzc0Mi0yNjgzMTk2NzM2LTM4MTQ2MzU4NjE"
+                  }
+                },
+                "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMzEzMTc2NDYzNS0zOTc5MDE0NDY2LTMxNTExODkwNjMtMjc2MTU3NDAxMC0xLTE0MzQxNjg0MzItMjg5NTY5Nzc0Mi0yNjgzMTk2NzM2LTM4MTQ2MzU4NjE",
+                "descriptor": "TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMzEzMTc2NDYzNS0zOTc5MDE0NDY2LTMxNTExODkwNjMtMjc2MTU3NDAxMC0xLTE0MzQxNjg0MzItMjg5NTY5Nzc0Mi0yNjgzMTk2NzM2LTM4MTQ2MzU4NjE"
+              },
+              {
+                "subjectKind": "group",
+                "description": "Members of this group have anonymous-level permissions in this organization.",
+                "specialType": "Generic",
+                "scopeId": "f35b9015-cde8-4834-a1d5-09e8f359cb85",
+                "scopeType": "ServiceHost",
+                "scopeName": "TEAM FOUNDATION",
+                "localScopeId": "f35b9015-cde8-4834-a1d5-09e8f359cb85",
+                "securingHostId": "f35b9015-cde8-4834-a1d5-09e8f359cb85",
+                "isGlobalScope": true,
+                "cuid": "1e56f3c9-e0e2-49c1-8ea4-fb25da68baf4",
+                "domain": "vstfs:///Framework/IdentityDomain/f35b9015-cde8-4834-a1d5-09e8f359cb85",
+                "principalName": "Organization Anonymous Users",
+                "mailAddress": null,
+                "origin": "vsts",
+                "originId": "1e56f3c9-e0e2-49c1-8ea4-fb25da68baf4",
+                "displayName": "[TEAM FOUNDATION]\\Organization Anonymous Users",
+                "_links": {
+                  "self": {
+                    "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMzYxNzgyMjU5LTM5MDU3NjIzNzYtMjcxNTA5MzQ4MC00MDgyNzQ4MjkzLTAtMC0wLTAtNg"
+                  },
+                  "memberships": {
+                    "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/memberships/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMzYxNzgyMjU5LTM5MDU3NjIzNzYtMjcxNTA5MzQ4MC00MDgyNzQ4MjkzLTAtMC0wLTAtNg"
+                  }
+                },
+                "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMzYxNzgyMjU5LTM5MDU3NjIzNzYtMjcxNTA5MzQ4MC00MDgyNzQ4MjkzLTAtMC0wLTAtNg",
+                "descriptor": "TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMzYxNzgyMjU5LTM5MDU3NjIzNzYtMjcxNTA5MzQ4MC00MDgyNzQ4MjkzLTAtMC0wLTAtNg"
+              }
+            ]
+          }
+        }
+      },
+      "x-ms-vss-migrated": true,
+      "x-ms-vss-example-request": {
+        "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups"
+      }
+    },
+    "DeleteGroup": {
+      "parameters": {},
+      "responses": {
+        "204": {}
+      },
+      "x-ms-vss-migrated": true,
+      "x-ms-vss-example-request": {
+        "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMS0xMDU5NTc0MzA1LTIxMDA1NTIwMDctMjY3OTY1MTI2MS04NzAxMTI3NDY"
+      }
+    },
+    "GetGroup-AddRemoveAADGroupByOID": {
+      "parameters": {},
+      "responses": {
+        "200": {
+          "body": {
+            "subjectKind": "group",
+            "description": "Full time employees working on Fabrikam",
+            "specialType": "AzureActiveDirectoryApplicationGroup",
+            "scopeId": "f35b9015-cde8-4834-a1d5-09e8f359cb85",
+            "scopeType": "ServiceHost",
+            "scopeName": "TEAM FOUNDATION",
+            "localScopeId": "f35b9015-cde8-4834-a1d5-09e8f359cb85",
+            "securingHostId": "f35b9015-cde8-4834-a1d5-09e8f359cb85",
+            "isCrossProject": true,
+            "isGlobalScope": true,
+            "cuid": "5f2fed65-0b55-410c-b821-e9bff685f514",
+            "domain": "vstfs:///Framework/IdentityDomain/f35b9015-cde8-4834-a1d5-09e8f359cb85",
+            "principalName": "Full Time Engineers",
+            "mailAddress": null,
+            "origin": "aad",
+            "originId": "77ed2186-aaf6-4299-ac9e-37ba282c2b95",
+            "displayName": "[TEAM FOUNDATION]\\Full Time Engineers",
+            "_links": {
+              "self": {
+                "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMTIwNDQwMDk2OS0yNDAyOTg2NDEzLTIxNzk0MDg2MTYtMy0yMjUwMzcwNDIzLTQxMzgzNzU0OTAtMjg5NjA1MDEwNi02NzM5ODMzODE"
+              },
+              "memberships": {
+                "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/memberships/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMTIwNDQwMDk2OS0yNDAyOTg2NDEzLTIxNzk0MDg2MTYtMy0yMjUwMzcwNDIzLTQxMzgzNzU0OTAtMjg5NjA1MDEwNi02NzM5ODMzODE"
+              }
+            },
+            "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMTIwNDQwMDk2OS0yNDAyOTg2NDEzLTIxNzk0MDg2MTYtMy0yMjUwMzcwNDIzLTQxMzgzNzU0OTAtMjg5NjA1MDEwNi02NzM5ODMzODE",
+            "descriptor": "TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMTIwNDQwMDk2OS0yNDAyOTg2NDEzLTIxNzk0MDg2MTYtMy0yMjUwMzcwNDIzLTQxMzgzNzU0OTAtMjg5NjA1MDEwNi02NzM5ODMzODE"
+          }
+        }
+      },
+      "x-ms-vss-migrated": true,
+      "x-ms-vss-example-request": {
+        "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMTIwNDQwMDk2OS0yNDAyOTg2NDEzLTIxNzk0MDg2MTYtMy0yMjUwMzcwNDIzLTQxMzgzNzU0OTAtMjg5NjA1MDEwNi02NzM5ODMzODE"
+      }
+    },
+    "UpdateGroup": {
+      "parameters": {
+        "body": [
+          {
+            "op": "replace",
+            "path": "/description",
+            "from": null,
+            "value": "Updated description"
+          }
+        ]
+      },
+      "responses": {
+        "200": {
+          "body": {
+            "subjectKind": "group",
+            "description": "Updated description",
+            "specialType": "Generic",
+            "scopeId": "51ac8d19-6694-459f-a65e-bec30e9e2e33",
+            "scopeType": "ServiceHost",
+            "scopeName": "Ftottentest2",
+            "localScopeId": "51ac8d19-6694-459f-a65e-bec30e9e2e33",
+            "securingHostId": "f35b9015-cde8-4834-a1d5-09e8f359cb85",
+            "isGlobalScope": true,
+            "cuid": "6fcc899a-f059-403c-a993-9c4ca47bd6f0",
+            "domain": "vstfs:///Framework/IdentityDomain/51ac8d19-6694-459f-a65e-bec30e9e2e33",
+            "principalName": "Developers-4f05433f-2916-4385-8cda-927c065d660a",
+            "mailAddress": null,
+            "origin": "vsts",
+            "originId": "6fcc899a-f059-403c-a993-9c4ca47bd6f0",
+            "displayName": "[Ftottentest2]\\Developers-4f05433f-2916-4385-8cda-927c065d660a",
+            "_links": {
+              "self": {
+                "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMS0xMDU5NTc0MzA1LTIxMDA1NTIwMDctMjY3OTY1MTI2MS04NzAxMTI3NDY"
+              },
+              "memberships": {
+                "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/memberships/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMS0xMDU5NTc0MzA1LTIxMDA1NTIwMDctMjY3OTY1MTI2MS04NzAxMTI3NDY"
+              }
+            },
+            "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMS0xMDU5NTc0MzA1LTIxMDA1NTIwMDctMjY3OTY1MTI2MS04NzAxMTI3NDY",
+            "descriptor": "TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMS0xMDU5NTc0MzA1LTIxMDA1NTIwMDctMjY3OTY1MTI2MS04NzAxMTI3NDY"
+          }
+        }
+      },
+      "x-ms-vss-migrated": true,
+      "x-ms-vss-example-request": {
+        "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMS0xMDU5NTc0MzA1LTIxMDA1NTIwMDctMjY3OTY1MTI2MS04NzAxMTI3NDY"
+      }
+    },
+    "BatchGetMembershipsGroupDown": {
+      "parameters": {
+        "direction": "Down"
+      },
+      "responses": {
+        "200": {
+          "body": {
+            "count": 1,
+            "value": [
+              {
+                "containerDescriptor": "TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMS00MjcxMTAxODY2LTM1OTc5OTg5MTQtMjUxNDgwMzY2Mi04Njk2MTUyNTY",
+                "memberDescriptor": "TWljcm9zb2Z0LklkZW50aXR5TW9kZWwuQ2xhaW1zLkNsYWltc0lkZW50aXR5OzQ1YWEzZDJkLTc0NDItNDczZC1iNGQzLTNjNjcwZGE5ZGQ5NlxqdHNlbmdAdnNjc2kudXM"
+              }
+            ]
+          }
+        }
+      },
+      "x-ms-vss-migrated": true,
+      "x-ms-vss-example-request": {
+        "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/memberships/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMS00MjcxMTAxODY2LTM1OTc5OTg5MTQtMjUxNDgwMzY2Mi04Njk2MTUyNTY?direction=Down"
+      }
+    },
+    "BatchGetMembershipsUserUp": {
+      "parameters": {},
+      "responses": {
+        "200": {
+          "body": {
+            "count": 1,
+            "value": [
+              {
+                "containerDescriptor": "TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMS00MjcxMTAxODY2LTM1OTc5OTg5MTQtMjUxNDgwMzY2Mi04Njk2MTUyNTY",
+                "memberDescriptor": "TWljcm9zb2Z0LklkZW50aXR5TW9kZWwuQ2xhaW1zLkNsYWltc0lkZW50aXR5OzQ1YWEzZDJkLTc0NDItNDczZC1iNGQzLTNjNjcwZGE5ZGQ5NlxqdHNlbmdAdnNjc2kudXM"
+              }
+            ]
+          }
+        }
+      },
+      "x-ms-vss-migrated": true,
+      "x-ms-vss-example-request": {
+        "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/memberships/TWljcm9zb2Z0LklkZW50aXR5TW9kZWwuQ2xhaW1zLkNsYWltc0lkZW50aXR5OzQ1YWEzZDJkLTc0NDItNDczZC1iNGQzLTNjNjcwZGE5ZGQ5NlxqdHNlbmdAdnNjc2kudXM"
+      }
+    },
+    "BatchGetMembershipsVSTSGroupUp": {
+      "parameters": {},
+      "responses": {
+        "200": {
+          "body": {
+            "count": 2,
+            "value": [
+              {
+                "containerDescriptor": "TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMS0xMzQwMjAwMjExLTcxMDc4MDQ5My0yMjcxMTQ2Njk2LTE5NTEzNjAxNDc",
+                "memberDescriptor": "TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMS0zNzExMDMzOTI5LTMyMDM5ODY3NjItMzA0NzMyMzAwOS0zNzQ1OTQ0MTQy"
+              },
+              {
+                "containerDescriptor": "TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMC0wLTAtMC0z",
+                "memberDescriptor": "TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMS0zNzExMDMzOTI5LTMyMDM5ODY3NjItMzA0NzMyMzAwOS0zNzQ1OTQ0MTQy"
+              }
+            ]
+          }
+        }
+      },
+      "x-ms-vss-migrated": true,
+      "x-ms-vss-example-request": {
+        "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/memberships/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMS0zNzExMDMzOTI5LTMyMDM5ODY3NjItMzA0NzMyMzAwOS0zNzQ1OTQ0MTQy"
+      }
+    },
+    "CreateMembershipVSTSGroup": {
+      "parameters": {},
+      "responses": {
+        "201": {
+          "body": {
+            "containerDescriptor": "TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMS0xMzQwMjAwMjExLTcxMDc4MDQ5My0yMjcxMTQ2Njk2LTE5NTEzNjAxNDc",
+            "memberDescriptor": "TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMS0zNzExMDMzOTI5LTMyMDM5ODY3NjItMzA0NzMyMzAwOS0zNzQ1OTQ0MTQy"
+          }
+        }
+      },
+      "x-ms-vss-migrated": true,
+      "x-ms-vss-example-request": {
+        "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/memberships/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMS0zNzExMDMzOTI5LTMyMDM5ODY3NjItMzA0NzMyMzAwOS0zNzQ1OTQ0MTQy/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMS0xMzQwMjAwMjExLTcxMDc4MDQ5My0yMjcxMTQ2Njk2LTE5NTEzNjAxNDc"
+      }
+    },
+    "CheckMembershipExistenceUser": {
+      "parameters": {},
+      "responses": {
+        "404": {}
+      },
+      "x-ms-vss-migrated": true,
+      "x-ms-vss-example-request": {
+        "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/memberships/TWljcm9zb2Z0LklkZW50aXR5TW9kZWwuQ2xhaW1zLkNsYWltc0lkZW50aXR5OzQ1YWEzZDJkLTc0NDItNDczZC1iNGQzLTNjNjcwZGE5ZGQ5NlxqdHNlbmdAdnNjc2kudXM/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMS00MjcxMTAxODY2LTM1OTc5OTg5MTQtMjUxNDgwMzY2Mi04Njk2MTUyNTY"
+      }
+    },
+    "GetMembershipUser": {
+      "parameters": {},
+      "responses": {
+        "200": {
+          "body": {
+            "containerDescriptor": "TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMS00MjcxMTAxODY2LTM1OTc5OTg5MTQtMjUxNDgwMzY2Mi04Njk2MTUyNTY",
+            "memberDescriptor": "TWljcm9zb2Z0LklkZW50aXR5TW9kZWwuQ2xhaW1zLkNsYWltc0lkZW50aXR5OzQ1YWEzZDJkLTc0NDItNDczZC1iNGQzLTNjNjcwZGE5ZGQ5NlxqdHNlbmdAdnNjc2kudXM"
+          }
+        }
+      },
+      "x-ms-vss-migrated": true,
+      "x-ms-vss-example-request": {
+        "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/memberships/TWljcm9zb2Z0LklkZW50aXR5TW9kZWwuQ2xhaW1zLkNsYWltc0lkZW50aXR5OzQ1YWEzZDJkLTc0NDItNDczZC1iNGQzLTNjNjcwZGE5ZGQ5NlxqdHNlbmdAdnNjc2kudXM/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMS00MjcxMTAxODY2LTM1OTc5OTg5MTQtMjUxNDgwMzY2Mi04Njk2MTUyNTY"
+      }
+    },
+    "GetMembershipVSTSGroup": {
+      "parameters": {},
+      "responses": {
+        "200": {
+          "body": {
+            "containerDescriptor": "TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMS0xMzQwMjAwMjExLTcxMDc4MDQ5My0yMjcxMTQ2Njk2LTE5NTEzNjAxNDc",
+            "memberDescriptor": "TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMS0zNzExMDMzOTI5LTMyMDM5ODY3NjItMzA0NzMyMzAwOS0zNzQ1OTQ0MTQy"
+          }
+        }
+      },
+      "x-ms-vss-migrated": true,
+      "x-ms-vss-example-request": {
+        "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/memberships/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMS0zNzExMDMzOTI5LTMyMDM5ODY3NjItMzA0NzMyMzAwOS0zNzQ1OTQ0MTQy/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMS0xMzQwMjAwMjExLTcxMDc4MDQ5My0yMjcxMTQ2Njk2LTE5NTEzNjAxNDc"
+      }
+    },
+    "DeleteMembershipUser": {
+      "parameters": {},
+      "responses": {
+        "200": {}
+      },
+      "x-ms-vss-migrated": true,
+      "x-ms-vss-example-request": {
+        "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/memberships/TWljcm9zb2Z0LklkZW50aXR5TW9kZWwuQ2xhaW1zLkNsYWltc0lkZW50aXR5OzQ1YWEzZDJkLTc0NDItNDczZC1iNGQzLTNjNjcwZGE5ZGQ5NlxqdHNlbmdAdnNjc2kudXM/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMS00MjcxMTAxODY2LTM1OTc5OTg5MTQtMjUxNDgwMzY2Mi04Njk2MTUyNTY"
+      }
+    },
+    "GetMembershipStateBySubjectDescriptor": {
+      "parameters": {},
+      "responses": {
+        "204": {}
+      },
+      "x-ms-vss-migrated": true,
+      "x-ms-vss-example-request": {
+        "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/users/TWljcm9zb2Z0LklkZW50aXR5TW9kZWwuQ2xhaW1zLkNsYWltc0lkZW50aXR5OzQ1YWEzZDJkLTc0NDItNDczZC1iNGQzLTNjNjcwZGE5ZGQ5NlxDUG90cmFAdnNjc2kudXM"
+      }
+    },
+    "GetStorageKeyBySubjectDescriptor": {
+      "parameters": {},
+      "responses": {
+        "200": {
+          "body": {
+            "value": "62a9f1bd-6a09-6642-93a0-01d15fd46498"
+          }
+        }
+      },
+      "x-ms-vss-migrated": true,
+      "x-ms-vss-example-request": {
+        "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/storagekeys/TWljcm9zb2Z0LklkZW50aXR5TW9kZWwuQ2xhaW1zLkNsYWltc0lkZW50aXR5OzQ1YWEzZDJkLTc0NDItNDczZC1iNGQzLTNjNjcwZGE5ZGQ5NlxDUG90cmFAdnNjc2kudXM"
+      }
+    },
+    "LookupSubjects": {
+      "parameters": {
+        "body": {
+          "lookupKeys": [
+            {
+              "descriptor": "TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMTIwNDQwMDk2OS0yNDAyOTg2NDEzLTIxNzk0MDg2MTYtMy0xOTEyNzIyMTYwLTI1MjQ3MDYzNzAtMjQ4NjYwNDgyMC04NjIyNzY0MjQ"
+            },
+            {
+              "descriptor": "TWljcm9zb2Z0LklkZW50aXR5TW9kZWwuQ2xhaW1zLkNsYWltc0lkZW50aXR5OzQ1YWEzZDJkLTc0NDItNDczZC1iNGQzLTNjNjcwZGE5ZGQ5NlxDUG90cmFAdnNjc2kudXM"
+            }
+          ]
+        }
+      },
+      "responses": {
+        "200": {
+          "body": {
+            "count": 2,
+            "value": {
+              "TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMTIwNDQwMDk2OS0yNDAyOTg2NDEzLTIxNzk0MDg2MTYtMy0xOTEyNzIyMTYwLTI1MjQ3MDYzNzAtMjQ4NjYwNDgyMC04NjIyNzY0MjQ": {
+                "subjectKind": "group",
+                "description": "Part time engineers",
+                "specialType": "AzureActiveDirectoryApplicationGroup",
+                "scopeId": "f35b9015-cde8-4834-a1d5-09e8f359cb85",
+                "scopeType": "ServiceHost",
+                "scopeName": "TEAM FOUNDATION",
+                "localScopeId": "f35b9015-cde8-4834-a1d5-09e8f359cb85",
+                "securingHostId": "f35b9015-cde8-4834-a1d5-09e8f359cb85",
+                "isCrossProject": true,
+                "isGlobalScope": true,
+                "cuid": "c8c8f00e-3712-4974-a7fc-c14cf6212866",
+                "domain": "vstfs:///Framework/IdentityDomain/f35b9015-cde8-4834-a1d5-09e8f359cb85",
+                "principalName": "Part Time Engineers",
+                "mailAddress": null,
+                "origin": "aad",
+                "originId": "f0d20172-7b96-42f6-9436-941433654b48",
+                "displayName": "[TEAM FOUNDATION]\\Part Time Engineers",
+                "_links": {
+                  "self": {
+                    "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMTIwNDQwMDk2OS0yNDAyOTg2NDEzLTIxNzk0MDg2MTYtMy0xOTEyNzIyMTYwLTI1MjQ3MDYzNzAtMjQ4NjYwNDgyMC04NjIyNzY0MjQ"
+                  },
+                  "memberships": {
+                    "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/memberships/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMTIwNDQwMDk2OS0yNDAyOTg2NDEzLTIxNzk0MDg2MTYtMy0xOTEyNzIyMTYwLTI1MjQ3MDYzNzAtMjQ4NjYwNDgyMC04NjIyNzY0MjQ"
+                  }
+                },
+                "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/groups/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMTIwNDQwMDk2OS0yNDAyOTg2NDEzLTIxNzk0MDg2MTYtMy0xOTEyNzIyMTYwLTI1MjQ3MDYzNzAtMjQ4NjYwNDgyMC04NjIyNzY0MjQ",
+                "descriptor": "TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtMTIwNDQwMDk2OS0yNDAyOTg2NDEzLTIxNzk0MDg2MTYtMy0xOTEyNzIyMTYwLTI1MjQ3MDYzNzAtMjQ4NjYwNDgyMC04NjIyNzY0MjQ"
+              },
+              "TWljcm9zb2Z0LklkZW50aXR5TW9kZWwuQ2xhaW1zLkNsYWltc0lkZW50aXR5OzQ1YWEzZDJkLTc0NDItNDczZC1iNGQzLTNjNjcwZGE5ZGQ5NlxDUG90cmFAdnNjc2kudXM": {
+                "subjectKind": "user",
+                "cuid": "62a9f1bd-6a09-6642-93a0-01d15fd46498",
+                "domain": "45aa3d2d-7442-473d-b4d3-3c670da9dd96",
+                "principalName": "CPotra@vscsi.us",
+                "mailAddress": "CPotra@vscsi.us",
+                "origin": "aad",
+                "originId": "e97b0e7f-0a61-41ad-860c-748ec5fcb20b",
+                "displayName": "Cristina Potra",
+                "_links": {
+                  "self": {
+                    "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/users/TWljcm9zb2Z0LklkZW50aXR5TW9kZWwuQ2xhaW1zLkNsYWltc0lkZW50aXR5OzQ1YWEzZDJkLTc0NDItNDczZC1iNGQzLTNjNjcwZGE5ZGQ5NlxDUG90cmFAdnNjc2kudXM"
+                  },
+                  "memberships": {
+                    "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/memberships/TWljcm9zb2Z0LklkZW50aXR5TW9kZWwuQ2xhaW1zLkNsYWltc0lkZW50aXR5OzQ1YWEzZDJkLTc0NDItNDczZC1iNGQzLTNjNjcwZGE5ZGQ5NlxDUG90cmFAdnNjc2kudXM"
+                  }
+                },
+                "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/users/TWljcm9zb2Z0LklkZW50aXR5TW9kZWwuQ2xhaW1zLkNsYWltc0lkZW50aXR5OzQ1YWEzZDJkLTc0NDItNDczZC1iNGQzLTNjNjcwZGE5ZGQ5NlxDUG90cmFAdnNjc2kudXM",
+                "descriptor": "TWljcm9zb2Z0LklkZW50aXR5TW9kZWwuQ2xhaW1zLkNsYWltc0lkZW50aXR5OzQ1YWEzZDJkLTc0NDItNDczZC1iNGQzLTNjNjcwZGE5ZGQ5NlxDUG90cmFAdnNjc2kudXM"
+              }
+            }
+          }
+        }
+      },
+      "x-ms-vss-migrated": true,
+      "x-ms-vss-example-request": {
+        "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/subjectlookup"
+      }
+    },
+    "CreateUserAAD": {
+      "parameters": {
+        "body": {
+          "principalName": "jtseng@vscsi.us"
+        }
+      },
+      "responses": {
+        "201": {
+          "body": {
+            "subjectKind": "user",
+            "cuid": "00470e34-da61-6a69-bd96-487a849ec558",
+            "domain": "45aa3d2d-7442-473d-b4d3-3c670da9dd96",
+            "principalName": "jtseng@vscsi.us",
+            "mailAddress": "jtseng@vscsi.us",
+            "origin": "aad",
+            "originId": "55c8c7b6-7ace-43bc-918f-304dfa2b6317",
+            "displayName": "Jia-hao Tseng",
+            "_links": {
+              "self": {
+                "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/users/TWljcm9zb2Z0LklkZW50aXR5TW9kZWwuQ2xhaW1zLkNsYWltc0lkZW50aXR5OzQ1YWEzZDJkLTc0NDItNDczZC1iNGQzLTNjNjcwZGE5ZGQ5NlxqdHNlbmdAdnNjc2kudXM"
+              },
+              "memberships": {
+                "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/memberships/TWljcm9zb2Z0LklkZW50aXR5TW9kZWwuQ2xhaW1zLkNsYWltc0lkZW50aXR5OzQ1YWEzZDJkLTc0NDItNDczZC1iNGQzLTNjNjcwZGE5ZGQ5NlxqdHNlbmdAdnNjc2kudXM"
+              }
+            },
+            "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/users/TWljcm9zb2Z0LklkZW50aXR5TW9kZWwuQ2xhaW1zLkNsYWltc0lkZW50aXR5OzQ1YWEzZDJkLTc0NDItNDczZC1iNGQzLTNjNjcwZGE5ZGQ5NlxqdHNlbmdAdnNjc2kudXM",
+            "descriptor": "TWljcm9zb2Z0LklkZW50aXR5TW9kZWwuQ2xhaW1zLkNsYWltc0lkZW50aXR5OzQ1YWEzZDJkLTc0NDItNDczZC1iNGQzLTNjNjcwZGE5ZGQ5NlxqdHNlbmdAdnNjc2kudXM"
+          }
+        }
+      },
+      "x-ms-vss-migrated": true,
+      "x-ms-vss-example-request": {
+        "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/users"
+      }
+    },
+    "CreateUserMSA": {
+      "parameters": {
+        "body": {
+          "principalName": "fabrikamfiber4@hotmail.com"
+        }
+      },
+      "responses": {
+        "201": {
+          "body": {
+            "subjectKind": "user",
+            "metaType": "guest",
+            "cuid": "afd336dd-e80c-61eb-8ebd-833631ba05c6",
+            "domain": "45aa3d2d-7442-473d-b4d3-3c670da9dd96",
+            "principalName": "fabrikamfiber4@hotmail.com",
+            "mailAddress": "fabrikamfiber4@hotmail.com",
+            "origin": "aad",
+            "originId": "ddddb7d1-2de3-4bab-98b6-ddcc994e964d",
+            "displayName": "Jamal Hartnett",
+            "_links": {
+              "self": {
+                "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/users/TWljcm9zb2Z0LklkZW50aXR5TW9kZWwuQ2xhaW1zLkNsYWltc0lkZW50aXR5OzQ1YWEzZDJkLTc0NDItNDczZC1iNGQzLTNjNjcwZGE5ZGQ5NlxmYWJyaWthbWZpYmVyNEBob3RtYWlsLmNvbQ"
+              },
+              "memberships": {
+                "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/memberships/TWljcm9zb2Z0LklkZW50aXR5TW9kZWwuQ2xhaW1zLkNsYWltc0lkZW50aXR5OzQ1YWEzZDJkLTc0NDItNDczZC1iNGQzLTNjNjcwZGE5ZGQ5NlxmYWJyaWthbWZpYmVyNEBob3RtYWlsLmNvbQ"
+              }
+            },
+            "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/users/TWljcm9zb2Z0LklkZW50aXR5TW9kZWwuQ2xhaW1zLkNsYWltc0lkZW50aXR5OzQ1YWEzZDJkLTc0NDItNDczZC1iNGQzLTNjNjcwZGE5ZGQ5NlxmYWJyaWthbWZpYmVyNEBob3RtYWlsLmNvbQ",
+            "descriptor": "TWljcm9zb2Z0LklkZW50aXR5TW9kZWwuQ2xhaW1zLkNsYWltc0lkZW50aXR5OzQ1YWEzZDJkLTc0NDItNDczZC1iNGQzLTNjNjcwZGE5ZGQ5NlxmYWJyaWthbWZpYmVyNEBob3RtYWlsLmNvbQ"
+          }
+        }
+      },
+      "x-ms-vss-migrated": true,
+      "x-ms-vss-example-request": {
+        "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/users"
+      }
+    },
+    "MaterializeAADUserByOID": {
+      "parameters": {
+        "body": {
+          "originId": "e97b0e7f-0a61-41ad-860c-748ec5fcb20b"
+        }
+      },
+      "responses": {
+        "201": {
+          "body": {
+            "subjectKind": "user",
+            "cuid": "62a9f1bd-6a09-6642-93a0-01d15fd46498",
+            "domain": "45aa3d2d-7442-473d-b4d3-3c670da9dd96",
+            "principalName": "CPotra@vscsi.us",
+            "mailAddress": "CPotra@vscsi.us",
+            "origin": "aad",
+            "originId": "e97b0e7f-0a61-41ad-860c-748ec5fcb20b",
+            "displayName": "Cristina Potra",
+            "_links": {
+              "self": {
+                "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/users/TWljcm9zb2Z0LklkZW50aXR5TW9kZWwuQ2xhaW1zLkNsYWltc0lkZW50aXR5OzQ1YWEzZDJkLTc0NDItNDczZC1iNGQzLTNjNjcwZGE5ZGQ5NlxDUG90cmFAdnNjc2kudXM"
+              },
+              "memberships": {
+                "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/memberships/TWljcm9zb2Z0LklkZW50aXR5TW9kZWwuQ2xhaW1zLkNsYWltc0lkZW50aXR5OzQ1YWEzZDJkLTc0NDItNDczZC1iNGQzLTNjNjcwZGE5ZGQ5NlxDUG90cmFAdnNjc2kudXM"
+              }
+            },
+            "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/users/TWljcm9zb2Z0LklkZW50aXR5TW9kZWwuQ2xhaW1zLkNsYWltc0lkZW50aXR5OzQ1YWEzZDJkLTc0NDItNDczZC1iNGQzLTNjNjcwZGE5ZGQ5NlxDUG90cmFAdnNjc2kudXM",
+            "descriptor": "TWljcm9zb2Z0LklkZW50aXR5TW9kZWwuQ2xhaW1zLkNsYWltc0lkZW50aXR5OzQ1YWEzZDJkLTc0NDItNDczZC1iNGQzLTNjNjcwZGE5ZGQ5NlxDUG90cmFAdnNjc2kudXM"
+          }
+        }
+      },
+      "x-ms-vss-migrated": true,
+      "x-ms-vss-example-request": {
+        "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/users"
+      }
+    },
+    "MaterializeAADUserByOIDAsMember": {
+      "parameters": {
+        "groupDescriptors": "TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMS0xMTA3OTI1OTgzLTM5OTYxMTQyNDYtMjMyNjM2MDQzOS0zMTk0NjAxNzQ5",
+        "body": {
+          "principalName": "jtseng@vscsi.us"
+        }
+      },
+      "responses": {
+        "201": {
+          "body": {
+            "subjectKind": "user",
+            "cuid": "00470e34-da61-6a69-bd96-487a849ec558",
+            "domain": "45aa3d2d-7442-473d-b4d3-3c670da9dd96",
+            "principalName": "jtseng@vscsi.us",
+            "mailAddress": "jtseng@vscsi.us",
+            "origin": "aad",
+            "originId": "55c8c7b6-7ace-43bc-918f-304dfa2b6317",
+            "displayName": "Jia-hao Tseng",
+            "_links": {
+              "self": {
+                "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/users/TWljcm9zb2Z0LklkZW50aXR5TW9kZWwuQ2xhaW1zLkNsYWltc0lkZW50aXR5OzQ1YWEzZDJkLTc0NDItNDczZC1iNGQzLTNjNjcwZGE5ZGQ5NlxqdHNlbmdAdnNjc2kudXM"
+              },
+              "memberships": {
+                "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/memberships/TWljcm9zb2Z0LklkZW50aXR5TW9kZWwuQ2xhaW1zLkNsYWltc0lkZW50aXR5OzQ1YWEzZDJkLTc0NDItNDczZC1iNGQzLTNjNjcwZGE5ZGQ5NlxqdHNlbmdAdnNjc2kudXM"
+              }
+            },
+            "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/users/TWljcm9zb2Z0LklkZW50aXR5TW9kZWwuQ2xhaW1zLkNsYWltc0lkZW50aXR5OzQ1YWEzZDJkLTc0NDItNDczZC1iNGQzLTNjNjcwZGE5ZGQ5NlxqdHNlbmdAdnNjc2kudXM",
+            "descriptor": "TWljcm9zb2Z0LklkZW50aXR5TW9kZWwuQ2xhaW1zLkNsYWltc0lkZW50aXR5OzQ1YWEzZDJkLTc0NDItNDczZC1iNGQzLTNjNjcwZGE5ZGQ5NlxqdHNlbmdAdnNjc2kudXM"
+          }
+        }
+      },
+      "x-ms-vss-migrated": true,
+      "x-ms-vss-example-request": {
+        "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/users?groupDescriptors=TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLklkZW50aXR5O1MtMS05LTE1NTEzNzQyNDUtNDI4NzE1MDg5LTI0ODk3NTM0MTMtMjc5MTIyNzA3NS0yNDUyNDc1MzktMS0xMTA3OTI1OTgzLTM5OTYxMTQyNDYtMjMyNjM2MDQzOS0zMTk0NjAxNzQ5"
+      }
+    },
+    "MaterializeAADUserByOIDWithStorageKey": {
+      "parameters": {
+        "body": {
+          "originId": "27dbfced-5593-4756-98a3-913c39af7612",
+          "storageKey": "9b71f216-4c4f-6b74-a911-efb0fa9c777f"
+        }
+      },
+      "responses": {
+        "201": {
+          "body": {
+            "subjectKind": "user",
+            "cuid": "9b71f216-4c4f-6b74-a911-efb0fa9c777f",
+            "domain": "45aa3d2d-7442-473d-b4d3-3c670da9dd96",
+            "principalName": "JMcleod@vscsi.us",
+            "mailAddress": "JMcleod@vscsi.us",
+            "origin": "aad",
+            "originId": "27dbfced-5593-4756-98a3-913c39af7612",
+            "displayName": "Johnnie McLeod",
+            "_links": {
+              "self": {
+                "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/users/TWljcm9zb2Z0LklkZW50aXR5TW9kZWwuQ2xhaW1zLkNsYWltc0lkZW50aXR5OzQ1YWEzZDJkLTc0NDItNDczZC1iNGQzLTNjNjcwZGE5ZGQ5NlxKTWNsZW9kQHZzY3NpLnVz"
+              },
+              "memberships": {
+                "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/memberships/TWljcm9zb2Z0LklkZW50aXR5TW9kZWwuQ2xhaW1zLkNsYWltc0lkZW50aXR5OzQ1YWEzZDJkLTc0NDItNDczZC1iNGQzLTNjNjcwZGE5ZGQ5NlxKTWNsZW9kQHZzY3NpLnVz"
+              }
+            },
+            "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/users/TWljcm9zb2Z0LklkZW50aXR5TW9kZWwuQ2xhaW1zLkNsYWltc0lkZW50aXR5OzQ1YWEzZDJkLTc0NDItNDczZC1iNGQzLTNjNjcwZGE5ZGQ5NlxKTWNsZW9kQHZzY3NpLnVz",
+            "descriptor": "TWljcm9zb2Z0LklkZW50aXR5TW9kZWwuQ2xhaW1zLkNsYWltc0lkZW50aXR5OzQ1YWEzZDJkLTc0NDItNDczZC1iNGQzLTNjNjcwZGE5ZGQ5NlxKTWNsZW9kQHZzY3NpLnVz"
+          }
+        }
+      },
+      "x-ms-vss-migrated": true,
+      "x-ms-vss-example-request": {
+        "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/users"
+      }
+    },
+    "GetAllUsers": {
+      "parameters": {},
+      "responses": {
+        "200": {
+          "body": {
+            "count": 4,
+            "value": [
+              {
+                "subjectKind": "user",
+                "cuid": "ec09a4d8-d914-4f28-9e39-23d52b683f90",
+                "domain": "Build",
+                "principalName": "51ac8d19-6694-459f-a65e-bec30e9e2e33",
+                "mailAddress": "",
+                "origin": "vsts",
+                "originId": "ec09a4d8-d914-4f28-9e39-23d52b683f90",
+                "displayName": "Project Collection Build Service (Ftottentest2)",
+                "_links": {
+                  "self": {
+                    "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/users/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLlNlcnZpY2VJZGVudGl0eTtmMzViOTAxNS1jZGU4LTQ4MzQtYTFkNS0wOWU4ZjM1OWNiODU6QnVpbGQ6NTFhYzhkMTktNjY5NC00NTlmLWE2NWUtYmVjMzBlOWUyZTMz"
+                  },
+                  "memberships": {
+                    "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/memberships/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLlNlcnZpY2VJZGVudGl0eTtmMzViOTAxNS1jZGU4LTQ4MzQtYTFkNS0wOWU4ZjM1OWNiODU6QnVpbGQ6NTFhYzhkMTktNjY5NC00NTlmLWE2NWUtYmVjMzBlOWUyZTMz"
+                  }
+                },
+                "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/users/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLlNlcnZpY2VJZGVudGl0eTtmMzViOTAxNS1jZGU4LTQ4MzQtYTFkNS0wOWU4ZjM1OWNiODU6QnVpbGQ6NTFhYzhkMTktNjY5NC00NTlmLWE2NWUtYmVjMzBlOWUyZTMz",
+                "descriptor": "TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLlNlcnZpY2VJZGVudGl0eTtmMzViOTAxNS1jZGU4LTQ4MzQtYTFkNS0wOWU4ZjM1OWNiODU6QnVpbGQ6NTFhYzhkMTktNjY5NC00NTlmLWE2NWUtYmVjMzBlOWUyZTMz"
+              },
+              {
+                "subjectKind": "user",
+                "metaType": "member",
+                "cuid": "00ca946b-2fe9-4f2a-ae2f-40d5c48001bc",
+                "domain": "LOCAL AUTHORITY",
+                "principalName": "TeamFoundationService (TEAM FOUNDATION)",
+                "mailAddress": "",
+                "origin": "vsts",
+                "originId": "00ca946b-2fe9-4f2a-ae2f-40d5c48001bc",
+                "displayName": "TeamFoundationService (TEAM FOUNDATION)",
+                "_links": {
+                  "self": {
+                    "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/users/TWljcm9zb2Z0LklkZW50aXR5TW9kZWwuQ2xhaW1zLkNsYWltc0lkZW50aXR5Ozc3ODlmMDlkLWUwNTMtNGYyZS1iZGVlLTBjOGY4NDc2YTRiYw"
+                  },
+                  "memberships": {
+                    "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/memberships/TWljcm9zb2Z0LklkZW50aXR5TW9kZWwuQ2xhaW1zLkNsYWltc0lkZW50aXR5Ozc3ODlmMDlkLWUwNTMtNGYyZS1iZGVlLTBjOGY4NDc2YTRiYw"
+                  }
+                },
+                "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/users/TWljcm9zb2Z0LklkZW50aXR5TW9kZWwuQ2xhaW1zLkNsYWltc0lkZW50aXR5Ozc3ODlmMDlkLWUwNTMtNGYyZS1iZGVlLTBjOGY4NDc2YTRiYw",
+                "descriptor": "TWljcm9zb2Z0LklkZW50aXR5TW9kZWwuQ2xhaW1zLkNsYWltc0lkZW50aXR5Ozc3ODlmMDlkLWUwNTMtNGYyZS1iZGVlLTBjOGY4NDc2YTRiYw"
+              },
+              {
+                "subjectKind": "user",
+                "metaType": "member",
+                "cuid": "ddd94918-1fc8-459b-994a-cca86c4fbe95",
+                "domain": "TEAM FOUNDATION",
+                "principalName": "Anonymous",
+                "mailAddress": "",
+                "origin": "vsts",
+                "originId": "ddd94918-1fc8-459b-994a-cca86c4fbe95",
+                "displayName": "Anonymous",
+                "_links": {
+                  "self": {
+                    "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/users/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLlVuYXV0aGVudGljYXRlZElkZW50aXR5O1MtMS0wLTA"
+                  },
+                  "memberships": {
+                    "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/memberships/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLlVuYXV0aGVudGljYXRlZElkZW50aXR5O1MtMS0wLTA"
+                  }
+                },
+                "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/users/TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLlVuYXV0aGVudGljYXRlZElkZW50aXR5O1MtMS0wLTA",
+                "descriptor": "TWljcm9zb2Z0LlRlYW1Gb3VuZGF0aW9uLlVuYXV0aGVudGljYXRlZElkZW50aXR5O1MtMS0wLTA"
+              },
+              {
+                "subjectKind": "user",
+                "metaType": "member",
+                "cuid": "65903f92-53dc-61b3-bb0e-e69cfa1cb719",
+                "domain": "45aa3d2d-7442-473d-b4d3-3c670da9dd96",
+                "principalName": "ftotten@vscsi.us",
+                "mailAddress": "ftotten@vscsi.us",
+                "origin": "aad",
+                "originId": "4be8f294-000d-4431-8506-57420b88e204",
+                "displayName": "Francis Totten",
+                "_links": {
+                  "self": {
+                    "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/users/TWljcm9zb2Z0LklkZW50aXR5TW9kZWwuQ2xhaW1zLkNsYWltc0lkZW50aXR5OzQ1YWEzZDJkLTc0NDItNDczZC1iNGQzLTNjNjcwZGE5ZGQ5NlxmdG90dGVuQHZzY3NpLnVz"
+                  },
+                  "memberships": {
+                    "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/memberships/TWljcm9zb2Z0LklkZW50aXR5TW9kZWwuQ2xhaW1zLkNsYWltc0lkZW50aXR5OzQ1YWEzZDJkLTc0NDItNDczZC1iNGQzLTNjNjcwZGE5ZGQ5NlxmdG90dGVuQHZzY3NpLnVz"
+                  }
+                },
+                "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/users/TWljcm9zb2Z0LklkZW50aXR5TW9kZWwuQ2xhaW1zLkNsYWltc0lkZW50aXR5OzQ1YWEzZDJkLTc0NDItNDczZC1iNGQzLTNjNjcwZGE5ZGQ5NlxmdG90dGVuQHZzY3NpLnVz",
+                "descriptor": "TWljcm9zb2Z0LklkZW50aXR5TW9kZWwuQ2xhaW1zLkNsYWltc0lkZW50aXR5OzQ1YWEzZDJkLTc0NDItNDczZC1iNGQzLTNjNjcwZGE5ZGQ5NlxmdG90dGVuQHZzY3NpLnVz"
+              }
+            ]
+          }
+        }
+      },
+      "x-ms-vss-migrated": true,
+      "x-ms-vss-example-request": {
+        "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/users"
+      }
+    },
+    "DeleteUserAAD": {
+      "parameters": {},
+      "responses": {
+        "204": {}
+      },
+      "x-ms-vss-migrated": true,
+      "x-ms-vss-example-request": {
+        "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/users/TWljcm9zb2Z0LklkZW50aXR5TW9kZWwuQ2xhaW1zLkNsYWltc0lkZW50aXR5OzQ1YWEzZDJkLTc0NDItNDczZC1iNGQzLTNjNjcwZGE5ZGQ5NlxqdHNlbmdAdnNjc2kudXM"
+      }
+    },
+    "GetUserAAD": {
+      "parameters": {},
+      "responses": {
+        "200": {
+          "body": {
+            "subjectKind": "user",
+            "cuid": "00470e34-da61-6a69-bd96-487a849ec558",
+            "domain": "45aa3d2d-7442-473d-b4d3-3c670da9dd96",
+            "principalName": "jtseng@vscsi.us",
+            "mailAddress": "jtseng@vscsi.us",
+            "origin": "aad",
+            "originId": "55c8c7b6-7ace-43bc-918f-304dfa2b6317",
+            "displayName": "Jia-hao Tseng",
+            "_links": {
+              "self": {
+                "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/users/TWljcm9zb2Z0LklkZW50aXR5TW9kZWwuQ2xhaW1zLkNsYWltc0lkZW50aXR5OzQ1YWEzZDJkLTc0NDItNDczZC1iNGQzLTNjNjcwZGE5ZGQ5NlxqdHNlbmdAdnNjc2kudXM"
+              },
+              "memberships": {
+                "href": "https://fabrikam.vssps.visualstudio.com/_apis/graph/memberships/TWljcm9zb2Z0LklkZW50aXR5TW9kZWwuQ2xhaW1zLkNsYWltc0lkZW50aXR5OzQ1YWEzZDJkLTc0NDItNDczZC1iNGQzLTNjNjcwZGE5ZGQ5NlxqdHNlbmdAdnNjc2kudXM"
+              }
+            },
+            "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/users/TWljcm9zb2Z0LklkZW50aXR5TW9kZWwuQ2xhaW1zLkNsYWltc0lkZW50aXR5OzQ1YWEzZDJkLTc0NDItNDczZC1iNGQzLTNjNjcwZGE5ZGQ5NlxqdHNlbmdAdnNjc2kudXM",
+            "descriptor": "TWljcm9zb2Z0LklkZW50aXR5TW9kZWwuQ2xhaW1zLkNsYWltc0lkZW50aXR5OzQ1YWEzZDJkLTc0NDItNDczZC1iNGQzLTNjNjcwZGE5ZGQ5NlxqdHNlbmdAdnNjc2kudXM"
+          }
+        }
+      },
+      "x-ms-vss-migrated": true,
+      "x-ms-vss-example-request": {
+        "url": "https://fabrikam.vssps.visualstudio.com/_apis/graph/users/TWljcm9zb2Z0LklkZW50aXR5TW9kZWwuQ2xhaW1zLkNsYWltc0lkZW50aXR5OzQ1YWEzZDJkLTc0NDItNDczZC1iNGQzLTNjNjcwZGE5ZGQ5NlxqdHNlbmdAdnNjc2kudXM"
+      }
+    }
+  },
+  "parameters": {
+    "api-Version": {
+      "name": "api-version",
+      "in": "query",
+      "description": "Version of the API to use.  This should be set to '4.1-preview' to use this version of the api.",
+      "required": true,
+      "type": "string"
+    }
+  },
+  "securityDefinitions": {
+    "accessToken": {
+      "type": "basic",
+      "description": "Personal access token. Use any value for the user name and the token as the password."
+    }
+  },
+  "security": [
+    {
+      "accessToken": []
+    }
+  ],
+  "externalDocs": {
+    "description": "Visual Studio Team Services REST APIs",
+    "url": "https://www.visualstudio.com/docs/integrate/api/overview"
+  },
+  "x-internal-service-name": "Graph",
+  "x-internal-toc-name": "Memberships",
+  "x-internal-split-members": [
+    {
+      "displayName": "Add Add Add Add Add",
+      "relativePath": "Memberships/Memberships_Add"
+    },
+    {
+      "displayName": "Check Check Check ck Membership Existence",
+      "relativePath": "Memberships/Memberships_CheckMembershipExistence"
+    },
+    {
+      "displayName": "Get Get Get Get Get",
+      "relativePath": "Memberships/Memberships_Get"
+    },
+    {
+      "displayName": "List List List List",
+      "relativePath": "Memberships/Memberships_List"
+    },
+    {
+      "displayName": "Remove Remove Remove Membership",
+      "relativePath": "Memberships/Memberships_RemoveMembership"
+    }
+  ],
+  "x-internal-split-type": "TagOperation"
+}

@@ -1,4 +1,4 @@
-clone_folder: c:\projects\sql-docs-rest-apis
+clone_folder: c:\projects\vsts-docs-rest-apis
 
 environment:
   op_build_user: "OpenPublishBuild"
@@ -7,7 +7,7 @@ environment:
   access_token:
     secure: JWSy9tPo2eoTYpPQplvokf4IiVk6onNBbWwAs6nNWWyQ2JaO+MRAg/QzbJnTjpUm
   access_token_vso:
-    secure: ZOD3HHGIphV3jJL6E2ukI+Wacik6oe4Utrjq+hEnPrsc9v7BwN5yx2/uIWS8dfFc77dLaX/hhghR2AcbaKr+5A==
+    secure: FlOlOHAHI9hhlrN7T1qduukWzJtIzTunHYoGHcz5lC97kTrAgqOl4sBCpzljrD2hVpJpaxp3UGQOD/8K2SQNVQ==
   appveyor_api_token:
     secure: A3gXEPdbPTo7Lz/JC1l2WSPJLzuTwb7EouuT3r29KgU=
 
@@ -34,7 +34,7 @@ before_build:
           autorest --help
           git config --global credential.helper store
           Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:access_token):x-oauth-basic@github.com`n"
-          Add-Content "$env:USERPROFILE\.git-credentials" "https://name:$($env:access_token_vso)@powerbi.visualstudio.com`n"
+          Add-Content "$env:USERPROFILE\.git-credentials" "https://name:$($env:access_token_vso)@msazure.visualstudio.com`n"
           git config --global user.email $env:op_build_user_email
           git config --global user.name $env:op_build_user
           scripts\UpdateSrcRepo.ps1

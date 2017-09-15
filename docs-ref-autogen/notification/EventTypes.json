@@ -1,0 +1,3128 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Notification",
+    "description": "",
+    "termsOfService": "https://go.microsoft.com/fwlink/?LinkId=329770",
+    "contact": {
+      "name": "nugetvss",
+      "email": "nugetvss@microsoft.com"
+    },
+    "license": {
+      "name": "MICROSOFT SOFTWARE LICENSE TERMS",
+      "url": "https://go.microsoft.com/fwlink/?LinkId=329770"
+    },
+    "version": "4.1"
+  },
+  "host": "fabrikam-fiber-inc.visualstudio.com",
+  "x-ms-parameterized-host": {
+    "hostTemplate": "{accountName}.visualstudio.com",
+    "parameters": [
+      {
+        "name": "accountName",
+        "description": "The name of the Visual Studio Team Services account.",
+        "required": true,
+        "type": "string",
+        "in": "path"
+      }
+    ]
+  },
+  "x-ms-vss-area": "Notification",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Events"
+    },
+    {
+      "name": "EventTypes"
+    },
+    {
+      "name": "NotificationReasons"
+    },
+    {
+      "name": "Subscribers"
+    },
+    {
+      "name": "Subscriptions"
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "paths": {},
+  "definitions": {
+    "ArtifactFilter": {
+      "description": "",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/BaseSubscriptionFilter"
+        }
+      ],
+      "properties": {
+        "artifactId": {
+          "type": "string"
+        },
+        "artifactType": {
+          "type": "string"
+        },
+        "artifactUri": {
+          "type": "string"
+        },
+        "type": {
+          "readOnly": true,
+          "type": "string"
+        }
+      }
+    },
+    "BaseSubscriptionFilter": {
+      "description": "",
+      "type": "object",
+      "properties": {
+        "eventType": {
+          "type": "string"
+        },
+        "type": {
+          "readOnly": true,
+          "type": "string"
+        }
+      }
+    },
+    "BatchNotificationOperation": {
+      "description": "",
+      "type": "object",
+      "properties": {
+        "notificationOperation": {
+          "enum": [
+            "none",
+            "suspendUnprocessed"
+          ],
+          "x-ms-enum": {
+            "name": "Microsoft.VisualStudio.Services.Notifications.WebApi.NotificationOperation"
+          }
+        },
+        "notificationQueryConditions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/NotificationQueryCondition"
+          }
+        }
+      }
+    },
+    "EventActor": {
+      "description": "Defines an \"actor\" for an event.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Required: This is the identity of the user for the specified role.",
+          "type": "string",
+          "format": "uuid"
+        },
+        "role": {
+          "description": "Required: The event specific name of a role.",
+          "type": "string"
+        }
+      }
+    },
+    "EventScope": {
+      "description": "Defines a scope for an event.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Required: This is the identity of the scope for the type.",
+          "type": "string",
+          "format": "uuid"
+        },
+        "type": {
+          "description": "Required: The event specific type of a scope.",
+          "type": "string"
+        }
+      }
+    },
+    "EventsEvaluationResult": {
+      "description": "Encapsulates events result properties. It defines the total number of events used and the number of matched events.",
+      "type": "object",
+      "properties": {
+        "count": {
+          "description": "Count of events evaluated.",
+          "type": "integer",
+          "format": "int32"
+        },
+        "matchedCount": {
+          "description": "Count of matched events.",
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "ExpressionFilterClause": {
+      "description": "Subscription Filter Clause represents a single clause in a subscription filter e.g. If the subscription has the following criteria \"Project Name = [Current Project] AND Assigned To = [Me] it will be represented as two Filter Clauses Clause 1: Index = 1, Logical Operator: NULL  , FieldName = 'Project Name', Operator = '=', Value = '[Current Project]' Clause 2: Index = 2, Logical Operator: 'AND' , FieldName = 'Assigned To' , Operator = '=', Value = '[Me]'",
+      "type": "object",
+      "properties": {
+        "fieldName": {
+          "type": "string"
+        },
+        "index": {
+          "description": "The order in which this clause appeared in the filter query",
+          "type": "integer",
+          "format": "int32"
+        },
+        "logicalOperator": {
+          "description": "Logical Operator 'AND', 'OR' or NULL (only for the first clause in the filter)",
+          "type": "string"
+        },
+        "operator": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "ExpressionFilterGroup": {
+      "description": "Represents a hierarchy of SubscritionFilterClauses that have been grouped together through either adding a group in the WebUI or using parethesis in the Subscription condition string",
+      "type": "object",
+      "properties": {
+        "end": {
+          "description": "The index of the last FilterClause in this group",
+          "type": "integer",
+          "format": "int32"
+        },
+        "level": {
+          "description": "Level of the group, since groups can be nested for each nested group the level will increase by 1",
+          "type": "integer",
+          "format": "int32"
+        },
+        "start": {
+          "description": "The index of the first FilterClause in this group",
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "ExpressionFilterModel": {
+      "description": "",
+      "type": "object",
+      "properties": {
+        "clauses": {
+          "description": "Flat list of clauses in this subscription",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ExpressionFilterClause"
+          }
+        },
+        "groups": {
+          "description": "Grouping of clauses in the subscription",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ExpressionFilterGroup"
+          }
+        },
+        "maxGroupLevel": {
+          "description": "Max depth of the Subscription tree",
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "FieldInputValues": {
+      "description": "",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/InputValues"
+        }
+      ],
+      "properties": {
+        "operators": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "byte"
+          }
+        }
+      }
+    },
+    "FieldValuesQuery": {
+      "description": "",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/InputValuesQuery"
+        }
+      ],
+      "properties": {
+        "inputValues": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FieldInputValues"
+          }
+        },
+        "scope": {
+          "type": "string"
+        }
+      }
+    },
+    "IdentityRef": {
+      "description": "",
+      "type": "object",
+      "properties": {
+        "directoryAlias": {
+          "type": "string"
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "imageUrl": {
+          "type": "string"
+        },
+        "inactive": {
+          "type": "boolean"
+        },
+        "isAadIdentity": {
+          "type": "boolean"
+        },
+        "isContainer": {
+          "type": "boolean"
+        },
+        "profileUrl": {
+          "type": "string"
+        },
+        "uniqueName": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      }
+    },
+    "InputValue": {
+      "description": "Information about a single value for an input",
+      "type": "object",
+      "properties": {
+        "data": {
+          "description": "Any other data about this input",
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          }
+        },
+        "displayValue": {
+          "description": "The text to show for the display of this value",
+          "type": "string"
+        },
+        "value": {
+          "description": "The value to store for this input",
+          "type": "string"
+        }
+      }
+    },
+    "InputValues": {
+      "description": "Information about the possible/allowed values for a given subscription input",
+      "type": "object",
+      "properties": {
+        "defaultValue": {
+          "description": "The default value to use for this input",
+          "type": "string"
+        },
+        "error": {
+          "description": "Errors encountered while computing dynamic values.",
+          "$ref": "#/definitions/InputValuesError"
+        },
+        "inputId": {
+          "description": "The id of the input",
+          "type": "string"
+        },
+        "isDisabled": {
+          "description": "Should this input be disabled",
+          "type": "boolean"
+        },
+        "isLimitedToPossibleValues": {
+          "description": "Should the value be restricted to one of the values in the PossibleValues (True) or are the values in PossibleValues just a suggestion (False)",
+          "type": "boolean"
+        },
+        "isReadOnly": {
+          "description": "Should this input be made read-only",
+          "type": "boolean"
+        },
+        "possibleValues": {
+          "description": "Possible values that this input can take",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/InputValue"
+          }
+        }
+      }
+    },
+    "InputValuesError": {
+      "description": "Error information related to a subscription input value.",
+      "type": "object",
+      "properties": {
+        "message": {
+          "description": "The error message.",
+          "type": "string"
+        }
+      }
+    },
+    "InputValuesQuery": {
+      "description": "",
+      "type": "object",
+      "properties": {
+        "currentValues": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "inputValues": {
+          "description": "The input values to return on input, and the result from the consumer on output.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/InputValues"
+          }
+        },
+        "resource": {
+          "description": "Subscription containing information about the publisher/consumer and the current input values",
+          "type": "object"
+        }
+      }
+    },
+    "ISubscriptionChannel": {
+      "description": "",
+      "type": "object",
+      "properties": {
+        "type": {
+          "readOnly": true,
+          "type": "string"
+        }
+      }
+    },
+    "ISubscriptionFilter": {
+      "description": "",
+      "type": "object",
+      "properties": {
+        "eventType": {
+          "type": "string"
+        },
+        "type": {
+          "readOnly": true,
+          "type": "string"
+        }
+      }
+    },
+    "NotificationEventField": {
+      "description": "Encapsulates the properties of a filterable field. A filterable field is a field in an event that can used to filter notifications for a certain event type.",
+      "type": "object",
+      "properties": {
+        "fieldType": {
+          "description": "Gets or sets the type of this field.",
+          "$ref": "#/definitions/NotificationEventFieldType"
+        },
+        "id": {
+          "description": "Gets or sets the unique identifier of this field.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Gets or sets the name of this field.",
+          "type": "string"
+        },
+        "path": {
+          "description": "Gets or sets the path to the field in the event object. This path can be either Json Path or XPath, depending on if the event will be serialized into Json or XML",
+          "type": "string"
+        },
+        "supportedScopes": {
+          "description": "Gets or sets the scopes that this field supports. If not specified then the event type scopes apply.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "NotificationEventFieldOperator": {
+      "description": "Encapsulates the properties of a field type. It includes a unique id for the operator and a localized string for display name",
+      "type": "object",
+      "properties": {
+        "displayName": {
+          "description": "Gets or sets the display name of an operator",
+          "type": "string"
+        },
+        "id": {
+          "description": "Gets or sets the id of an operator",
+          "type": "string"
+        }
+      }
+    },
+    "NotificationEventFieldType": {
+      "description": "Encapsulates the properties of a field type. It describes the data type of a field, the operators it support and how to populate it in the UI",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Gets or sets the unique identifier of this field type.",
+          "type": "string"
+        },
+        "operatorConstraints": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/OperatorConstraint"
+          }
+        },
+        "operators": {
+          "description": "Gets or sets the list of operators that this type supports.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/NotificationEventFieldOperator"
+          }
+        },
+        "subscriptionFieldType": {
+          "enum": [
+            "string",
+            "integer",
+            "dateTime",
+            "plainText",
+            "html",
+            "treePath",
+            "history",
+            "double",
+            "guid",
+            "boolean",
+            "identity",
+            "picklistInteger",
+            "picklistString",
+            "picklistDouble",
+            "teamProject"
+          ],
+          "x-ms-enum": {
+            "name": "Microsoft.VisualStudio.Services.Notifications.WebApi.SubscriptionFieldType"
+          }
+        },
+        "value": {
+          "description": "Gets or sets the value definition of this field like the getValuesMethod and template to display in the UI",
+          "$ref": "#/definitions/ValueDefinition"
+        }
+      }
+    },
+    "NotificationEventPublisher": {
+      "description": "Encapsulates the properties of a notification event publisher.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "subscriptionManagementInfo": {
+          "$ref": "#/definitions/SubscriptionManagement"
+        },
+        "url": {
+          "type": "string"
+        }
+      }
+    },
+    "NotificationEventRole": {
+      "description": "Encapsulates the properties of an event role.  An event Role is used for role based subscription for example for a buildCompletedEvent, one role is request by field",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Gets or sets an Id for that role, this id is used by the event.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Gets or sets the Name for that role, this name is used for UI display.",
+          "type": "string"
+        },
+        "supportsGroups": {
+          "description": "Gets or sets whether this role can be a group or just an individual user",
+          "type": "boolean"
+        }
+      }
+    },
+    "NotificationEventType": {
+      "description": "Encapsulates the properties of an event type. It defines the fields, that can be used for filtering, for that event type.",
+      "type": "object",
+      "properties": {
+        "category": {
+          "$ref": "#/definitions/NotificationEventTypeCategory"
+        },
+        "color": {
+          "description": "Gets or sets the color representing this event type. Example: rgb(128,245,211) or #fafafa",
+          "type": "string"
+        },
+        "customSubscriptionsAllowed": {
+          "type": "boolean"
+        },
+        "eventPublisher": {
+          "$ref": "#/definitions/NotificationEventPublisher"
+        },
+        "fields": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/NotificationEventField"
+          }
+        },
+        "hasInitiator": {
+          "type": "boolean"
+        },
+        "icon": {
+          "description": "Gets or sets the icon representing this event type. Can be a URL or a CSS class. Example: css://some-css-class",
+          "type": "string"
+        },
+        "id": {
+          "description": "Gets or sets the unique identifier of this event definition.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Gets or sets the name of this event definition.",
+          "type": "string"
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/NotificationEventRole"
+          }
+        },
+        "supportedScopes": {
+          "description": "Gets or sets the scopes that this event type supports",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "url": {
+          "description": "Gets or sets the rest end point to get this event type details (fields, fields types)",
+          "type": "string"
+        }
+      }
+    },
+    "NotificationEventTypeCategory": {
+      "description": "Encapsulates the properties of a category. A category will be used by the UI to group event types",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Gets or sets the unique identifier of this category.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Gets or sets the friendly name of this category.",
+          "type": "string"
+        }
+      }
+    },
+    "NotificationQueryCondition": {
+      "description": "",
+      "type": "object",
+      "properties": {
+        "eventInitiator": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "eventType": {
+          "type": "string"
+        },
+        "subscriber": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "subscriptionId": {
+          "type": "string"
+        }
+      }
+    },
+    "NotificationReason": {
+      "description": "",
+      "type": "object",
+      "properties": {
+        "notificationReasonType": {
+          "enum": [
+            "unknown",
+            "follows",
+            "personal",
+            "personalAlias",
+            "directMember",
+            "indirectMember",
+            "groupAlias",
+            "subscriptionAlias",
+            "singleRole",
+            "directMemberGroupRole",
+            "inDirectMemberGroupRole",
+            "aliasMemberGroupRole"
+          ],
+          "x-ms-enum": {
+            "name": "Microsoft.VisualStudio.Services.Notifications.WebApi.NotificationReasonType"
+          }
+        },
+        "targetIdentities": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/IdentityRef"
+          }
+        }
+      }
+    },
+    "NotificationsEvaluationResult": {
+      "description": "Encapsulates notifications result properties. It defines the number of notifications and the recipients of notifications.",
+      "type": "object",
+      "properties": {
+        "count": {
+          "description": "Count of generated notifications",
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "NotificationStatistic": {
+      "description": "",
+      "type": "object",
+      "properties": {
+        "date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "hitCount": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "path": {
+          "type": "string"
+        },
+        "type": {
+          "enum": [
+            "notificationBySubscription",
+            "eventsByEventType",
+            "notificationByEventType",
+            "eventsByEventTypePerUser",
+            "notificationByEventTypePerUser",
+            "events",
+            "notifications",
+            "unprocessedRangeStart",
+            "unprocessedEventsByPublisher",
+            "unprocessedEventDelayByPublisher",
+            "unprocessedNotificationsByChannelByPublisher",
+            "unprocessedNotificationDelayByChannelByPublisher",
+            "delayRangeStart",
+            "totalPipelineTime",
+            "notificationPipelineTime",
+            "eventPipelineTime",
+            "hourlyRangeStart",
+            "hourlyNotificationBySubscription",
+            "hourlyEventsByEventTypePerUser",
+            "hourlyEvents",
+            "hourlyNotifications",
+            "hourlyUnprocessedEventsByPublisher",
+            "hourlyUnprocessedEventDelayByPublisher",
+            "hourlyUnprocessedNotificationsByChannelByPublisher",
+            "hourlyUnprocessedNotificationDelayByChannelByPublisher",
+            "hourlyTotalPipelineTime",
+            "hourlyNotificationPipelineTime",
+            "hourlyEventPipelineTime"
+          ],
+          "x-ms-enum": {
+            "name": "Microsoft.VisualStudio.Services.Notifications.WebApi.NotificationStatisticType"
+          }
+        },
+        "user": {
+          "$ref": "#/definitions/IdentityRef"
+        }
+      }
+    },
+    "NotificationStatisticsQuery": {
+      "description": "",
+      "type": "object",
+      "properties": {
+        "conditions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/NotificationStatisticsQueryConditions"
+          }
+        }
+      }
+    },
+    "NotificationStatisticsQueryConditions": {
+      "description": "",
+      "type": "object",
+      "properties": {
+        "endDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "hitCountMinimum": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "path": {
+          "type": "string"
+        },
+        "startDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "type": {
+          "enum": [
+            "notificationBySubscription",
+            "eventsByEventType",
+            "notificationByEventType",
+            "eventsByEventTypePerUser",
+            "notificationByEventTypePerUser",
+            "events",
+            "notifications",
+            "unprocessedRangeStart",
+            "unprocessedEventsByPublisher",
+            "unprocessedEventDelayByPublisher",
+            "unprocessedNotificationsByChannelByPublisher",
+            "unprocessedNotificationDelayByChannelByPublisher",
+            "delayRangeStart",
+            "totalPipelineTime",
+            "notificationPipelineTime",
+            "eventPipelineTime",
+            "hourlyRangeStart",
+            "hourlyNotificationBySubscription",
+            "hourlyEventsByEventTypePerUser",
+            "hourlyEvents",
+            "hourlyNotifications",
+            "hourlyUnprocessedEventsByPublisher",
+            "hourlyUnprocessedEventDelayByPublisher",
+            "hourlyUnprocessedNotificationsByChannelByPublisher",
+            "hourlyUnprocessedNotificationDelayByChannelByPublisher",
+            "hourlyTotalPipelineTime",
+            "hourlyNotificationPipelineTime",
+            "hourlyEventPipelineTime"
+          ],
+          "x-ms-enum": {
+            "name": "Microsoft.VisualStudio.Services.Notifications.WebApi.NotificationStatisticType"
+          }
+        },
+        "user": {
+          "$ref": "#/definitions/IdentityRef"
+        }
+      }
+    },
+    "NotificationSubscriber": {
+      "description": "A subscriber is a user or group that has the potential to receive notifications.",
+      "type": "object",
+      "properties": {
+        "deliveryPreference": {
+          "description": "Indicates how the subscriber should be notified by default.",
+          "enum": [
+            "none",
+            "preferredEmailAddress",
+            "eachMember",
+            "noDelivery",
+            "notSet"
+          ],
+          "x-ms-enum": {
+            "name": "Microsoft.VisualStudio.Services.Notifications.WebApi.NotificationSubscriberDeliveryPreference"
+          }
+        },
+        "flags": {
+          "enum": [
+            "none",
+            "deliveryPreferencesEditable",
+            "supportsPreferredEmailAddressDelivery",
+            "supportsEachMemberDelivery",
+            "supportsNoDelivery",
+            "isUser",
+            "isGroup",
+            "isTeam"
+          ],
+          "x-ms-enum": {
+            "name": "Microsoft.VisualStudio.Services.Notifications.WebApi.SubscriberFlags"
+          }
+        },
+        "id": {
+          "description": "Identifier of the subscriber.",
+          "type": "string",
+          "format": "uuid"
+        },
+        "preferredEmailAddress": {
+          "description": "Preferred email address of the subscriber. A null or empty value indicates no preferred email address has been set.",
+          "type": "string"
+        }
+      }
+    },
+    "NotificationSubscriberUpdateParameters": {
+      "description": "Updates to a subscriber. Typically used to change (or set) a preferred email address or default delivery preference.",
+      "type": "object",
+      "properties": {
+        "deliveryPreference": {
+          "description": "New delivery preference for the subscriber (indicates how the subscriber should be notified).",
+          "enum": [
+            "none",
+            "preferredEmailAddress",
+            "eachMember",
+            "noDelivery",
+            "notSet"
+          ],
+          "x-ms-enum": {
+            "name": "Microsoft.VisualStudio.Services.Notifications.WebApi.NotificationSubscriberDeliveryPreference"
+          }
+        },
+        "preferredEmailAddress": {
+          "description": "New preferred email address for the subscriber. Specify an empty string to clear the current address.",
+          "type": "string"
+        }
+      }
+    },
+    "NotificationSubscription": {
+      "description": "A subscription defines criteria for matching events and how the subscription's subscriber should be notified about those events.",
+      "type": "object",
+      "properties": {
+        "_links": {
+          "description": "Links to related resources, APIs, and views for the subscription.",
+          "$ref": "#/definitions/ReferenceLinks"
+        },
+        "adminSettings": {
+          "description": "Admin-managed settings for the subscription. Only applies when the subscriber is a group.",
+          "$ref": "#/definitions/SubscriptionAdminSettings"
+        },
+        "channel": {
+          "description": "Channel for delivering notifications triggered by the subscription.",
+          "$ref": "#/definitions/ISubscriptionChannel"
+        },
+        "description": {
+          "description": "Description of the subscription. Typically describes filter criteria which helps identity the subscription.",
+          "type": "string"
+        },
+        "extendedProperties": {
+          "description": "Any extra properties like detailed description for different contexts, user/group contexts",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "filter": {
+          "description": "Matching criteria for the subscription. ExpressionFilter",
+          "$ref": "#/definitions/ISubscriptionFilter"
+        },
+        "flags": {
+          "description": "Read-only indicators that further describe the subscription.",
+          "enum": [
+            "none",
+            "groupSubscription",
+            "contributedSubscription",
+            "canOptOut",
+            "teamSubscription"
+          ],
+          "x-ms-enum": {
+            "name": "Microsoft.VisualStudio.Services.Notifications.WebApi.SubscriptionFlags"
+          }
+        },
+        "id": {
+          "description": "Subscription identifier.",
+          "type": "string"
+        },
+        "lastModifiedBy": {
+          "description": "User that last modified (or created) the subscription.",
+          "$ref": "#/definitions/IdentityRef"
+        },
+        "modifiedDate": {
+          "description": "Date when the subscription was last modified. If the subscription has not been updated since it was created, this value will indicate when the subscription was created.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "permissions": {
+          "description": "The permissions the user have for this subscriptions.",
+          "enum": [
+            "none",
+            "view",
+            "edit",
+            "delete"
+          ],
+          "x-ms-enum": {
+            "name": "Microsoft.VisualStudio.Services.Notifications.WebApi.SubscriptionPermissions"
+          }
+        },
+        "scope": {
+          "description": "The container in which events must be published from in order to be matched by the subscription. If empty, the scope is the current host (typically an account or project collection). For example, a subscription scoped to project A will not produce notifications for events published from project B.",
+          "$ref": "#/definitions/SubscriptionScope"
+        },
+        "status": {
+          "description": "Status of the subscription. Typically indicates whether the subscription is enabled or not.",
+          "enum": [
+            "jailedByNotificationsVolume",
+            "pendingDeletion",
+            "disabledBySystem",
+            "disabledInactiveIdentity",
+            "disabledMessageQueueNotSupported",
+            "disabledMissingIdentity",
+            "disabledInvalidRoleExpression",
+            "disabledInvalidPathClause",
+            "disabledAsDuplicateOfDefault",
+            "disabledByAdmin",
+            "disabled",
+            "enabled",
+            "enabledOnProbation"
+          ],
+          "x-ms-enum": {
+            "name": "Microsoft.VisualStudio.Services.Notifications.WebApi.SubscriptionStatus"
+          }
+        },
+        "statusMessage": {
+          "description": "Message that provides more details about the status of the subscription.",
+          "type": "string"
+        },
+        "subscriber": {
+          "description": "User or group that will receive notifications for events matching the subscription's filter criteria.",
+          "$ref": "#/definitions/IdentityRef"
+        },
+        "url": {
+          "description": "REST API URL of the subscriotion.",
+          "type": "string"
+        },
+        "userSettings": {
+          "description": "User-managed settings for the subscription. Only applies when the subscriber is a group. Typically used to indicate whether the calling user is opted in or out of a group subscription.",
+          "$ref": "#/definitions/SubscriptionUserSettings"
+        }
+      }
+    },
+    "NotificationSubscriptionCreateParameters": {
+      "description": "Parameters for creating a new subscription. A subscription defines criteria for matching events and how the subscription's subscriber should be notified about those events.",
+      "type": "object",
+      "properties": {
+        "channel": {
+          "description": "Channel for delivering notifications triggered by the new subscription.",
+          "$ref": "#/definitions/ISubscriptionChannel"
+        },
+        "description": {
+          "description": "Brief description for the new subscription. Typically describes filter criteria which helps identity the subscription.",
+          "type": "string"
+        },
+        "filter": {
+          "description": "Matching criteria for the new subscription. ExpressionFilter",
+          "$ref": "#/definitions/ISubscriptionFilter"
+        },
+        "scope": {
+          "description": "The container in which events must be published from in order to be matched by the new subscription. If not specified, defaults to the current host (typically an account or project collection). For example, a subscription scoped to project A will not produce notifications for events published from project B.",
+          "$ref": "#/definitions/SubscriptionScope"
+        },
+        "subscriber": {
+          "description": "User or group that will receive notifications for events matching the subscription's filter criteria. If not specified, defaults to the calling user.",
+          "$ref": "#/definitions/IdentityRef"
+        }
+      }
+    },
+    "NotificationSubscriptionTemplate": {
+      "description": "",
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "filter": {
+          "$ref": "#/definitions/ISubscriptionFilter"
+        },
+        "id": {
+          "type": "string"
+        },
+        "notificationEventInformation": {
+          "$ref": "#/definitions/NotificationEventType"
+        },
+        "type": {
+          "enum": [
+            "user",
+            "team",
+            "both",
+            "none"
+          ],
+          "x-ms-enum": {
+            "name": "Microsoft.VisualStudio.Services.Notifications.WebApi.SubscriptionTemplateType"
+          }
+        }
+      }
+    },
+    "NotificationSubscriptionUpdateParameters": {
+      "description": "Parameters for updating an existing subscription. A subscription defines criteria for matching events and how the subscription's subscriber should be notified about those events. Note: only the fields to be updated should be set.",
+      "type": "object",
+      "properties": {
+        "adminSettings": {
+          "description": "Admin-managed settings for the subscription. Only applies to subscriptions where the subscriber is a group.",
+          "$ref": "#/definitions/SubscriptionAdminSettings"
+        },
+        "channel": {
+          "description": "Channel for delivering notifications triggered by the subscription.",
+          "$ref": "#/definitions/ISubscriptionChannel"
+        },
+        "description": {
+          "description": "Updated description for the subscription. Typically describes filter criteria which helps identity the subscription.",
+          "type": "string"
+        },
+        "filter": {
+          "description": "Matching criteria for the subscription. ExpressionFilter",
+          "$ref": "#/definitions/ISubscriptionFilter"
+        },
+        "scope": {
+          "description": "The container in which events must be published from in order to be matched by the new subscription. If not specified, defaults to the current host (typically the current account or project collection). For example, a subscription scoped to project A will not produce notifications for events published from project B.",
+          "$ref": "#/definitions/SubscriptionScope"
+        },
+        "status": {
+          "description": "Updated status for the subscription. Typically used to enable or disable a subscription.",
+          "enum": [
+            "jailedByNotificationsVolume",
+            "pendingDeletion",
+            "disabledBySystem",
+            "disabledInactiveIdentity",
+            "disabledMessageQueueNotSupported",
+            "disabledMissingIdentity",
+            "disabledInvalidRoleExpression",
+            "disabledInvalidPathClause",
+            "disabledAsDuplicateOfDefault",
+            "disabledByAdmin",
+            "disabled",
+            "enabled",
+            "enabledOnProbation"
+          ],
+          "x-ms-enum": {
+            "name": "Microsoft.VisualStudio.Services.Notifications.WebApi.SubscriptionStatus"
+          }
+        },
+        "statusMessage": {
+          "description": "Optional message that provides more details about the updated status.",
+          "type": "string"
+        },
+        "userSettings": {
+          "description": "User-managed settings for the subscription. Only applies to subscriptions where the subscriber is a group. Typically used to opt-in or opt-out a user from a group subscription.",
+          "$ref": "#/definitions/SubscriptionUserSettings"
+        }
+      }
+    },
+    "OperatorConstraint": {
+      "description": "Encapsulates the properties of an operator constraint. An operator constraint defines if some operator is available only for specific scope like a project scope.",
+      "type": "object",
+      "properties": {
+        "operator": {
+          "type": "string"
+        },
+        "supportedScopes": {
+          "description": "Gets or sets the list of scopes that this type supports.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "ReferenceLinks": {
+      "description": "The class to represent a collection of REST reference links.  Example: `{ self: { href: \"http://localhost:8080/tfs/DefaultCollection/_apis/wit/workItems/1\" } }`",
+      "type": "object",
+      "properties": {
+        "links": {
+          "description": "The readonly view of the links.  Because Reference links are readonly, we only want to expose them as read only.",
+          "readOnly": true,
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "SubscriptionAdminSettings": {
+      "description": "Admin-managed settings for a group subscription.",
+      "type": "object",
+      "properties": {
+        "blockUserOptOut": {
+          "description": "If true, members of the group subscribed to the associated subscription cannot opt (choose not to get notified)",
+          "type": "boolean"
+        }
+      }
+    },
+    "SubscriptionChannelWithAddress": {
+      "description": "",
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "string"
+        },
+        "type": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "useCustomAddress": {
+          "type": "boolean"
+        }
+      }
+    },
+    "SubscriptionEvaluationRequest": {
+      "description": "Encapsulates the properties of a SubscriptionEvaluationRequest. It defines the subscription to be evaluated and time interval for events used in evaluation.",
+      "type": "object",
+      "properties": {
+        "minEventsCreatedDate": {
+          "description": "The min created date for the events used for matching in UTC. Use all events created since this date",
+          "type": "string",
+          "format": "date-time"
+        },
+        "subscriptionCreateParameters": {
+          "description": "User or group that will receive notifications for events matching the subscription's filter criteria. If not specified, defaults to the calling user.",
+          "$ref": "#/definitions/NotificationSubscriptionCreateParameters"
+        }
+      }
+    },
+    "SubscriptionEvaluationResult": {
+      "description": "Ecapsulates the subscription evaluation results. It defines the Date Interval that was used, number of events evaluated and events and notifications results",
+      "type": "object",
+      "properties": {
+        "evaluationJobStatus": {
+          "description": "Subscription evaluation job status",
+          "readOnly": true,
+          "enum": [
+            "notSet",
+            "queued",
+            "inProgress",
+            "cancelled",
+            "succeeded",
+            "failed",
+            "timedOut",
+            "notFound"
+          ],
+          "x-ms-enum": {
+            "name": "Microsoft.VisualStudio.Services.Notifications.WebApi.EvaluationOperationStatus"
+          }
+        },
+        "events": {
+          "description": "Subscription evaluation events results.",
+          "$ref": "#/definitions/EventsEvaluationResult"
+        },
+        "id": {
+          "description": "The requestId which is the subscription evaluation jobId",
+          "type": "string",
+          "format": "uuid"
+        },
+        "notifications": {
+          "description": "Subscription evaluation  notification results.",
+          "$ref": "#/definitions/NotificationsEvaluationResult"
+        }
+      }
+    },
+    "SubscriptionEvaluationSettings": {
+      "description": "Encapsulates the subscription evaluation settings needed for the UI",
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "description": "Indicates whether subscription evaluation before saving is enabled or not",
+          "type": "boolean"
+        },
+        "interval": {
+          "description": "Time interval to check on subscription evaluation job in seconds",
+          "type": "integer",
+          "format": "int32"
+        },
+        "threshold": {
+          "description": "Threshold on the number of notifications for considering a subscription too noisy",
+          "type": "integer",
+          "format": "int32"
+        },
+        "timeOut": {
+          "description": "Time out for the subscription evaluation check in seconds",
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "SubscriptionManagement": {
+      "description": "Encapsulates the properties needed to manage subscriptions, opt in and out of subscriptions.",
+      "type": "object",
+      "properties": {
+        "serviceInstanceType": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "url": {
+          "type": "string"
+        }
+      }
+    },
+    "SubscriptionQuery": {
+      "description": "Notification subscriptions query input.",
+      "type": "object",
+      "properties": {
+        "conditions": {
+          "description": "One or more conditions to query on. If more than 2 conditions are specified, the combined results of each condition is returned (i.e. conditions are logically OR'ed).",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SubscriptionQueryCondition"
+          }
+        },
+        "queryFlags": {
+          "description": "Flags the refine the types of subscriptions that will be returned from the query.",
+          "enum": [
+            "none",
+            "includeInvalidSubscriptions",
+            "includeDeletedSubscriptions",
+            "includeFilterDetails",
+            "alwaysReturnBasicInformation"
+          ],
+          "x-ms-enum": {
+            "name": "Microsoft.VisualStudio.Services.Notifications.WebApi.SubscriptionQueryFlags"
+          }
+        }
+      }
+    },
+    "SubscriptionQueryCondition": {
+      "description": "Conditions a subscription must match to qualify for the query result set. Not all fields are required. A subscription must match all conditions specified in order to qualify for the result set.",
+      "type": "object",
+      "properties": {
+        "filter": {
+          "description": "Filter conditions that matching subscriptions must have. Typically only the filter's type and event type are used for matching.",
+          "$ref": "#/definitions/ISubscriptionFilter"
+        },
+        "flags": {
+          "description": "Flags to specify the the type subscriptions to query for.",
+          "enum": [
+            "none",
+            "groupSubscription",
+            "contributedSubscription",
+            "canOptOut",
+            "teamSubscription"
+          ],
+          "x-ms-enum": {
+            "name": "Microsoft.VisualStudio.Services.Notifications.WebApi.SubscriptionFlags"
+          }
+        },
+        "scope": {
+          "description": "Scope that matching subscriptions must have.",
+          "type": "string"
+        },
+        "subscriberId": {
+          "description": "ID of the subscriber (user or group) that matching subscriptions must be subscribed to.",
+          "type": "string",
+          "format": "uuid"
+        },
+        "subscriptionId": {
+          "description": "ID of the subscription to query for.",
+          "type": "string"
+        }
+      }
+    },
+    "SubscriptionScope": {
+      "description": "A resource, typically an account or project, in which events are published from.",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/EventScope"
+        }
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "SubscriptionUserSettings": {
+      "description": "User-managed settings for a group subscription.",
+      "type": "object",
+      "properties": {
+        "optedOut": {
+          "description": "Indicates whether the user will receive notifications for the associated group subscription.",
+          "type": "boolean"
+        }
+      }
+    },
+    "ValueDefinition": {
+      "description": "Encapsulates the properties of a field value definition. It has the information needed to retrieve the list of possible values for a certain field and how to handle that field values in the UI. This information includes what type of object this value represents, which property to use for UI display and which property to use for saving the subscription",
+      "type": "object",
+      "properties": {
+        "dataSource": {
+          "description": "Gets or sets the data source.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/InputValue"
+          }
+        },
+        "endPoint": {
+          "description": "Gets or sets the rest end point.",
+          "type": "string"
+        },
+        "resultTemplate": {
+          "description": "Gets or sets the result template.",
+          "type": "string"
+        }
+      }
+    },
+    "VssJsonCollectionWrapper": {
+      "description": "This class is used to serialized collections as a single JSON object on the wire, to avoid serializing JSON arrays directly to the client, which can be a security hole",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/VssJsonCollectionWrapperBase"
+        }
+      ],
+      "properties": {
+        "value": {
+          "readOnly": true,
+          "type": "string",
+          "format": "T"
+        }
+      }
+    },
+    "VssJsonCollectionWrapperBase": {
+      "description": "",
+      "type": "object",
+      "properties": {
+        "count": {
+          "readOnly": true,
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "VssNotificationEvent": {
+      "description": "This is the type used for firing notifications intended for the subsystem in the Notifications SDK. For components that can't take a dependency on the Notifications SDK directly, they can use ITeamFoundationEventService.PublishNotification and the Notifications SDK ISubscriber implementation will get it.",
+      "type": "object",
+      "properties": {
+        "actors": {
+          "description": "Optional: A list of actors which are additional identities with corresponding roles that are relevant to the event.",
+          "readOnly": true,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/EventActor"
+          }
+        },
+        "artifactUris": {
+          "description": "Optional: A list of artifacts referenced or impacted by this event.",
+          "readOnly": true,
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "data": {
+          "description": "Required: The event payload.  If Data is a string, it must be in Json or XML format.  Otherwise it must have a serialization format attribute.",
+          "type": "object"
+        },
+        "eventType": {
+          "description": "Required: The name of the event.  This event must be registered in the context it is being fired.",
+          "type": "string"
+        },
+        "scopes": {
+          "description": "Optional: A list of scopes which are are relevant to the event.",
+          "readOnly": true,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/EventScope"
+          }
+        }
+      }
+    },
+    "GET__notification_eventTypes": {
+      "parameters": {},
+      "responses": {
+        "200": {
+          "body": {
+            "count": 19,
+            "value": [
+              {
+                "id": "ms.vss-build.build-completed-event",
+                "name": "Build completed",
+                "url": "https://fabrikam.visualstudio.com/_apis/notification/Subscriptions/ms.vss-build.build-completed-event",
+                "eventPublisher": {
+                  "id": "ms.vss-build.build-event-publisher",
+                  "subscriptionManagementInfo": {
+                    "serviceInstanceType": "00025394-6065-48ca-87d9-7f5672854ef7"
+                  }
+                },
+                "category": {
+                  "id": "ms.vss-build.build-and-release-event-category",
+                  "name": "Build"
+                },
+                "roles": [
+                  {
+                    "id": "lastChangedBy",
+                    "name": "Last changed by"
+                  },
+                  {
+                    "id": "requestedBy",
+                    "name": "Requested by"
+                  },
+                  {
+                    "id": "requestedFor",
+                    "name": "Requested for"
+                  }
+                ],
+                "supportedScopes": [
+                  "project",
+                  "collection"
+                ],
+                "hasInitiator": false,
+                "customSubscriptionsAllowed": true,
+                "icon": "css://bowtie-icon bowtie-build",
+                "color": "#748189"
+              },
+              {
+                "id": "ms.vss-build.build-completion-legacy-event",
+                "name": "Build completed (legacy)",
+                "url": "https://fabrikam.visualstudio.com/_apis/notification/Subscriptions/ms.vss-build.build-completion-legacy-event",
+                "eventPublisher": {
+                  "id": "ms.vss-build.build-event-publisher",
+                  "subscriptionManagementInfo": {
+                    "serviceInstanceType": "00025394-6065-48ca-87d9-7f5672854ef7"
+                  }
+                },
+                "category": {
+                  "id": "ms.vss-build.build-and-release-event-category",
+                  "name": "Build"
+                },
+                "roles": [],
+                "supportedScopes": [
+                  "project",
+                  "collection"
+                ],
+                "hasInitiator": false,
+                "customSubscriptionsAllowed": false,
+                "icon": "css://bowtie-icon bowtie-build",
+                "color": "#748189"
+              },
+              {
+                "id": "ms.vss-build.build-completion-legacy-event2",
+                "name": "Build completedV2 (legacy)",
+                "url": "https://fabrikam.visualstudio.com/_apis/notification/Subscriptions/ms.vss-build.build-completion-legacy-event2",
+                "eventPublisher": {
+                  "id": "ms.vss-build.build-event-publisher",
+                  "subscriptionManagementInfo": {
+                    "serviceInstanceType": "00025394-6065-48ca-87d9-7f5672854ef7"
+                  }
+                },
+                "category": {
+                  "id": "ms.vss-build.build-and-release-event-category",
+                  "name": "Build"
+                },
+                "roles": [],
+                "supportedScopes": [
+                  "project",
+                  "collection"
+                ],
+                "hasInitiator": false,
+                "customSubscriptionsAllowed": false,
+                "icon": "css://bowtie-icon bowtie-build",
+                "color": "#748189"
+              },
+              {
+                "id": "ms.vss-build.build-definition-changed-event",
+                "name": "Build definition changed",
+                "url": "https://fabrikam.visualstudio.com/_apis/notification/Subscriptions/ms.vss-build.build-definition-changed-event",
+                "eventPublisher": {
+                  "id": "ms.vss-build.build-event-publisher",
+                  "subscriptionManagementInfo": {
+                    "serviceInstanceType": "00025394-6065-48ca-87d9-7f5672854ef7"
+                  }
+                },
+                "category": null,
+                "roles": [],
+                "supportedScopes": [
+                  "project",
+                  "collection"
+                ],
+                "hasInitiator": false,
+                "customSubscriptionsAllowed": true,
+                "icon": "",
+                "color": ""
+              },
+              {
+                "id": "ms.vss-build.build-resource-changed-event",
+                "name": "Build resource changed",
+                "url": "https://fabrikam.visualstudio.com/_apis/notification/Subscriptions/ms.vss-build.build-resource-changed-event",
+                "eventPublisher": {
+                  "id": "ms.vss-build.build-event-publisher",
+                  "subscriptionManagementInfo": {
+                    "serviceInstanceType": "00025394-6065-48ca-87d9-7f5672854ef7"
+                  }
+                },
+                "category": {
+                  "id": "ms.vss-build.build-and-release-event-category",
+                  "name": "Build"
+                },
+                "roles": [],
+                "supportedScopes": [
+                  "project",
+                  "collection"
+                ],
+                "hasInitiator": false,
+                "customSubscriptionsAllowed": true,
+                "icon": "",
+                "color": ""
+              },
+              {
+                "id": "ms.vss-build.build-status-change-event",
+                "name": "Build status change",
+                "url": "https://fabrikam.visualstudio.com/_apis/notification/Subscriptions/ms.vss-build.build-status-change-event",
+                "eventPublisher": {
+                  "id": "ms.vss-build.build-event-publisher",
+                  "subscriptionManagementInfo": {
+                    "serviceInstanceType": "00025394-6065-48ca-87d9-7f5672854ef7"
+                  }
+                },
+                "category": {
+                  "id": "ms.vss-build.build-and-release-event-category",
+                  "name": "Build"
+                },
+                "roles": [],
+                "supportedScopes": [
+                  "project",
+                  "collection"
+                ],
+                "hasInitiator": false,
+                "customSubscriptionsAllowed": true,
+                "icon": "css://bowtie-icon bowtie-build",
+                "color": "#748189"
+              },
+              {
+                "id": "ms.vss-code.checkin-event",
+                "name": "Code checked in",
+                "url": "https://fabrikam.visualstudio.com/_apis/notification/Subscriptions/ms.vss-code.checkin-event",
+                "eventPublisher": {
+                  "id": "ms.vss-code.code-event-publisher",
+                  "subscriptionManagementInfo": {
+                    "serviceInstanceType": "00025394-6065-48ca-87d9-7f5672854ef7"
+                  }
+                },
+                "category": {
+                  "id": "ms.vss-code.code-tfvc-event-category",
+                  "name": "Code (TFVC)"
+                },
+                "roles": [
+                  {
+                    "id": "committer",
+                    "name": "Committer"
+                  },
+                  {
+                    "id": "owner",
+                    "name": "Owner"
+                  }
+                ],
+                "supportedScopes": [
+                  "project",
+                  "collection"
+                ],
+                "hasInitiator": true,
+                "customSubscriptionsAllowed": true,
+                "icon": "css://bowtie-icon bowtie-repo-tfvc",
+                "color": "#68217A"
+              },
+              {
+                "id": "ms.vss-code.git-push-event",
+                "name": "Code pushed",
+                "url": "https://fabrikam.visualstudio.com/_apis/notification/Subscriptions/ms.vss-code.git-push-event",
+                "eventPublisher": {
+                  "id": "ms.vss-code.git-event-publisher",
+                  "subscriptionManagementInfo": {
+                    "serviceInstanceType": "00025394-6065-48ca-87d9-7f5672854ef7"
+                  }
+                },
+                "category": {
+                  "id": "ms.vss-code.code-git-event-category",
+                  "name": "Code (Git)"
+                },
+                "roles": [
+                  {
+                    "id": "pusher",
+                    "name": "Pushed by"
+                  }
+                ],
+                "supportedScopes": [
+                  "project",
+                  "collection"
+                ],
+                "hasInitiator": false,
+                "customSubscriptionsAllowed": true,
+                "icon": "css://bowtie-icon bowtie-tfvc-commit",
+                "color": "#68217A"
+              },
+              {
+                "id": "ms.vss-code.git-repository-created-event",
+                "name": "Repository created",
+                "url": "https://fabrikam.visualstudio.com/_apis/notification/Subscriptions/ms.vss-code.git-repository-created-event",
+                "eventPublisher": {
+                  "id": "ms.vss-code.git-event-publisher",
+                  "subscriptionManagementInfo": {
+                    "serviceInstanceType": "00025394-6065-48ca-87d9-7f5672854ef7"
+                  }
+                },
+                "category": null,
+                "roles": [],
+                "supportedScopes": [
+                  "project",
+                  "collection"
+                ],
+                "hasInitiator": false,
+                "customSubscriptionsAllowed": true,
+                "icon": "css://bowtie-icon bowtie-repo-git",
+                "color": "#68217A"
+              },
+              {
+                "id": "ms.vss-code.git-repository-renamed-event",
+                "name": "Repository renamed",
+                "url": "https://fabrikam.visualstudio.com/_apis/notification/Subscriptions/ms.vss-code.git-repository-renamed-event",
+                "eventPublisher": {
+                  "id": "ms.vss-code.git-event-publisher",
+                  "subscriptionManagementInfo": {
+                    "serviceInstanceType": "00025394-6065-48ca-87d9-7f5672854ef7"
+                  }
+                },
+                "category": null,
+                "roles": [],
+                "supportedScopes": [
+                  "project",
+                  "collection"
+                ],
+                "hasInitiator": false,
+                "customSubscriptionsAllowed": true,
+                "icon": "css://bowtie-icon bowtie-repo-git",
+                "color": "#68217A"
+              },
+              {
+                "id": "ms.vss-code.git-repository-deleted-event",
+                "name": "Repository deleted",
+                "url": "https://fabrikam.visualstudio.com/_apis/notification/Subscriptions/ms.vss-code.git-repository-deleted-event",
+                "eventPublisher": {
+                  "id": "ms.vss-code.git-event-publisher",
+                  "subscriptionManagementInfo": {
+                    "serviceInstanceType": "00025394-6065-48ca-87d9-7f5672854ef7"
+                  }
+                },
+                "category": null,
+                "roles": [],
+                "supportedScopes": [
+                  "project",
+                  "collection"
+                ],
+                "hasInitiator": false,
+                "customSubscriptionsAllowed": true,
+                "icon": "css://bowtie-icon bowtie-repo-git",
+                "color": "#68217A"
+              },
+              {
+                "id": "ms.vss-code.git-import-succeeded-event",
+                "name": "Import successful",
+                "url": "https://fabrikam.visualstudio.com/_apis/notification/Subscriptions/ms.vss-code.git-import-succeeded-event",
+                "eventPublisher": {
+                  "id": "ms.vss-code.git-event-publisher",
+                  "subscriptionManagementInfo": {
+                    "serviceInstanceType": "00025394-6065-48ca-87d9-7f5672854ef7"
+                  }
+                },
+                "category": null,
+                "roles": [],
+                "supportedScopes": [
+                  "collection",
+                  "project"
+                ],
+                "hasInitiator": false,
+                "customSubscriptionsAllowed": true,
+                "icon": "",
+                "color": ""
+              },
+              {
+                "id": "ms.vss-code.git-import-failed-event",
+                "name": "Import failed",
+                "url": "https://fabrikam.visualstudio.com/_apis/notification/Subscriptions/ms.vss-code.git-import-failed-event",
+                "eventPublisher": {
+                  "id": "ms.vss-code.git-event-publisher",
+                  "subscriptionManagementInfo": {
+                    "serviceInstanceType": "00025394-6065-48ca-87d9-7f5672854ef7"
+                  }
+                },
+                "category": null,
+                "roles": [],
+                "supportedScopes": [
+                  "collection",
+                  "project"
+                ],
+                "hasInitiator": false,
+                "customSubscriptionsAllowed": true,
+                "icon": "",
+                "color": ""
+              },
+              {
+                "id": "ms.vss-code.git-pullrequest-event",
+                "name": "Pull request created or updated",
+                "url": "https://fabrikam.visualstudio.com/_apis/notification/Subscriptions/ms.vss-code.git-pullrequest-event",
+                "eventPublisher": {
+                  "id": "ms.vss-code.git-event-publisher",
+                  "subscriptionManagementInfo": {
+                    "serviceInstanceType": "00025394-6065-48ca-87d9-7f5672854ef7"
+                  }
+                },
+                "category": {
+                  "id": "ms.vss-code.code-git-event-category",
+                  "name": "Code (Git)"
+                },
+                "roles": [
+                  {
+                    "id": "author",
+                    "name": "Authored by"
+                  },
+                  {
+                    "id": "reviewer",
+                    "name": "Reviewer"
+                  },
+                  {
+                    "id": "changedReviewers",
+                    "name": "Changed reviewers"
+                  }
+                ],
+                "supportedScopes": [
+                  "project",
+                  "collection"
+                ],
+                "hasInitiator": true,
+                "customSubscriptionsAllowed": true,
+                "icon": "css://bowtie-icon bowtie-tfvc-pull-request",
+                "color": "#68217A"
+              },
+              {
+                "id": "ms.vss-code.git-pullrequest-merge-event",
+                "name": "Pull request merged",
+                "url": "https://fabrikam.visualstudio.com/_apis/notification/Subscriptions/ms.vss-code.git-pullrequest-merge-event",
+                "eventPublisher": {
+                  "id": "ms.vss-code.git-event-publisher",
+                  "subscriptionManagementInfo": {
+                    "serviceInstanceType": "00025394-6065-48ca-87d9-7f5672854ef7"
+                  }
+                },
+                "category": {
+                  "id": "ms.vss-code.code-git-event-category",
+                  "name": "Code (Git)"
+                },
+                "roles": [],
+                "supportedScopes": [
+                  "project",
+                  "collection"
+                ],
+                "hasInitiator": true,
+                "customSubscriptionsAllowed": true,
+                "icon": "css://bowtie-icon bowtie-tfvc-merge",
+                "color": "#68217A"
+              },
+              {
+                "id": "ms.vss-codereview.codereview-changed-event",
+                "name": "Code review changed",
+                "url": "https://fabrikam.visualstudio.com/_apis/notification/Subscriptions/ms.vss-codereview.codereview-changed-event",
+                "eventPublisher": {
+                  "id": "ms.vss-codereview.codereview-event-publisher",
+                  "subscriptionManagementInfo": {
+                    "serviceInstanceType": "00025394-6065-48ca-87d9-7f5672854ef7"
+                  }
+                },
+                "category": {
+                  "id": "ms.vss-code.code-tfvc-event-category",
+                  "name": "Code (TFVC)"
+                },
+                "roles": [
+                  {
+                    "id": "requestedBy",
+                    "name": "Requested by"
+                  },
+                  {
+                    "id": "newReviewer",
+                    "name": "New reviewer"
+                  },
+                  {
+                    "id": "reviewer",
+                    "name": "Reviewer"
+                  },
+                  {
+                    "id": "declinedReviewer",
+                    "name": "Declined reviewer"
+                  }
+                ],
+                "supportedScopes": [
+                  "project",
+                  "collection"
+                ],
+                "hasInitiator": true,
+                "customSubscriptionsAllowed": true,
+                "icon": "css://bowtie-icon bowtie-tfvc-pull-request",
+                "color": "#68217A"
+              },
+              {
+                "id": "ms.vss-notifications.subscription-disabled-event",
+                "name": "Subcription disabled",
+                "url": "https://fabrikam.visualstudio.com/_apis/notification/Subscriptions/ms.vss-notifications.subscription-disabled-event",
+                "eventPublisher": {
+                  "id": "ms.vss-notifications.notifications-event-publisher",
+                  "subscriptionManagementInfo": {
+                    "serviceInstanceType": "00000000-0000-0000-0000-000000000000"
+                  }
+                },
+                "category": null,
+                "roles": [],
+                "supportedScopes": [
+                  "collection",
+                  "project"
+                ],
+                "hasInitiator": false,
+                "customSubscriptionsAllowed": false,
+                "icon": "",
+                "color": ""
+              },
+              {
+                "id": "ms.vss-tfs.message-sent-event",
+                "name": "Team room message",
+                "url": "https://fabrikam.visualstudio.com/_apis/notification/Subscriptions/ms.vss-tfs.message-sent-event",
+                "eventPublisher": {
+                  "id": "ms.vss-tfs.chat-event-publisher",
+                  "subscriptionManagementInfo": {
+                    "serviceInstanceType": "00025394-6065-48ca-87d9-7f5672854ef7"
+                  }
+                },
+                "category": null,
+                "roles": [],
+                "supportedScopes": [
+                  "project",
+                  "collection"
+                ],
+                "hasInitiator": false,
+                "customSubscriptionsAllowed": false,
+                "icon": "",
+                "color": ""
+              },
+              {
+                "id": "ms.vss-work.workitem-changed-event",
+                "name": "Work item created or updated",
+                "url": "https://fabrikam.visualstudio.com/_apis/notification/Subscriptions/ms.vss-work.workitem-changed-event",
+                "eventPublisher": {
+                  "id": "ms.vss-work.work-event-publisher",
+                  "subscriptionManagementInfo": {
+                    "serviceInstanceType": "00025394-6065-48ca-87d9-7f5672854ef7"
+                  }
+                },
+                "category": {
+                  "id": "ms.vss-work.work-event-category",
+                  "name": "Work"
+                },
+                "roles": [
+                  {
+                    "id": "System.AssignedTo",
+                    "name": "Assigned To"
+                  },
+                  {
+                    "id": "System.AssignedTo.Old",
+                    "name": "Previous Assignee"
+                  },
+                  {
+                    "id": "System.AssignedTo.New",
+                    "name": "Current Assignee"
+                  }
+                ],
+                "supportedScopes": [
+                  "project",
+                  "collection"
+                ],
+                "hasInitiator": true,
+                "customSubscriptionsAllowed": true,
+                "icon": "css://bowtie-icon bowtie-work-item",
+                "color": "#009CCC"
+              }
+            ]
+          }
+        }
+      },
+      "x-ms-vss-migrated": true,
+      "x-ms-vss-example-request": {
+        "url": "https://fabrikam.visualstudio.com/_apis/notification/eventTypes?api-version=3.2-preview"
+      }
+    },
+    "GET__notification_eventTypes_publisherId-_publisherId_": {
+      "parameters": {
+        "publisherId": "ms.vss-code.git-event-publisher"
+      },
+      "responses": {
+        "200": {
+          "body": {
+            "count": 8,
+            "value": [
+              {
+                "id": "ms.vss-code.git-push-event",
+                "name": "Code pushed",
+                "url": "https://fabrikam.visualstudio.com/_apis/notification/Subscriptions/ms.vss-code.git-push-event",
+                "eventPublisher": {
+                  "id": "ms.vss-code.git-event-publisher",
+                  "subscriptionManagementInfo": {
+                    "serviceInstanceType": "00025394-6065-48ca-87d9-7f5672854ef7"
+                  }
+                },
+                "category": {
+                  "id": "ms.vss-code.code-git-event-category",
+                  "name": "Code (Git)"
+                },
+                "roles": [
+                  {
+                    "id": "pusher",
+                    "name": "Pushed by"
+                  }
+                ],
+                "supportedScopes": [
+                  "project",
+                  "collection"
+                ],
+                "hasInitiator": false,
+                "customSubscriptionsAllowed": true,
+                "icon": "css://bowtie-icon bowtie-tfvc-commit",
+                "color": "#68217A"
+              },
+              {
+                "id": "ms.vss-code.git-repository-created-event",
+                "name": "Repository created",
+                "url": "https://fabrikam.visualstudio.com/_apis/notification/Subscriptions/ms.vss-code.git-repository-created-event",
+                "eventPublisher": {
+                  "id": "ms.vss-code.git-event-publisher",
+                  "subscriptionManagementInfo": {
+                    "serviceInstanceType": "00025394-6065-48ca-87d9-7f5672854ef7"
+                  }
+                },
+                "category": null,
+                "roles": [],
+                "supportedScopes": [
+                  "project",
+                  "collection"
+                ],
+                "hasInitiator": false,
+                "customSubscriptionsAllowed": true,
+                "icon": "css://bowtie-icon bowtie-repo-git",
+                "color": "#68217A"
+              },
+              {
+                "id": "ms.vss-code.git-repository-renamed-event",
+                "name": "Repository renamed",
+                "url": "https://fabrikam.visualstudio.com/_apis/notification/Subscriptions/ms.vss-code.git-repository-renamed-event",
+                "eventPublisher": {
+                  "id": "ms.vss-code.git-event-publisher",
+                  "subscriptionManagementInfo": {
+                    "serviceInstanceType": "00025394-6065-48ca-87d9-7f5672854ef7"
+                  }
+                },
+                "category": null,
+                "roles": [],
+                "supportedScopes": [
+                  "project",
+                  "collection"
+                ],
+                "hasInitiator": false,
+                "customSubscriptionsAllowed": true,
+                "icon": "css://bowtie-icon bowtie-repo-git",
+                "color": "#68217A"
+              },
+              {
+                "id": "ms.vss-code.git-repository-deleted-event",
+                "name": "Repository deleted",
+                "url": "https://fabrikam.visualstudio.com/_apis/notification/Subscriptions/ms.vss-code.git-repository-deleted-event",
+                "eventPublisher": {
+                  "id": "ms.vss-code.git-event-publisher",
+                  "subscriptionManagementInfo": {
+                    "serviceInstanceType": "00025394-6065-48ca-87d9-7f5672854ef7"
+                  }
+                },
+                "category": null,
+                "roles": [],
+                "supportedScopes": [
+                  "project",
+                  "collection"
+                ],
+                "hasInitiator": false,
+                "customSubscriptionsAllowed": true,
+                "icon": "css://bowtie-icon bowtie-repo-git",
+                "color": "#68217A"
+              },
+              {
+                "id": "ms.vss-code.git-import-succeeded-event",
+                "name": "Import successful",
+                "url": "https://fabrikam.visualstudio.com/_apis/notification/Subscriptions/ms.vss-code.git-import-succeeded-event",
+                "eventPublisher": {
+                  "id": "ms.vss-code.git-event-publisher",
+                  "subscriptionManagementInfo": {
+                    "serviceInstanceType": "00025394-6065-48ca-87d9-7f5672854ef7"
+                  }
+                },
+                "category": null,
+                "roles": [],
+                "supportedScopes": [
+                  "collection",
+                  "project"
+                ],
+                "hasInitiator": false,
+                "customSubscriptionsAllowed": true,
+                "icon": "",
+                "color": ""
+              },
+              {
+                "id": "ms.vss-code.git-import-failed-event",
+                "name": "Import failed",
+                "url": "https://fabrikam.visualstudio.com/_apis/notification/Subscriptions/ms.vss-code.git-import-failed-event",
+                "eventPublisher": {
+                  "id": "ms.vss-code.git-event-publisher",
+                  "subscriptionManagementInfo": {
+                    "serviceInstanceType": "00025394-6065-48ca-87d9-7f5672854ef7"
+                  }
+                },
+                "category": null,
+                "roles": [],
+                "supportedScopes": [
+                  "collection",
+                  "project"
+                ],
+                "hasInitiator": false,
+                "customSubscriptionsAllowed": true,
+                "icon": "",
+                "color": ""
+              },
+              {
+                "id": "ms.vss-code.git-pullrequest-event",
+                "name": "Pull request created or updated",
+                "url": "https://fabrikam.visualstudio.com/_apis/notification/Subscriptions/ms.vss-code.git-pullrequest-event",
+                "eventPublisher": {
+                  "id": "ms.vss-code.git-event-publisher",
+                  "subscriptionManagementInfo": {
+                    "serviceInstanceType": "00025394-6065-48ca-87d9-7f5672854ef7"
+                  }
+                },
+                "category": {
+                  "id": "ms.vss-code.code-git-event-category",
+                  "name": "Code (Git)"
+                },
+                "roles": [
+                  {
+                    "id": "author",
+                    "name": "Authored by"
+                  },
+                  {
+                    "id": "reviewer",
+                    "name": "Reviewer"
+                  },
+                  {
+                    "id": "changedReviewers",
+                    "name": "Changed reviewers"
+                  }
+                ],
+                "supportedScopes": [
+                  "project",
+                  "collection"
+                ],
+                "hasInitiator": true,
+                "customSubscriptionsAllowed": true,
+                "icon": "css://bowtie-icon bowtie-tfvc-pull-request",
+                "color": "#68217A"
+              },
+              {
+                "id": "ms.vss-code.git-pullrequest-merge-event",
+                "name": "Pull request merged",
+                "url": "https://fabrikam.visualstudio.com/_apis/notification/Subscriptions/ms.vss-code.git-pullrequest-merge-event",
+                "eventPublisher": {
+                  "id": "ms.vss-code.git-event-publisher",
+                  "subscriptionManagementInfo": {
+                    "serviceInstanceType": "00025394-6065-48ca-87d9-7f5672854ef7"
+                  }
+                },
+                "category": {
+                  "id": "ms.vss-code.code-git-event-category",
+                  "name": "Code (Git)"
+                },
+                "roles": [],
+                "supportedScopes": [
+                  "project",
+                  "collection"
+                ],
+                "hasInitiator": true,
+                "customSubscriptionsAllowed": true,
+                "icon": "css://bowtie-icon bowtie-tfvc-merge",
+                "color": "#68217A"
+              }
+            ]
+          }
+        }
+      },
+      "x-ms-vss-migrated": true,
+      "x-ms-vss-example-request": {
+        "url": "https://fabrikam.visualstudio.com/_apis/notification/eventTypes?publisherId=ms.vss-code.git-event-publisher&api-version=3.2-preview"
+      }
+    },
+    "GET__notification_eventTypes__eventTypeId_": {
+      "parameters": {
+        "eventTypeId": "ms.vss-build.build-completed-event"
+      },
+      "responses": {
+        "200": {
+          "body": {
+            "id": "ms.vss-build.build-completed-event",
+            "name": "Build completed",
+            "url": null,
+            "eventPublisher": {
+              "id": "ms.vss-build.build-event-publisher",
+              "subscriptionManagementInfo": {
+                "serviceInstanceType": "00025394-6065-48ca-87d9-7f5672854ef7"
+              }
+            },
+            "category": {
+              "id": "ms.vss-build.build-and-release-event-category",
+              "name": "Build"
+            },
+            "fields": {
+              "ms.vss-build.build-controller-event-field": {
+                "id": "ms.vss-build.build-controller-event-field",
+                "name": "Build controller",
+                "fieldType": {
+                  "id": "ms.vss-build.build-controller-field-type",
+                  "operators": [
+                    "=",
+                    "<>"
+                  ],
+                  "operatorConstraints": []
+                },
+                "path": "tb1:Controller/@Name",
+                "supportedScopes": [
+                  "project",
+                  "collection"
+                ]
+              },
+              "ms.vss-build.build-reason-event-field": {
+                "id": "ms.vss-build.build-reason-event-field",
+                "name": "Build reason",
+                "fieldType": {
+                  "id": "ms.vss-build.build-reason-field-type",
+                  "operators": [
+                    "=",
+                    "<>",
+                    "Contains",
+                    "Does not contain"
+                  ],
+                  "operatorConstraints": []
+                },
+                "path": "tb1:Build/@Reason",
+                "supportedScopes": [
+                  "project",
+                  "collection"
+                ]
+              },
+              "ms.vss-build.compilation-status-event-field": {
+                "id": "ms.vss-build.compilation-status-event-field",
+                "name": "Compilation status",
+                "fieldType": {
+                  "id": "ms.vss-build.phase-status-field-type",
+                  "operators": [
+                    "=",
+                    "<>",
+                    "Contains",
+                    "Does not contain"
+                  ],
+                  "operatorConstraints": []
+                },
+                "path": "tb1:Build/@CompilationStatus",
+                "supportedScopes": [
+                  "project",
+                  "collection"
+                ]
+              },
+              "ms.vss-build.definition-name-event-field": {
+                "id": "ms.vss-build.definition-name-event-field",
+                "name": "Definition name",
+                "fieldType": {
+                  "id": "ms.vss-build.definition-name-field-type",
+                  "operators": [
+                    "=",
+                    "<>",
+                    "Contains"
+                  ],
+                  "operatorConstraints": []
+                },
+                "path": "tb1:Definition/@FullPath",
+                "supportedScopes": [
+                  "project"
+                ]
+              },
+              "ms.vss-build.requested-by-event-field": {
+                "id": "ms.vss-build.requested-by-event-field",
+                "name": "Requested by",
+                "fieldType": {
+                  "id": "ms.vss-notifications.identity-array-field-type",
+                  "operators": [
+                    "Contains",
+                    "Does not contain"
+                  ],
+                  "operatorConstraints": []
+                },
+                "path": "RequestedBy",
+                "supportedScopes": [
+                  "project",
+                  "collection"
+                ]
+              },
+              "ms.vss-build.requested-for-event-field": {
+                "id": "ms.vss-build.requested-for-event-field",
+                "name": "Requested for",
+                "fieldType": {
+                  "id": "ms.vss-notifications.identity-array-field-type",
+                  "operators": [
+                    "Contains",
+                    "Does not contain"
+                  ],
+                  "operatorConstraints": []
+                },
+                "path": "RequestedFor",
+                "supportedScopes": [
+                  "project",
+                  "collection"
+                ]
+              },
+              "ms.vss-build.status-event-field": {
+                "id": "ms.vss-build.status-event-field",
+                "name": "Status",
+                "fieldType": {
+                  "id": "ms.vss-build.status-field-type",
+                  "operators": [
+                    "=",
+                    "<>"
+                  ],
+                  "operatorConstraints": []
+                },
+                "path": "tb1:Build/@Status",
+                "supportedScopes": [
+                  "project",
+                  "collection"
+                ]
+              },
+              "ms.vss-build.team-project-event-field": {
+                "id": "ms.vss-build.team-project-event-field",
+                "name": "Team project",
+                "fieldType": {
+                  "id": "ms.vss-tfs.project-field-type",
+                  "operators": [
+                    "=",
+                    "<>"
+                  ],
+                  "operatorConstraints": []
+                },
+                "path": "tb1:Build/@TeamProject",
+                "supportedScopes": [
+                  "collection"
+                ]
+              },
+              "ms.vss-build.test-status-event-field": {
+                "id": "ms.vss-build.test-status-event-field",
+                "name": "Test status",
+                "fieldType": {
+                  "id": "ms.vss-build.phase-status-field-type",
+                  "operators": [
+                    "=",
+                    "<>",
+                    "Contains",
+                    "Does not contain"
+                  ],
+                  "operatorConstraints": []
+                },
+                "path": "tb1:Build/@TestStatus",
+                "supportedScopes": [
+                  "project",
+                  "collection"
+                ]
+              }
+            },
+            "roles": [
+              {
+                "id": "lastChangedBy",
+                "name": "Last changed by"
+              },
+              {
+                "id": "requestedBy",
+                "name": "Requested by"
+              },
+              {
+                "id": "requestedFor",
+                "name": "Requested for"
+              }
+            ],
+            "supportedScopes": [
+              "project",
+              "collection"
+            ],
+            "hasInitiator": false,
+            "customSubscriptionsAllowed": true,
+            "icon": "css://bowtie-icon bowtie-build",
+            "color": "#748189"
+          }
+        }
+      },
+      "x-ms-vss-migrated": true,
+      "x-ms-vss-example-request": {
+        "url": "https://fabrikam.visualstudio.com/_apis/notification/eventTypes/ms.vss-build.build-completed-event?api-version=3.2-preview"
+      }
+    },
+    "POST__notification_subscriptionQuery": {
+      "parameters": {
+        "body": {
+          "conditions": [
+            {
+              "subscriber": "552e2388-e9bb-429e-ad71-c2fef2ad085f"
+            }
+          ]
+        }
+      },
+      "responses": {
+        "200": {
+          "body": {
+            "count": 3,
+            "value": [
+              {
+                "id": "105645",
+                "url": "https://fabrikam-fiber-inc.visualstudio.com/_apis/notification/Subscriptions/105645",
+                "description": "A pull request is created or updated",
+                "subscriber": {
+                  "id": "552e2388-e9bb-429e-ad71-c2fef2ad085f",
+                  "displayName": "[FabrikamCloud]\\Fab",
+                  "uniqueName": "vstfs:///Classification/TeamProject/3b3ae425-0079-421f-9101-bcf15d6df041\\Fab",
+                  "isContainer": true
+                },
+                "status": "enabled",
+                "flags": "groupSubscription, canOptOut",
+                "modifiedDate": "2017-01-10T17:53:24.337Z",
+                "lastModifiedBy": {
+                  "id": "cd49a245-51cc-493a-ab1a-5c0feb5afaa3",
+                  "displayName": "Jamal Hartnett",
+                  "uniqueName": "fabrikamfiber16@outlook.com"
+                },
+                "scope": {
+                  "type": "none",
+                  "id": "00000000-0000-636f-6c6c-656374696f6e"
+                },
+                "filter": {
+                  "type": "Actor",
+                  "inclusions": [
+                    "author",
+                    "reviewer",
+                    "changedReviewers"
+                  ],
+                  "exclusions": [
+                    "initiator"
+                  ],
+                  "criteria": {
+                    "clauses": [],
+                    "groups": [],
+                    "maxGroupLevel": 0
+                  },
+                  "eventType": "ms.vss-code.git-pullrequest-event"
+                },
+                "channel": {
+                  "type": "User",
+                  "useCustomAddress": false
+                },
+                "adminSettings": {
+                  "blockUserOptOut": false
+                },
+                "subscriptionUserSettings": {
+                  "optedOut": false
+                },
+                "_links": {},
+                "permissions": "view, edit, delete"
+              },
+              {
+                "id": "105936",
+                "url": "https://fabrikam-fiber-inc.visualstudio.com/_apis/notification/Subscriptions/105936",
+                "description": "A build completes",
+                "subscriber": {
+                  "id": "552e2388-e9bb-429e-ad71-c2fef2ad085f",
+                  "displayName": "[FabrikamCloud]\\Fab",
+                  "uniqueName": "vstfs:///Classification/TeamProject/3b3ae425-0079-421f-9101-bcf15d6df041\\Fab",
+                  "isContainer": true
+                },
+                "status": "enabled",
+                "flags": "groupSubscription",
+                "modifiedDate": "2017-01-25T02:09:42.863Z",
+                "lastModifiedBy": {
+                  "id": "cd49a245-51cc-493a-ab1a-5c0feb5afaa3",
+                  "displayName": "Jamal Hartnett",
+                  "uniqueName": "fabrikamfiber16@outlook.com"
+                },
+                "scope": {
+                  "type": "none",
+                  "id": "3b3ae425-0079-421f-9101-bcf15d6df041"
+                },
+                "filter": {
+                  "type": "Expression",
+                  "eventType": "ms.vss-build.build-completed-event"
+                },
+                "channel": {
+                  "type": "EmailHtml",
+                  "address": "tasd@boo.com",
+                  "useCustomAddress": true
+                },
+                "_links": {},
+                "permissions": "view, edit, delete"
+              },
+              {
+                "id": "114712",
+                "url": "https://fabrikam-fiber-inc.visualstudio.com/_apis/notification/Subscriptions/114712",
+                "description": "A new work item enters our area path",
+                "subscriber": {
+                  "id": "552e2388-e9bb-429e-ad71-c2fef2ad085f",
+                  "displayName": "[FabrikamCloud]\\Fab",
+                  "uniqueName": "vstfs:///Classification/TeamProject/3b3ae425-0079-421f-9101-bcf15d6df041\\Fab",
+                  "isContainer": true
+                },
+                "status": "enabled",
+                "flags": "groupSubscription",
+                "modifiedDate": "2017-03-13T04:46:18.027Z",
+                "lastModifiedBy": {
+                  "id": "cd49a245-51cc-493a-ab1a-5c0feb5afaa3",
+                  "displayName": "Jamal Hartnett",
+                  "uniqueName": "fabrikamfiber16@outlook.com"
+                },
+                "scope": {
+                  "type": "none",
+                  "id": "00000000-0000-636f-6c6c-656374696f6e"
+                },
+                "filter": {
+                  "type": "Expression",
+                  "eventType": "ms.vss-work.workitem-changed-event"
+                },
+                "channel": {
+                  "type": "EmailHtml",
+                  "address": "myteam@fabrikam.org",
+                  "useCustomAddress": true
+                },
+                "_links": {},
+                "permissions": "view, edit, delete"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "POST__notification_subscriptions": {
+      "parameters": {
+        "body": {
+          "description": "All changes to work items in the Fabrikam project",
+          "filter": {
+            "eventType": "ms.vss-work.workitem-changed-event",
+            "criteria": {
+              "clauses": [],
+              "groups": [],
+              "maxGroupLevel": 0
+            },
+            "type": "Expression"
+          },
+          "channel": {
+            "type": "EmailHtml"
+          },
+          "scope": {
+            "id": "19980dff-b50a-463e-ad01-2c93628490ff"
+          }
+        }
+      },
+      "responses": {
+        "200": {
+          "body": {
+            "id": "114711",
+            "url": "https://fabrikam.visualstudio.com/_apis/notification/Subscriptions/114711",
+            "description": "All changes to work items in the Fabrikam project",
+            "subscriber": {
+              "id": "cd49a245-51cc-493a-ab1a-5c0feb5afaa3",
+              "displayName": "Jamal Hartnett",
+              "uniqueName": "fabrikamfiber16@outlook.com"
+            },
+            "status": "enabled",
+            "flags": "none",
+            "modifiedDate": "2017-03-13T04:46:13.663Z",
+            "lastModifiedBy": {
+              "id": "cd49a245-51cc-493a-ab1a-5c0feb5afaa3",
+              "displayName": "Jamal Hartnett",
+              "uniqueName": "fabrikamfiber16@outlook.com"
+            },
+            "scope": {
+              "type": "none",
+              "id": "19980dff-b50a-463e-ad01-2c93628490ff"
+            },
+            "filter": {
+              "type": "Expression",
+              "criteria": {
+                "clauses": [
+                  {
+                    "logicalOperator": "",
+                    "fieldName": "",
+                    "operator": "=",
+                    "value": "",
+                    "index": 1
+                  }
+                ],
+                "groups": [],
+                "maxGroupLevel": 0
+              },
+              "eventType": "ms.vss-work.workitem-changed-event"
+            },
+            "channel": {
+              "type": "EmailHtml",
+              "useCustomAddress": false
+            },
+            "_links": {
+              "edit": {
+                "href": "https://fabrikam.visualstudio.com/_notifications?subscriptionId=114711&publisherId=ms.vss-work.work-event-publisher&action=view"
+              }
+            },
+            "permissions": "view, edit, delete"
+          }
+        }
+      },
+      "x-ms-vss-migrated": true,
+      "x-ms-vss-example-request": {
+        "url": "https://fabrikam.visualstudio.com/_apis/notification/subscriptions?api-version=3.2-preview"
+      }
+    },
+    "POST__notification_subscriptions2": {
+      "parameters": {
+        "body": {
+          "description": "A new work item enters our area path",
+          "filter": {
+            "eventType": "ms.vss-work.workitem-changed-event",
+            "criteria": {
+              "clauses": [],
+              "groups": [],
+              "maxGroupLevel": 0
+            },
+            "type": "Expression"
+          },
+          "subscriber": {
+            "id": "552e2388-e9bb-429e-ad71-c2fef2ad085f"
+          },
+          "channel": {
+            "type": "EmailHtml",
+            "address": "myteam@fabrikam.org",
+            "useCustomAddress": true
+          }
+        }
+      },
+      "responses": {
+        "200": {
+          "body": {
+            "id": "114712",
+            "url": "https://fabrikam.visualstudio.com/_apis/notification/Subscriptions/114712",
+            "description": "A new work item enters our area path",
+            "subscriber": {
+              "id": "552e2388-e9bb-429e-ad71-c2fef2ad085f",
+              "displayName": "[FabrikamCloud]\\Fab",
+              "uniqueName": "vstfs:///Classification/TeamProject/3b3ae425-0079-421f-9101-bcf15d6df041\\Fab",
+              "isContainer": true
+            },
+            "status": "enabled",
+            "flags": "groupSubscription",
+            "modifiedDate": "2017-03-13T04:46:18.027Z",
+            "lastModifiedBy": {
+              "id": "cd49a245-51cc-493a-ab1a-5c0feb5afaa3",
+              "displayName": "Jamal Hartnett",
+              "uniqueName": "fabrikamfiber16@outlook.com"
+            },
+            "scope": {
+              "type": "none",
+              "id": "00000000-0000-636f-6c6c-656374696f6e"
+            },
+            "filter": {
+              "type": "Expression",
+              "criteria": {
+                "clauses": [
+                  {
+                    "logicalOperator": "",
+                    "fieldName": "",
+                    "operator": "=",
+                    "value": "",
+                    "index": 1
+                  }
+                ],
+                "groups": [],
+                "maxGroupLevel": 0
+              },
+              "eventType": "ms.vss-work.workitem-changed-event"
+            },
+            "channel": {
+              "type": "EmailHtml",
+              "address": "myteam@fabrikam.org",
+              "useCustomAddress": true
+            },
+            "_links": {},
+            "permissions": "view, edit, delete"
+          }
+        }
+      },
+      "x-ms-vss-migrated": true,
+      "x-ms-vss-example-request": {
+        "url": "https://fabrikam.visualstudio.com/_apis/notification/subscriptions?api-version=3.2-preview"
+      }
+    },
+    "GET__notification_subscriptions": {
+      "parameters": {},
+      "responses": {
+        "200": {
+          "body": {
+            "count": 4,
+            "value": [
+              {
+                "id": "105852",
+                "url": "https://fabrikam.visualstudio.com/_apis/notification/Subscriptions/105852",
+                "description": "A commit is pushed by me",
+                "subscriber": {
+                  "id": "cd49a245-51cc-493a-ab1a-5c0feb5afaa3",
+                  "displayName": "Jamal Hartnett",
+                  "uniqueName": "fabrikamfiber16@outlook.com"
+                },
+                "status": "enabled",
+                "flags": "none",
+                "modifiedDate": "2017-01-04T16:14:15.487Z",
+                "lastModifiedBy": {
+                  "id": "cd49a245-51cc-493a-ab1a-5c0feb5afaa3",
+                  "displayName": "Jamal Hartnett",
+                  "uniqueName": "fabrikamfiber16@outlook.com"
+                },
+                "scope": {
+                  "type": "none",
+                  "id": "473139fc-10c2-419d-ad16-d18610b76be3"
+                },
+                "filter": {
+                  "type": "Expression",
+                  "criteria": {
+                    "clauses": [
+                      {
+                        "logicalOperator": "",
+                        "fieldName": "Pushed by",
+                        "operator": "=",
+                        "value": "[Me]",
+                        "index": 1
+                      }
+                    ],
+                    "groups": [],
+                    "maxGroupLevel": 0
+                  },
+                  "eventType": "ms.vss-code.git-push-event"
+                },
+                "channel": {
+                  "type": "EmailHtml",
+                  "useCustomAddress": false
+                },
+                "_links": {
+                  "edit": {
+                    "href": "https://fabrikam.visualstudio.com/_notifications?subscriptionId=105852&publisherId=ms.vss-code.git-event-publisher&action=view"
+                  }
+                },
+                "permissions": "view, edit, delete"
+              },
+              {
+                "id": "105897",
+                "url": "https://fabrikam.visualstudio.com/_apis/notification/Subscriptions/105897",
+                "description": "Code is pushed to the Ops repo",
+                "subscriber": {
+                  "id": "cd49a245-51cc-493a-ab1a-5c0feb5afaa3",
+                  "displayName": "Jamal Hartnett",
+                  "uniqueName": "fabrikamfiber16@outlook.com"
+                },
+                "status": "disabled",
+                "flags": "none",
+                "modifiedDate": "2017-01-07T20:49:54.307Z",
+                "lastModifiedBy": {
+                  "id": "cd49a245-51cc-493a-ab1a-5c0feb5afaa3",
+                  "displayName": "Jamal Hartnett",
+                  "uniqueName": "fabrikamfiber16@outlook.com"
+                },
+                "scope": {
+                  "type": "none",
+                  "id": "00000000-0000-636f-6c6c-656374696f6e"
+                },
+                "filter": {
+                  "type": "Expression",
+                  "criteria": {
+                    "clauses": [
+                      {
+                        "logicalOperator": "",
+                        "fieldName": "Pushed by",
+                        "operator": "=",
+                        "value": "[Me]",
+                        "index": 1
+                      }
+                    ],
+                    "groups": [],
+                    "maxGroupLevel": 0
+                  },
+                  "eventType": "ms.vss-code.git-push-event"
+                },
+                "channel": {
+                  "type": "EmailHtml",
+                  "useCustomAddress": false
+                },
+                "_links": {
+                  "edit": {
+                    "href": "https://fabrikam.visualstudio.com/_notifications?subscriptionId=105897&publisherId=ms.vss-code.git-event-publisher&action=view"
+                  }
+                },
+                "permissions": "view, edit, delete"
+              },
+              {
+                "id": "114710",
+                "url": "https://fabrikam.visualstudio.com/_apis/notification/Subscriptions/114710",
+                "description": "All changes to work items in the Fabrikam project",
+                "subscriber": {
+                  "id": "cd49a245-51cc-493a-ab1a-5c0feb5afaa3",
+                  "displayName": "Jamal Hartnett",
+                  "uniqueName": "fabrikamfiber16@outlook.com"
+                },
+                "status": "enabled",
+                "flags": "none",
+                "modifiedDate": "2017-03-13T04:45:51.343Z",
+                "lastModifiedBy": {
+                  "id": "cd49a245-51cc-493a-ab1a-5c0feb5afaa3",
+                  "displayName": "Jamal Hartnett",
+                  "uniqueName": "fabrikamfiber16@outlook.com"
+                },
+                "scope": {
+                  "type": "none",
+                  "id": "19980dff-b50a-463e-ad01-2c93628490ff"
+                },
+                "filter": {
+                  "type": "Expression",
+                  "criteria": {
+                    "clauses": [
+                      {
+                        "logicalOperator": "",
+                        "fieldName": "",
+                        "operator": "=",
+                        "value": "",
+                        "index": 1
+                      }
+                    ],
+                    "groups": [],
+                    "maxGroupLevel": 0
+                  },
+                  "eventType": "ms.vss-work.workitem-changed-event"
+                },
+                "channel": {
+                  "type": "EmailHtml",
+                  "useCustomAddress": false
+                },
+                "_links": {
+                  "edit": {
+                    "href": "https://fabrikam.visualstudio.com/_notifications?subscriptionId=114710&publisherId=ms.vss-work.work-event-publisher&action=view"
+                  }
+                },
+                "permissions": "view, edit, delete"
+              },
+              {
+                "id": "114711",
+                "url": "https://fabrikam.visualstudio.com/_apis/notification/Subscriptions/114711",
+                "description": "All changes to work items in the Fabrikam project",
+                "subscriber": {
+                  "id": "cd49a245-51cc-493a-ab1a-5c0feb5afaa3",
+                  "displayName": "Jamal Hartnett",
+                  "uniqueName": "fabrikamfiber16@outlook.com"
+                },
+                "status": "enabled",
+                "flags": "none",
+                "modifiedDate": "2017-03-13T04:46:13.663Z",
+                "lastModifiedBy": {
+                  "id": "cd49a245-51cc-493a-ab1a-5c0feb5afaa3",
+                  "displayName": "Jamal Hartnett",
+                  "uniqueName": "fabrikamfiber16@outlook.com"
+                },
+                "scope": {
+                  "type": "none",
+                  "id": "19980dff-b50a-463e-ad01-2c93628490ff"
+                },
+                "filter": {
+                  "type": "Expression",
+                  "criteria": {
+                    "clauses": [
+                      {
+                        "logicalOperator": "",
+                        "fieldName": "",
+                        "operator": "=",
+                        "value": "",
+                        "index": 1
+                      }
+                    ],
+                    "groups": [],
+                    "maxGroupLevel": 0
+                  },
+                  "eventType": "ms.vss-work.workitem-changed-event"
+                },
+                "channel": {
+                  "type": "EmailHtml",
+                  "useCustomAddress": false
+                },
+                "_links": {
+                  "edit": {
+                    "href": "https://fabrikam.visualstudio.com/_notifications?subscriptionId=114711&publisherId=ms.vss-work.work-event-publisher&action=view"
+                  }
+                },
+                "permissions": "view, edit, delete"
+              }
+            ]
+          }
+        }
+      },
+      "x-ms-vss-migrated": true,
+      "x-ms-vss-example-request": {
+        "url": "https://fabrikam.visualstudio.com/_apis/notification/subscriptions?api-version=3.2-preview"
+      }
+    },
+    "DELETE__notification_subscriptions__subscriptionId_": {
+      "parameters": {
+        "subscriptionId": "114711"
+      },
+      "responses": {
+        "204": {}
+      },
+      "x-ms-vss-migrated": true,
+      "x-ms-vss-example-request": {
+        "url": "https://fabrikam.visualstudio.com/_apis/notification/subscriptions/114711?api-version=3.2-preview"
+      }
+    },
+    "GET__notification_subscriptions__subscriptionId_": {
+      "parameters": {
+        "subscriptionId": "114711"
+      },
+      "responses": {
+        "200": {
+          "body": {
+            "id": "114711",
+            "url": "https://fabrikam.visualstudio.com/_apis/notification/Subscriptions/114711",
+            "description": "All changes to work items in the Fabrikam project",
+            "subscriber": {
+              "id": "cd49a245-51cc-493a-ab1a-5c0feb5afaa3",
+              "displayName": "Jamal Hartnett",
+              "uniqueName": "fabrikamfiber16@outlook.com"
+            },
+            "status": "enabled",
+            "flags": "none",
+            "modifiedDate": "2017-03-13T04:46:13.663Z",
+            "lastModifiedBy": {
+              "id": "cd49a245-51cc-493a-ab1a-5c0feb5afaa3",
+              "displayName": "Jamal Hartnett",
+              "uniqueName": "fabrikamfiber16@outlook.com"
+            },
+            "scope": {
+              "type": "none",
+              "id": "19980dff-b50a-463e-ad01-2c93628490ff"
+            },
+            "filter": {
+              "type": "Expression",
+              "criteria": {
+                "clauses": [
+                  {
+                    "logicalOperator": "",
+                    "fieldName": "",
+                    "operator": "=",
+                    "value": "",
+                    "index": 1
+                  }
+                ],
+                "groups": [],
+                "maxGroupLevel": 0
+              },
+              "eventType": "ms.vss-work.workitem-changed-event"
+            },
+            "channel": {
+              "type": "EmailHtml",
+              "useCustomAddress": false
+            },
+            "_links": {
+              "edit": {
+                "href": "https://fabrikam.visualstudio.com/_notifications?subscriptionId=114711&publisherId=ms.vss-work.work-event-publisher&action=view"
+              }
+            },
+            "permissions": "view, edit, delete"
+          }
+        }
+      },
+      "x-ms-vss-migrated": true,
+      "x-ms-vss-example-request": {
+        "url": "https://fabrikam.visualstudio.com/_apis/notification/subscriptions/114711?api-version=3.2-preview"
+      }
+    },
+    "PATCH__notification_subscriptions__subscriptionId_": {
+      "parameters": {
+        "subscriptionId": "114711",
+        "body": {
+          "description": "All changes to work items in this account",
+          "scope": {
+            "id": null
+          }
+        }
+      },
+      "responses": {
+        "200": {
+          "body": {
+            "id": "114711",
+            "url": "https://fabrikam.visualstudio.com/_apis/notification/Subscriptions/114711",
+            "description": "All changes to work items in this account",
+            "subscriber": {
+              "id": "cd49a245-51cc-493a-ab1a-5c0feb5afaa3",
+              "displayName": "Jamal Hartnett",
+              "uniqueName": "fabrikamfiber16@outlook.com"
+            },
+            "status": "enabled",
+            "flags": "none",
+            "modifiedDate": "2017-03-13T04:46:15.21Z",
+            "lastModifiedBy": {
+              "id": "cd49a245-51cc-493a-ab1a-5c0feb5afaa3",
+              "displayName": "Jamal Hartnett",
+              "uniqueName": "fabrikamfiber16@outlook.com"
+            },
+            "scope": {
+              "type": "none",
+              "id": "00000000-0000-636f-6c6c-656374696f6e"
+            },
+            "filter": {
+              "type": "Expression",
+              "criteria": {
+                "clauses": [
+                  {
+                    "logicalOperator": "",
+                    "fieldName": "",
+                    "operator": "=",
+                    "value": "",
+                    "index": 1
+                  }
+                ],
+                "groups": [],
+                "maxGroupLevel": 0
+              },
+              "eventType": "ms.vss-work.workitem-changed-event"
+            },
+            "channel": {
+              "type": "EmailHtml",
+              "useCustomAddress": false
+            },
+            "_links": {
+              "edit": {
+                "href": "https://fabrikam.visualstudio.com/_notifications?subscriptionId=114711&publisherId=ms.vss-work.work-event-publisher&action=view"
+              }
+            },
+            "permissions": "view, edit, delete"
+          }
+        }
+      },
+      "x-ms-vss-migrated": true,
+      "x-ms-vss-example-request": {
+        "url": "https://fabrikam.visualstudio.com/_apis/notification/subscriptions/114711?api-version=3.2-preview"
+      }
+    },
+    "PATCH__notification_subscriptions__subscriptionId_2": {
+      "parameters": {
+        "subscriptionId": "114711",
+        "body": {
+          "status": "disabled"
+        }
+      },
+      "responses": {
+        "200": {
+          "body": {
+            "id": "114711",
+            "url": "https://fabrikam.visualstudio.com/_apis/notification/Subscriptions/114711",
+            "description": "All changes to work items in this account",
+            "subscriber": {
+              "id": "cd49a245-51cc-493a-ab1a-5c0feb5afaa3",
+              "displayName": "Jamal Hartnett",
+              "uniqueName": "fabrikamfiber16@outlook.com"
+            },
+            "status": "disabled",
+            "flags": "none",
+            "modifiedDate": "2017-03-13T04:46:15.743Z",
+            "lastModifiedBy": {
+              "id": "cd49a245-51cc-493a-ab1a-5c0feb5afaa3",
+              "displayName": "Jamal Hartnett",
+              "uniqueName": "fabrikamfiber16@outlook.com"
+            },
+            "scope": {
+              "type": "none",
+              "id": "00000000-0000-636f-6c6c-656374696f6e"
+            },
+            "filter": {
+              "type": "Expression",
+              "criteria": {
+                "clauses": [
+                  {
+                    "logicalOperator": "",
+                    "fieldName": "",
+                    "operator": "=",
+                    "value": "",
+                    "index": 1
+                  }
+                ],
+                "groups": [],
+                "maxGroupLevel": 0
+              },
+              "eventType": "ms.vss-work.workitem-changed-event"
+            },
+            "channel": {
+              "type": "EmailHtml",
+              "useCustomAddress": false
+            },
+            "_links": {
+              "edit": {
+                "href": "https://fabrikam.visualstudio.com/_notifications?subscriptionId=114711&publisherId=ms.vss-work.work-event-publisher&action=view"
+              }
+            },
+            "permissions": "view, edit, delete"
+          }
+        }
+      },
+      "x-ms-vss-migrated": true,
+      "x-ms-vss-example-request": {
+        "url": "https://fabrikam.visualstudio.com/_apis/notification/subscriptions/114711?api-version=3.2-preview"
+      }
+    },
+    "PUT__notification_subscriptions__sharedSubscriptionId__userSettings_me": {
+      "parameters": {
+        "sharedSubscriptionId": "ms.vss-code.pull-request-updated-subscription",
+        "body": {
+          "optedOut": true
+        }
+      },
+      "responses": {
+        "200": {
+          "body": {
+            "optedOut": true
+          }
+        }
+      },
+      "x-ms-vss-migrated": true
+    }
+  },
+  "parameters": {
+    "api-Version": {
+      "name": "api-version",
+      "in": "query",
+      "description": "Version of the API to use.  This should be set to '4.1-preview' to use this version of the api.",
+      "required": true,
+      "type": "string"
+    }
+  },
+  "securityDefinitions": {
+    "accessToken": {
+      "type": "basic",
+      "description": "Personal access token. Use any value for the user name and the token as the password."
+    },
+    "oauth2": {
+      "type": "oauth2",
+      "flow": "accessCode",
+      "authorizationUrl": "https://app.vssps.visualstudio.com/oauth2/authorize&response_type=Assertion",
+      "tokenUrl": "https://app.vssps.visualstudio.com/oauth2/token?client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer&grant_type=urn:ietf:params:oauth:grant-type:jwt-bearer",
+      "scopes": {
+        "vso.notification": "Provides read access to subscriptions and event metadata, including filterable field values.",
+        "vso.notification_write": "Provides read/write access to subscriptions and read access to event metadata, including filterable field values.",
+        "vso.notification_manage": "Provides read, write, and management access to subscriptions and read access to event metadata, including filterable field values."
+      }
+    }
+  },
+  "security": [
+    {
+      "accessToken": []
+    }
+  ],
+  "externalDocs": {
+    "description": "Visual Studio Team Services REST APIs",
+    "url": "https://www.visualstudio.com/docs/integrate/api/overview"
+  },
+  "x-internal-service-name": "Notification",
+  "x-internal-toc-name": "EventTypes",
+  "x-internal-split-members": [
+    {
+      "displayName": "Event Get Get Get",
+      "relativePath": "EventTypes/EventTypes_Get"
+    },
+    {
+      "displayName": "Event List List st",
+      "relativePath": "EventTypes/EventTypes_List"
+    }
+  ],
+  "x-internal-split-type": "TagOperation"
+}

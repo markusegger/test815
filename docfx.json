@@ -1,116 +1,122 @@
 {
-  
-    "build": {
-  
-      "content": [
-  
-        {
-  
-          "src":"docs-ref-autogen",
-  
-          "files": [
-  
-            "**.json",
-  
-            "toc.md"
-  
-          ],
-  
-          "exclude": [
-  
-          ],
-  
-          "dest":"api/sql-reporting"
-  
-        },
-  
-        {
-  
-          "src":".",
-  
-          "files": [
-  
-            "index.md"
-  
-          ],
-  
-          "dest":"api/sql-reporting"
-  
-        },     
-        {
-  
-          "src":"docs-ref-conceptual",
-  
-          "files": [
-              "**.md"
-          ],
-          "exclude": [
-            "**/toc.md"
-          ],
-  
-          "dest":"api/sql-reporting"
-  
-        },
-  
-        {
-  
-          "files": [
-  
-  
-          ]
-  
-        }
-  
-      ],
-  
-      "resource": [
-  
-        {
-  
-          "files": [
-  
-            "**/*.png",
-  
-            "**/*.jpg"
-  
-          ],
-  
-          "exclude": [
-  
-            "**/obj/**",
-  
-            "**/includes/**"
-  
-          ]
-  
-        }
-  
-      ],
-  
-      "overwrite": [],
-  
-      "externalReference": [],
-  
-      "globalMetadata": {
-  
-    "author": "pacort",
-    "ms.author": "pacort",
-    "ms.topic": "reference",
-    "ms.prod": "vs-devops-alm",
-    "ms.devlang": "rest-api"
-  
-        
-  
+
+  "build": {
+
+    "content": [
+
+      {
+
+        "src":"docs-ref-autogen",
+
+        "files": [
+
+          "**.json",
+
+          "toc.md"
+
+        ],
+
+        "exclude": [
+
+        ],
+
+        "dest":"api/vsts"
+
       },
-  
-      "fileMetadata": {},
-  
-      "template": [],
-  
-      "dest": "sql-rest",
-      "exportRawModel": true
-  
-    }
-  
+
+      {
+
+        "src":".",
+
+        "files": [
+
+          "index.md"
+
+        ],
+
+        "dest":"api/vsts"
+
+      },     
+      {
+
+        "src":"docs-ref-conceptual",
+
+        "files": [
+            "**.md"
+        ],
+        "exclude": [
+          "**/toc.md"
+        ],
+
+        "dest":"api/vsts"
+
+      },
+
+      {
+
+        "files": [
+
+
+        ]
+
+      }
+
+    ],
+
+    "resource": [
+
+      {
+
+        "files": [
+
+          "**/*.png",
+
+          "**/*.jpg"
+
+        ],
+
+        "exclude": [
+
+          "**/obj/**",
+
+          "**/includes/**"
+
+        ]
+
+      }
+
+    ],
+
+    "overwrite": [],
+
+    "externalReference": [],
+
+    "globalMetadata": {
+
+
+
+   "uhfHeaderId": "MSDocsHeader-TeamServices", 
+
+  "author": "douge",
+
+  "ms.author": "douge",
+
+  "ms.topic": "reference",
+
+  "ms.prod": "vs-devops-alm",
+
+  "ms.devlang": "rest-api"
+
+      
+
+    },
+
+    "fileMetadata": {},
+
+    "template": [],
+
+    "dest": "vsts-docs-rest-apis"
+
   }
-  
+
+}

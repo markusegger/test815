@@ -1,9 +1,9 @@
 {
 	"repo": [
 		{
-			"url": "https://powerbi.visualstudio.com/DefaultCollection/SQL%20Server%20Reporting%20Services/_git/docs",
+			"url": "https://github.com/MicrosoftDocs/vsts-rest-api-specs",
 			"branch": "master",
-			"name": "sql-rest"
+			"name": "vsts-rest-api-specs"
 		}
 	]
 }
