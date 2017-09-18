@@ -4,7 +4,7 @@
     {
       "docset_name": "test8151",
       "build_source_folder": "test8151",
-      "build_output_subfolder": "test8151",
+      "build_output_subfolder": "op/test8151",
       "locale": "en-us",
       "monikers": [],
       "moniker_ranges": [],
